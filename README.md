@@ -45,3 +45,13 @@ Employee View:
 * Redux
 * Moment
 * React Calendar?
+
+# To Do
+Need to create models for the following:
+	- User
+	- Order
+	- Admin?
+
+User will have many orders
+Many orders will have one user
+Admin is able to access all orders.
