@@ -12,13 +12,13 @@ export default function App() {
     <Router>
       <div>
         <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-          </Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+        </Switch>
         </div>
     </Router>  
     )
