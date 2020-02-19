@@ -2,6 +2,6 @@ client/node_modules/
 client/package-lock.json
 client/src/registerServiceWorker.js
 node_modules/
-yarn.lock
+package-lock.json
 .gitignore
 .env
