@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
 
 
 var totalPrice = 30;
@@ -29,29 +29,63 @@ class OrderForm extends React.Component {
 	render() {
 		return (
 			<Form>
-			<FormGroup style={{width: "150px"}}>
-				<Label for="quantity">Quantity</Label>
-				<Input 
-					type="select" 
-					name="quantity" 
-					id="quantity" 
-					value={this.state.quantity}
-					onChange={this.handleChange}
-					on={this.handleTotal(this.state.quantity)}>
+				<Row form>
+					<Col xl={3}>
+						<FormGroup style={{width: "150px"}}>
+							<Label for="quantity">Quantity</Label>
+							<Input 
+								type="select" 
+								name="quantity" 
+								id="quantity" 
+								value={this.state.quantity}
+								onChange={this.handleChange}
+								on={this.handleTotal(this.state.quantity)}>
 
-					<option value="1">1 dozen</option>
-					<option value="2">2 dozens</option>
-					<option value="3">3 dozens</option>
-					<option value="4">4 dozens</option>
+								<option value="1">1 dozen</option>
+								<option value="2">2 dozens</option>
+								<option value="3">3 dozens</option>
+								<option value="4">4 dozens</option>
 
-				</Input>
+							</Input>
+						</FormGroup>
+					</Col>
+					<Col xl={3}>
+						<Label for="price">Price</Label>
+						<div id="price" name="price">$30.00</div>
+					</Col>
+					<Col xl={3}>
+						<Label for="totalPrice">Total</Label>
+						<div id="totalPrice" name="totalPrice">${totalPrice}</div>
+					</Col>
+				</Row>
+				<Row>
+					<Col xl={12}>
+						<button>15%</button>
+						<button>18%</button>
+						<button>20%</button>
+						<FormGroup>
+						<Label for="customAmount">Custom Amount</Label>
+							<Input 
+								type="select" 
+								name="customAmount" 
+								id="customAmount" 
+								style={{width: "60px"}}>
+									<option>$</option>
+									<option>%</option>
+							</Input>
+							<Input
+								type="number"
+								name="customText"
+								id="customText">
+							</Input>
+						</FormGroup>
 
-				<Label for="price">Price</Label>
-				<div id="price" name="price">$30.00</div>
-				<Label for="totalPrice">Total</Label>
-				<div id="totalPrice" name="totalPrice">${totalPrice}</div>
+					</Col>
+				</Row>
 
-			</FormGroup>
+
+
+
 			</Form>
 		);
 	}
