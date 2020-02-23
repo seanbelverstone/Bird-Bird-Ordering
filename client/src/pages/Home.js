@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import OrderForm from "../components/OrderForm";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 
 
@@ -16,7 +17,7 @@ class Home extends Component {
 				</div>
 				<div className="row">
 					<div className="col-12">
-						<div>BISCUITS BY THE DOZEN</div>
+						<h1>BISCUITS BY THE DOZEN</h1>
 					</div>
 				</div>
 				<div className="row">
@@ -24,7 +25,9 @@ class Home extends Component {
 						<img src={biscuits} alt="a dozen biscuits" />
 					</div>
 				</div>
-
+				<div className="row">
+					<OrderForm />
+				</div>
 
 
 			</div>
