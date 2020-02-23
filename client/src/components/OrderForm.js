@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import UserCalendar from "./UserCalendar";
 
 
 var totalPrice = 30;
@@ -121,6 +122,7 @@ class OrderForm extends React.Component {
 				<Row>
 					<Col xl={12}>
 						<div>Select a pick-up date & time</div>
+						<UserCalendar />
 					</Col>
 				</Row>
 
