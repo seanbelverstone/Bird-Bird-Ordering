@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 
 var totalPrice = 30;
@@ -102,35 +102,25 @@ class OrderForm extends React.Component {
 							<FormGroup check>
 								<Label check>
 								<Input type="radio" name="radio2" />{' '}
-								Option one is this and that—be sure to include why it's great
+								$
 								</Label>
 							</FormGroup>
 							<FormGroup check>
 								<Label check>
 								<Input type="radio" name="radio2" />{' '}
-								Option two can be something else and selecting it will deselect option one
+								%
 								</Label>
 							</FormGroup>
+							<FormGroup>
+								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
+								<Input type="number" name="customAmount" id="customAmount" />
+							</FormGroup>
 						</div>
-
-
-						{/* <FormGroup>
-						<Label for="customAmount">Custom Amount</Label>
-							<Input 
-								type="select" 
-								name="customAmount" 
-								id="customAmount" 
-								style={{width: "60px"}}>
-									<option>$</option>
-									<option>%</option>
-							</Input>
-							<Input
-								type="number"
-								name="customText"
-								id="customText">
-							</Input>
-						</FormGroup> */}
-
+					</Col>
+				</Row>
+				<Row>
+					<Col xl={12}>
+						<div>Select a pick-up date & time</div>
 					</Col>
 				</Row>
 
