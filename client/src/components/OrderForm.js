@@ -8,6 +8,8 @@ class OrderForm extends React.Component {
 
 	state = {
 		quantity: 1,
+		hiddenForm: {display: "none"},
+		hidden: true
 	}
 
 	handleChange = (event) => {
@@ -24,6 +26,31 @@ class OrderForm extends React.Component {
 	handleTotal = (quantity) => {
 		totalPrice = parseInt(this.state.quantity)*30
 	};
+
+	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
+	// of the form where they can choose to enter an amount using $ or %
+	handleForm = (event) => {
+		event.preventDefault()
+		if (this.state.hidden) {
+			this.showForm()
+		} else {
+			this.hideForm()
+		}
+	}
+
+	showForm = () => {
+		this.setState({
+				hiddenForm: {display: "block"},
+				hidden: false
+			})
+	}
+
+	hideForm = () => {
+		this.setState({
+			hiddenForm: {display: "none"},
+			hidden: true
+		})
+	}
 	
 
 	render() {
@@ -60,10 +87,34 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col xl={12}>
+						<div>Add a tip</div>
+					</Col>
+				</Row>
+				<Row>
+					<Col xl={12}>
 						<button>15%</button>
 						<button>18%</button>
 						<button>20%</button>
-						<FormGroup>
+						<button
+							onClick={this.handleForm}>Custom Amount</button>
+
+						<div id="hiddenForm" style={this.state.hiddenForm}>
+							<FormGroup check>
+								<Label check>
+								<Input type="radio" name="radio2" />{' '}
+								Option one is this and that—be sure to include why it's great
+								</Label>
+							</FormGroup>
+							<FormGroup check>
+								<Label check>
+								<Input type="radio" name="radio2" />{' '}
+								Option two can be something else and selecting it will deselect option one
+								</Label>
+							</FormGroup>
+						</div>
+
+
+						{/* <FormGroup>
 						<Label for="customAmount">Custom Amount</Label>
 							<Input 
 								type="select" 
@@ -78,7 +129,7 @@ class OrderForm extends React.Component {
 								name="customText"
 								id="customText">
 							</Input>
-						</FormGroup>
+						</FormGroup> */}
 
 					</Col>
 				</Row>
