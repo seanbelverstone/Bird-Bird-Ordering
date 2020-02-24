@@ -26,11 +26,13 @@ class UserCalendar extends React.Component {
 		  <DatePicker
 			selected={this.state.startDate}
 			onChange={this.handleChange}
+			// min date makes sure users can't select a date sooner than 2 days from the current day
 			minDate={subDays(new Date(), -2)}
 			showTimeSelect
 			timeFormat="HH:mm"
 			timeIntervals={15}
 			timeCaption="Time"
+			// the min/max time reflect Bird Bird Biscuit's weekday opening hours
 			minTime={setHours(setMinutes(new Date(), 0), 7)}
 			maxTime={setHours(setMinutes(new Date(), 0), 14)}
 			/>
