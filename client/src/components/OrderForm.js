@@ -58,7 +58,7 @@ class OrderForm extends React.Component {
 		return (
 			<Form>
 				<Row form>
-					<Col xl={3}>
+					<Col>
 						<FormGroup style={{width: "150px"}}>
 							<Label for="quantity">Quantity</Label>
 							<Input 
@@ -77,22 +77,22 @@ class OrderForm extends React.Component {
 							</Input>
 						</FormGroup>
 					</Col>
-					<Col xl={3}>
+					<Col>
 						<Label for="price">Price</Label>
 						<div id="price" name="price">$30.00</div>
 					</Col>
-					<Col xl={3}>
+					<Col>
 						<Label for="totalPrice">Total</Label>
 						<div id="totalPrice" name="totalPrice">${totalPrice}</div>
 					</Col>
 				</Row>
 				<Row>
-					<Col xl={12}>
+					<Col>
 						<div>Add a tip</div>
 					</Col>
 				</Row>
 				<Row>
-					<Col xl={12}>
+					<Col>
 						<button>15%</button>
 						<button>18%</button>
 						<button>20%</button>
@@ -120,10 +120,19 @@ class OrderForm extends React.Component {
 					</Col>
 				</Row>
 				<Row>
-					<Col xl={12}>
-						<div>Select a pick-up date & time</div>
-						<UserCalendar />
-					</Col>
+					<div>Select a pick-up date & time</div>
+				</Row>
+				<Row>
+					<UserCalendar />
+				</Row>
+				<Row>
+				<FormGroup>
+					<Label for="specialInstructions">Would you like to include any special instructions?</Label>
+					<Input type="textarea" name="text" id="specialInstructions" />
+				</FormGroup>
+				</Row>
+				<Row>
+					<button id="next">NEXT</button>
 				</Row>
 
 
