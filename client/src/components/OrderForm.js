@@ -6,20 +6,33 @@ import UserCalendar from "./UserCalendar";
 var totalPrice = 30;
 
 class OrderForm extends React.Component {
-
-	state = {
-		quantity: 1,
-		hiddenForm: {display: "none"},
-		hidden: true
+	constructor(props) {
+		super(props);
+		this.state = {
+			quantity: 1,
+			hiddenForm: {display: "none"},
+			hidden: true,
+			currencySelector: "",
+			formControls: {
+				customTip: {
+					value: ""
+				}
+			}
+			}
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+		
 
+	// A function for when the dropdown changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
 		this.setState(
 		  {[name]: value}
 		)
-	  };
+	};
 
+	// Waits for the component to update before changing the total
 	componentDidUpdate = () => {
 		this.handleTotal(this.state.quantity)
 	}
@@ -53,6 +66,29 @@ class OrderForm extends React.Component {
 		})
 	}
 	
+	handleTipChange() {
+		// In here i'll make a function that changes the custom tip amount text box so when the user clicks
+		// the $ sign, a $ will appear and they'll be able to choose a monetary amount. If they click %,
+		// they will be able to select a percentage. The validation will change depending on what they choose
+		// Also, if they click back on a regular tip button, it will clear the text box, preventing for
+		// multiple tips being added.
+
+		// Set validation to only allow numbers
+		// On clicking $, setState for currency selector to value $
+		// if(this.state.currentySelector === "$"") {
+		//		pop a lil' $ at the start of the textbox
+		//		input = "currency"? (is that an option??)
+		// } else {
+		//  	pop a lil' % at the start of the textbox
+		//		set validation to only allow 1-100
+		//}
+		// Maybe have another text that updates to show the opposite, eg: 10% -----> $4.33 etc
+			
+	} 
+
+	handleSubmit(event) {
+		console.log("hello")
+	}
 
 	render() {
 		return (
@@ -102,19 +138,24 @@ class OrderForm extends React.Component {
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" />{' '}
+								<Input type="radio" name="radio2" value="$"/>{' '}
 								$
 								</Label>
 							</FormGroup>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" />{' '}
+								<Input type="radio" name="radio2" value="%"/>{' '}
 								%
 								</Label>
 							</FormGroup>
 							<FormGroup>
 								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-								<Input type="number" name="customAmount" id="customAmount" />
+								<Input 
+									type="text" 
+									name="customAmount" 
+									id="customAmount" 
+									value={this.state.formControls.customTip.value}
+									onChange={this.handleTipChange}/>
 							</FormGroup>
 						</div>
 					</Col>
@@ -132,7 +173,7 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next">NEXT</button>
+					<button id="next" onSubmit={this.handleSubmit}>NEXT</button>
 				</Row>
 
 
