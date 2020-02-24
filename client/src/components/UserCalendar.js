@@ -1,6 +1,9 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import subDays from "date-fns/addDays";
+import subDays from "date-fns/subDays";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
+
 
 import "react-datepicker/dist/react-datepicker.css";
  
@@ -23,7 +26,13 @@ class UserCalendar extends React.Component {
 		  <DatePicker
 			selected={this.state.startDate}
 			onChange={this.handleChange}
-			minDate={subDays(new Date(), 2)}
+			minDate={subDays(new Date(), -2)}
+			showTimeSelect
+			timeFormat="HH:mm"
+			timeIntervals={15}
+			timeCaption="Time"
+			minTime={setHours(setMinutes(new Date(), 0), 7)}
+			maxTime={setHours(setMinutes(new Date(), 0), 14)}
 			/>
 		);
 	  }
