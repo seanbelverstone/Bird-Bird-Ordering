@@ -13,6 +13,9 @@ class OrderForm extends React.Component {
 			hiddenForm: {display: "none"},
 			hidden: true,
 			currencySelector: "",
+			tip: {
+				value: 0
+			},
 			formControls: {
 				customTip: {
 					value: ""
@@ -21,6 +24,7 @@ class OrderForm extends React.Component {
 			}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.addTip = this.addTip.bind(this);
 	}
 		
 
@@ -40,6 +44,16 @@ class OrderForm extends React.Component {
 	handleTotal = (quantity) => {
 		totalPrice = parseInt(this.state.quantity)*30
 	};
+
+	// This controls the percentage tip button amount
+	addTip = (event) => {
+		event.preventDefault();
+		this.setState({
+			tip: {
+					value: event.target.value
+				}
+		});
+	}
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
@@ -87,6 +101,7 @@ class OrderForm extends React.Component {
 	} 
 
 	handleSubmit(event) {
+		event.preventDefault();
 		console.log("hello")
 	}
 
@@ -129,9 +144,9 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button>15%</button>
-						<button>18%</button>
-						<button>20%</button>
+						<button onClick={this.addTip} value={0.15}>15%</button>
+						<button onClick={this.addTip} value={0.18}>18%</button>
+						<button onClick={this.addTip} value={0.20}>20%</button>
 						<button
 							onClick={this.handleForm}>Custom Amount</button>
 
@@ -173,7 +188,7 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next" onSubmit={this.handleSubmit}>NEXT</button>
+					<button id="next" onClick={this.handleSubmit}>NEXT</button>
 				</Row>
 
 
