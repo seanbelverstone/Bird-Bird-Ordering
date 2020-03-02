@@ -4,6 +4,9 @@ import UserCalendar from "./UserCalendar";
 
 
 var totalPrice = 30;
+var fifteenPercentTip;
+var eighteenPercentTip;
+var twentyPercentTip;
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -13,9 +16,6 @@ class OrderForm extends React.Component {
 			hiddenForm: {display: "none"},
 			hidden: true,
 			currencySelector: "",
-			tip: {
-				value: 0
-			},
 			formControls: {
 				customTip: {
 					value: ""
@@ -36,24 +36,21 @@ class OrderForm extends React.Component {
 		)
 	};
 
-	// Waits for the component to update before changing the total
-	componentDidUpdate = () => {
-		this.handleTotal(this.state.quantity)
-	}
-
-	handleTotal = (quantity) => {
-		totalPrice = parseInt(this.state.quantity)*30
+	handleTotals = () => {
+		totalPrice = parseInt(this.state.quantity)*30;
+		fifteenPercentTip = "$" + (totalPrice * 0.15);
+		eighteenPercentTip = "$" + (totalPrice * 0.18);;
+		twentyPercentTip = "$" + (totalPrice * 0.2);;
 	};
 
 	// This controls the percentage tip button amount
 	addTip = (event) => {
 		event.preventDefault();
 		this.setState({
-			tip: {
-					value: event.target.value
-				}
+			tip: event.target.value
 		});
 	}
+
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
@@ -103,6 +100,8 @@ class OrderForm extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		console.log("hello")
+		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
+		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
 	}
 
 	render() {
@@ -118,7 +117,7 @@ class OrderForm extends React.Component {
 								id="quantity" 
 								value={this.state.quantity}
 								onChange={this.handleChange}
-								on={this.handleTotal(this.state.quantity)}>
+								onClick={this.handleTotals()}>
 
 								<option value="1">1 dozen</option>
 								<option value="2">2 dozens</option>
@@ -144,9 +143,19 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} value={0.15}>15%</button>
-						<button onClick={this.addTip} value={0.18}>18%</button>
-						<button onClick={this.addTip} value={0.20}>20%</button>
+						<button onClick={this.addTip} value={0.15}>
+							15%
+							{/* This <p> below will show the percentage in dollar form, for easier viewing */}
+							<p className="tipAmountInDollars">{fifteenPercentTip}</p>
+						</button>
+						<button onClick={this.addTip} value={0.18}>
+							18%
+							<p className="tipAmountInDollars">{eighteenPercentTip}</p>
+						</button>
+						<button onClick={this.addTip} value={0.20}>
+							20%
+							<p className="tipAmountInDollars">{twentyPercentTip}</p>
+						</button>
 						<button
 							onClick={this.handleForm}>Custom Amount</button>
 
