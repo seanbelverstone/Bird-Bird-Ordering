@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 
@@ -30,7 +30,7 @@ class OrderForm extends React.Component {
 	}
 		
 
-	// A function for when the dropdown changes
+	// A function for when the quantity changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
 		this.setState(
@@ -50,6 +50,7 @@ class OrderForm extends React.Component {
 	// This controls the percentage tip button amount
 	addTip = (event) => {
 		event.preventDefault();
+		console.log(event.target.value)
 		this.setState({
 			tip: event.target.value
 		});
@@ -117,7 +118,7 @@ class OrderForm extends React.Component {
 
 	render() {
 		return (
-			<Form>
+			<AvForm>
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -156,16 +157,18 @@ class OrderForm extends React.Component {
 					<Col>
 						<button onClick={this.addTip} value={0.15}>
 							15%
-							{/* This <p> below will show the percentage in dollar form, for easier viewing */}
-							<p className="tipAmountInDollars">{fifteenPercentTip}</p>
+							<br />
+							{fifteenPercentTip}
 						</button>
 						<button onClick={this.addTip} value={0.18}>
 							18%
-							<p className="tipAmountInDollars">{eighteenPercentTip}</p>
+							<br />
+							{eighteenPercentTip}
 						</button>
 						<button onClick={this.addTip} value={0.20}>
 							20%
-							<p className="tipAmountInDollars">{twentyPercentTip}</p>
+							<br />
+							{twentyPercentTip}
 						</button>
 						<button
 							onClick={this.handleForm}>Custom Amount</button>
@@ -193,20 +196,17 @@ class OrderForm extends React.Component {
 								%
 								</Label>
 							</FormGroup>
-							<AvForm>
-								<FormGroup>
-									<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-									<AvField 
-										type="text" 
-										name="customAmount" 
-										id="customAmount"
-										min="0.01"
-										step="0.01"
-										validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
-										onChange={this.handleChange}
-										/>
-								</FormGroup>
-							</AvForm>
+								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
+								<AvField 
+									type="text" 
+									name="customAmount" 
+									id="customAmount"
+									min="0.01"
+									step="0.01"
+									validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
+									onChange={this.handleChange}
+									value={this.state.formControls.customTip.value}
+									/>
 						</div>
 					</Col>
 				</Row>
@@ -228,8 +228,7 @@ class OrderForm extends React.Component {
 
 
 
-
-			</Form>
+			</AvForm>
 		);
 	}
 }
