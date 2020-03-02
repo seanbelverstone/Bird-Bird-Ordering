@@ -1,32 +1,61 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 
 
 var totalPrice = 30;
+var fifteenPercentTip;
+var eighteenPercentTip;
+var twentyPercentTip;
 
 class OrderForm extends React.Component {
-
-	state = {
-		quantity: 1,
-		hiddenForm: {display: "none"},
-		hidden: true
+	constructor(props) {
+		super(props);
+		this.state = {
+			quantity: 1,
+			hiddenForm: {display: "none"},
+			hidden: true,
+			selectedOption: "dollars",
+			formControls: {
+				customTip: {
+					value: ""
+				}
+			}
+			}
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.addTip = this.addTip.bind(this);
+		this.handleTipChange = this.handleTipChange.bind(this);
 	}
+		
 
+	// A function for when the quantity changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
 		this.setState(
 		  {[name]: value}
 		)
-	  };
+	};
 
-	componentDidUpdate = () => {
-		this.handleTotal(this.state.quantity)
+	handleTotals = () => {
+		totalPrice = parseInt(this.state.quantity)*30;
+
+		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
+		fifteenPercentTip = "$" + (totalPrice * 0.15).toFixed(2);
+		eighteenPercentTip = "$" + (totalPrice * 0.18).toFixed(2);
+		twentyPercentTip = "$" + (totalPrice * 0.2).toFixed(2);
+	};
+
+	// This controls the percentage tip button amount
+	addTip = (event) => {
+		event.preventDefault();
+		console.log(event.target.value)
+		this.setState({
+			tip: event.target.value
+		});
 	}
 
-	handleTotal = (quantity) => {
-		totalPrice = parseInt(this.state.quantity)*30
-	};
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
@@ -53,10 +82,43 @@ class OrderForm extends React.Component {
 		})
 	}
 	
+	handleTipChange(event) {
+		// In here i'll make a function that changes the custom tip amount text box so when the user clicks
+		// the $ sign, a $ will appear and they'll be able to choose a monetary amount. If they click %,
+		// they will be able to select a percentage. The validation will change depending on what they choose
+		// Also, if they click back on a regular tip button, it will clear the text box, preventing for
+		// multiple tips being added.
+
+		// Set validation to only allow numbers
+		// On clicking $, setState for currency selector to value $
+		// if(this.state.currentySelector === "$"") {
+		//		pop a lil' $ at the start of the textbox
+		//		input = "currency"? (is that an option??)
+		// } else {
+		//  	pop a lil' % at the start of the textbox
+		//		set validation to only allow 1-100
+		//}
+		// Maybe have another text that updates to show the opposite, eg: 10% -----> $4.33 etc
+	this.setState({
+		selectedOption: event.target.value
+	});
+	if (this.state.selectedOption === "dollars") {
+		
+	} else {
+		
+	} 
+}
+
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log("hello")
+		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
+		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
+	}
 
 	render() {
 		return (
-			<Form>
+			<AvForm>
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -67,7 +129,7 @@ class OrderForm extends React.Component {
 								id="quantity" 
 								value={this.state.quantity}
 								onChange={this.handleChange}
-								on={this.handleTotal(this.state.quantity)}>
+								onClick={this.handleTotals()}>
 
 								<option value="1">1 dozen</option>
 								<option value="2">2 dozens</option>
@@ -93,29 +155,58 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button>15%</button>
-						<button>18%</button>
-						<button>20%</button>
+						<button onClick={this.addTip} value={0.15}>
+							15%
+							<br />
+							{fifteenPercentTip}
+						</button>
+						<button onClick={this.addTip} value={0.18}>
+							18%
+							<br />
+							{eighteenPercentTip}
+						</button>
+						<button onClick={this.addTip} value={0.20}>
+							20%
+							<br />
+							{twentyPercentTip}
+						</button>
 						<button
 							onClick={this.handleForm}>Custom Amount</button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" />{' '}
+								<Input 
+									type="radio" 
+									name="radio2" 
+									value="dollars" 
+									onChange={this.handleTipChange}
+									checked={this.state.selectedOption === "dollars"}/>{' '}
 								$
 								</Label>
 							</FormGroup>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" />{' '}
+								<Input 
+									type="radio" 
+									name="radio2" 
+									value="percentage" 
+									onChange={this.handleTipChange}
+									checked={this.state.selectedOption === "percentage"}/>{' '}
 								%
 								</Label>
 							</FormGroup>
-							<FormGroup>
 								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-								<Input type="number" name="customAmount" id="customAmount" />
-							</FormGroup>
+								<AvField 
+									type="text" 
+									name="customAmount" 
+									id="customAmount"
+									min="0.01"
+									step="0.01"
+									validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
+									onChange={this.handleChange}
+									value={this.state.formControls.customTip.value}
+									/>
 						</div>
 					</Col>
 				</Row>
@@ -132,13 +223,12 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next">NEXT</button>
+					<button id="next" onClick={this.handleSubmit}>NEXT</button>
 				</Row>
 
 
 
-
-			</Form>
+			</AvForm>
 		);
 	}
 }
