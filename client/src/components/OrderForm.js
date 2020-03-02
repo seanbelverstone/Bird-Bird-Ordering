@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 
 
@@ -192,17 +193,20 @@ class OrderForm extends React.Component {
 								%
 								</Label>
 							</FormGroup>
-							<FormGroup>
-								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-								<Input 
-									type="number" 
-									name="customAmount" 
-									id="customAmount"
-									min="0.01"
-									step="0.01"
-									onChange={this.handleChange}
-									/>
-							</FormGroup>
+							<AvForm>
+								<FormGroup>
+									<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
+									<AvField 
+										type="text" 
+										name="customAmount" 
+										id="customAmount"
+										min="0.01"
+										step="0.01"
+										validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
+										onChange={this.handleChange}
+										/>
+								</FormGroup>
+							</AvForm>
 						</div>
 					</Col>
 				</Row>
