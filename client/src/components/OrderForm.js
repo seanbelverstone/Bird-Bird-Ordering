@@ -15,7 +15,7 @@ class OrderForm extends React.Component {
 			quantity: 1,
 			hiddenForm: {display: "none"},
 			hidden: true,
-			currencySelector: "",
+			selectedOption: "dollars",
 			formControls: {
 				customTip: {
 					value: ""
@@ -25,6 +25,7 @@ class OrderForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
+		this.handleTipChange = this.handleTipChange.bind(this);
 	}
 		
 
@@ -38,6 +39,8 @@ class OrderForm extends React.Component {
 
 	handleTotals = () => {
 		totalPrice = parseInt(this.state.quantity)*30;
+
+		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = "$" + (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = "$" + (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = "$" + (totalPrice * 0.2).toFixed(2);
@@ -77,7 +80,7 @@ class OrderForm extends React.Component {
 		})
 	}
 	
-	handleTipChange() {
+	handleTipChange(event) {
 		// In here i'll make a function that changes the custom tip amount text box so when the user clicks
 		// the $ sign, a $ will appear and they'll be able to choose a monetary amount. If they click %,
 		// they will be able to select a percentage. The validation will change depending on what they choose
@@ -94,8 +97,15 @@ class OrderForm extends React.Component {
 		//		set validation to only allow 1-100
 		//}
 		// Maybe have another text that updates to show the opposite, eg: 10% -----> $4.33 etc
-			
+	this.setState({
+		selectedOption: event.target.value
+	});
+	if (this.state.selectedOption === "dollars") {
+		
+	} else {
+		
 	} 
+}
 
 	handleSubmit(event) {
 		event.preventDefault();
@@ -162,24 +172,36 @@ class OrderForm extends React.Component {
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" value="$"/>{' '}
+								<Input 
+									type="radio" 
+									name="radio2" 
+									value="dollars" 
+									onChange={this.handleTipChange}
+									checked={this.state.selectedOption === "dollars"}/>{' '}
 								$
 								</Label>
 							</FormGroup>
 							<FormGroup check>
 								<Label check>
-								<Input type="radio" name="radio2" value="%"/>{' '}
+								<Input 
+									type="radio" 
+									name="radio2" 
+									value="percentage" 
+									onChange={this.handleTipChange}
+									checked={this.state.selectedOption === "percentage"}/>{' '}
 								%
 								</Label>
 							</FormGroup>
 							<FormGroup>
 								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
 								<Input 
-									type="text" 
+									type="number" 
 									name="customAmount" 
-									id="customAmount" 
-									value={this.state.formControls.customTip.value}
-									onChange={this.handleTipChange}/>
+									id="customAmount"
+									min="0.01"
+									step="0.01"
+									onChange={this.handleChange}
+									/>
 							</FormGroup>
 						</div>
 					</Col>
