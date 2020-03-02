@@ -17,16 +17,15 @@ class OrderForm extends React.Component {
 			hiddenForm: {display: "none"},
 			hidden: true,
 			selectedOption: "dollars",
-			formControls: {
-				customTip: {
-					value: ""
-				}
+			selectedIcon: "$",
+			customAmount: "",
+			buttonTip: ""
 			}
-			}
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
-		this.handleTipChange = this.handleTipChange.bind(this);
+		this.changeIcon = this.changeIcon.bind(this);
 	}
 		
 
@@ -47,13 +46,37 @@ class OrderForm extends React.Component {
 		twentyPercentTip = "$" + (totalPrice * 0.2).toFixed(2);
 	};
 
-	// This controls the percentage tip button amount
 	addTip = (event) => {
 		event.preventDefault();
-		console.log(event.target.value)
-		this.setState({
-			tip: event.target.value
-		});
+		switch (event.target.value) {
+			// This switch case sets the tip amount to reflect the button pressed, and clears the
+			// custom amount to prevent double tipping
+			case "0.15":
+				this.setState({
+					buttonTip: "0.15",
+					customAmount: ""
+				})
+				break;
+
+			case "0.18":
+				this.setState({
+					buttonTip: "0.18",
+					customAmount: ""
+				})
+				break;
+
+			case "0.2":
+				this.setState({
+					buttonTip: "0.2",
+					customAmount: ""
+				})
+				break;
+
+			default:
+				console.log("no tip selected")
+
+
+		}
 	}
 
 
@@ -82,32 +105,21 @@ class OrderForm extends React.Component {
 		})
 	}
 	
-	handleTipChange(event) {
-		// In here i'll make a function that changes the custom tip amount text box so when the user clicks
-		// the $ sign, a $ will appear and they'll be able to choose a monetary amount. If they click %,
-		// they will be able to select a percentage. The validation will change depending on what they choose
-		// Also, if they click back on a regular tip button, it will clear the text box, preventing for
-		// multiple tips being added.
-
-		// Set validation to only allow numbers
-		// On clicking $, setState for currency selector to value $
-		// if(this.state.currentySelector === "$"") {
-		//		pop a lil' $ at the start of the textbox
-		//		input = "currency"? (is that an option??)
-		// } else {
-		//  	pop a lil' % at the start of the textbox
-		//		set validation to only allow 1-100
-		//}
-		// Maybe have another text that updates to show the opposite, eg: 10% -----> $4.33 etc
-	this.setState({
-		selectedOption: event.target.value
-	});
-	if (this.state.selectedOption === "dollars") {
-		
-	} else {
-		
-	} 
-}
+	changeIcon(event) {
+		this.setState({
+			selectedOption: event.target.value
+		});
+	// Not sure if this is necessary yet. Commenting out for further changes. Icon is changing after opposite selection
+	// 	if (this.state.selectedOption === "dollars") {
+	// 		this.setState({
+	// 			selectedIcon: "$"
+	// 		});
+	// 	} else {
+	// 		this.setState({
+	// 			selectedIcon: "%"
+	// 		})
+	// 	} 
+	}
 
 	handleSubmit(event) {
 		event.preventDefault();
@@ -180,7 +192,7 @@ class OrderForm extends React.Component {
 									type="radio" 
 									name="radio2" 
 									value="dollars" 
-									onChange={this.handleTipChange}
+									onChange={this.changeIcon}
 									checked={this.state.selectedOption === "dollars"}/>{' '}
 								$
 								</Label>
@@ -191,13 +203,14 @@ class OrderForm extends React.Component {
 									type="radio" 
 									name="radio2" 
 									value="percentage" 
-									onChange={this.handleTipChange}
+									onChange={this.changeIcon}
 									checked={this.state.selectedOption === "percentage"}/>{' '}
 								%
 								</Label>
 							</FormGroup>
 								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-								<AvField 
+								{/* <p>{this.state.selectedIcon}</p> */}
+									<AvField 
 									type="text" 
 									name="customAmount" 
 									id="customAmount"
@@ -205,7 +218,7 @@ class OrderForm extends React.Component {
 									step="0.01"
 									validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
 									onChange={this.handleChange}
-									value={this.state.formControls.customTip.value}
+									value={this.state.customAmount}
 									/>
 						</div>
 					</Col>
