@@ -105,11 +105,11 @@ class OrderForm extends React.Component {
 		})
 	}
 	
-	// Not sure if this is necessary yet. Commenting out for further changes
-	// changeIcon(event) {
-	// 	this.setState({
-	// 		selectedOption: event.target.value
-	// 	});
+	changeIcon(event) {
+		this.setState({
+			selectedOption: event.target.value
+		});
+	// Not sure if this is necessary yet. Commenting out for further changes. Icon is changing after opposite selection
 	// 	if (this.state.selectedOption === "dollars") {
 	// 		this.setState({
 	// 			selectedIcon: "$"
@@ -119,7 +119,7 @@ class OrderForm extends React.Component {
 	// 			selectedIcon: "%"
 	// 		})
 	// 	} 
-	// }
+	}
 
 	handleSubmit(event) {
 		event.preventDefault();
@@ -167,7 +167,7 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} style={{boxShadow: "4px 4px 8px #888888"}} value={0.15}>
+						<button onClick={this.addTip} value={0.15}>
 							15%
 							<br />
 							{fifteenPercentTip}
@@ -209,7 +209,7 @@ class OrderForm extends React.Component {
 								</Label>
 							</FormGroup>
 								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
-								<p>{this.state.selectedIcon}
+								{/* <p>{this.state.selectedIcon}</p> */}
 									<AvField 
 									type="text" 
 									name="customAmount" 
@@ -220,7 +220,6 @@ class OrderForm extends React.Component {
 									onChange={this.handleChange}
 									value={this.state.customAmount}
 									/>
-								</p>
 						</div>
 					</Col>
 				</Row>
