@@ -38,9 +38,9 @@ class OrderForm extends React.Component {
 
 	handleTotals = () => {
 		totalPrice = parseInt(this.state.quantity)*30;
-		fifteenPercentTip = "$" + (totalPrice * 0.15);
-		eighteenPercentTip = "$" + (totalPrice * 0.18);;
-		twentyPercentTip = "$" + (totalPrice * 0.2);;
+		fifteenPercentTip = "$" + (totalPrice * 0.15).toFixed(2);
+		eighteenPercentTip = "$" + (totalPrice * 0.18).toFixed(2);
+		twentyPercentTip = "$" + (totalPrice * 0.2).toFixed(2);
 	};
 
 	// This controls the percentage tip button amount
