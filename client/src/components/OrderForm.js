@@ -10,6 +10,7 @@ var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
 
+
 class OrderForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -237,9 +238,7 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<ModalExample />
-				</Row>
-
-				
+				</Row>			
 
 
 			</AvForm>

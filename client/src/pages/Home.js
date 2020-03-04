@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ParallaxProvider } from 'react-scroll-parallax';
 import OrderForm from "../components/OrderForm";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 
@@ -10,7 +9,6 @@ class Home extends Component {
 	
 	render() {
 		return(
-			<ParallaxProvider>
 				<div className="container">
 					<div className="row">
 						<div className="col-12">
@@ -33,7 +31,6 @@ class Home extends Component {
 
 
 				</div>
-			</ParallaxProvider>
 		)
 	}
 }
