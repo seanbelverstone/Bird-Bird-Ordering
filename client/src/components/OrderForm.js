@@ -10,12 +10,6 @@ var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
 
-const handleSubmit = (event) => {
-	event.preventDefault();
-	console.log("hello")
-
-}
-
 class OrderForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -128,7 +122,11 @@ class OrderForm extends React.Component {
 	// 	} 
 	}
 
-
+	handleSubmit(event) {
+		event.preventDefault();
+		console.log("hello")
+	
+	}
 
 	render() {
 		return (
