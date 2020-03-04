@@ -2,12 +2,19 @@ import React from 'react';
 import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
+import ModalExample from "./OrderModal";
 
 
 var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+
+const handleSubmit = (event) => {
+	event.preventDefault();
+	console.log("hello")
+
+}
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -23,7 +30,7 @@ class OrderForm extends React.Component {
 			}
 
 		this.handleChange = this.handleChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.changeIcon = this.changeIcon.bind(this);
 	}
@@ -121,12 +128,7 @@ class OrderForm extends React.Component {
 	// 	} 
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
-		console.log("hello")
-		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
-		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
-	}
+
 
 	render() {
 		return (
@@ -236,12 +238,15 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next" onClick={this.handleSubmit}>NEXT</button>
+					<ModalExample />
 				</Row>
 
+				
 
 
 			</AvForm>
+
+
 		);
 	}
 }
