@@ -18,8 +18,8 @@ class OrderForm extends React.Component {
 			hidden: true,
 			selectedOption: "dollars",
 			selectedIcon: "$",
-			customAmount: "",
-			buttonTip: ""
+			tipInDollars: "",
+			buttonTip: "",
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -41,9 +41,9 @@ class OrderForm extends React.Component {
 		totalPrice = parseInt(this.state.quantity)*30;
 
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
-		fifteenPercentTip = "$" + (totalPrice * 0.15).toFixed(2);
-		eighteenPercentTip = "$" + (totalPrice * 0.18).toFixed(2);
-		twentyPercentTip = "$" + (totalPrice * 0.2).toFixed(2);
+		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
+		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
+		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
 
 	addTip = (event) => {
@@ -54,21 +54,21 @@ class OrderForm extends React.Component {
 			case "0.15":
 				this.setState({
 					buttonTip: "0.15",
-					customAmount: ""
+					tipInDollars: fifteenPercentTip
 				})
 				break;
 
 			case "0.18":
 				this.setState({
 					buttonTip: "0.18",
-					customAmount: ""
+					tipInDollars: eighteenPercentTip
 				})
 				break;
 
 			case "0.2":
 				this.setState({
 					buttonTip: "0.2",
-					customAmount: ""
+					tipInDollars: twentyPercentTip
 				})
 				break;
 
@@ -130,7 +130,7 @@ class OrderForm extends React.Component {
 
 	render() {
 		return (
-			<AvForm>
+			<AvForm onChange={this.handleSubtotal}>
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -170,17 +170,17 @@ class OrderForm extends React.Component {
 						<button onClick={this.addTip} value={0.15}>
 							15%
 							<br />
-							{fifteenPercentTip}
+							${fifteenPercentTip}
 						</button>
 						<button onClick={this.addTip} value={0.18}>
 							18%
 							<br />
-							{eighteenPercentTip}
+							${eighteenPercentTip}
 						</button>
 						<button onClick={this.addTip} value={0.20}>
 							20%
 							<br />
-							{twentyPercentTip}
+							${twentyPercentTip}
 						</button>
 						<button
 							onClick={this.handleForm}>Custom Amount</button>
@@ -208,17 +208,17 @@ class OrderForm extends React.Component {
 								%
 								</Label>
 							</FormGroup>
-								<Label for="customAmount" sm={2}>Enter your custom amount below</Label>
+								<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
 								{/* <p>{this.state.selectedIcon}</p> */}
 									<AvField 
 									type="text" 
-									name="customAmount" 
-									id="customAmount"
+									name="tipInDollars" 
+									id="tipInDollars"
 									min="0.01"
 									step="0.01"
 									validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
 									onChange={this.handleChange}
-									value={this.state.customAmount}
+									value={this.state.tipInDollars}
 									/>
 						</div>
 					</Col>
@@ -237,6 +237,7 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<button id="next" onClick={this.handleSubmit}>NEXT</button>
+					<div id="subtotal">Subtotal: </div>
 				</Row>
 
 
