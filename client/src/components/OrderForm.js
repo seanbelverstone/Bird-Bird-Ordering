@@ -9,6 +9,7 @@ var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+var subtotal;
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -124,12 +125,12 @@ class OrderForm extends React.Component {
 	}
 
 	handleSubtotal = () => {
-		var subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
+		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
-			return totalPrice;
-		} else {
-			return subtotal;
-		}
+			subtotal = totalPrice;
+		} 			
+		return subtotal;
+
 	}
 
 	handleSubmit(event, values) {
@@ -257,7 +258,9 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<FormGroup>
-							<PaymentModal validated={this.state.tipInDollars}/>
+							<PaymentModal 
+								tipValidation={this.state.tipInDollars}
+								total={subtotal}/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>
