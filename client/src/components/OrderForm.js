@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col, Button } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 
@@ -20,6 +20,7 @@ class OrderForm extends React.Component {
 			selectedIcon: "$",
 			tipInDollars: "",
 			buttonTip: "",
+			values: []
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -129,16 +130,22 @@ class OrderForm extends React.Component {
 		}
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
-		console.log(event)
+	handleSubmit(event, values) {
+		// event.preventDefault();
+		this.setState({values});
+		console.log(values)
+		if (this.state.values.length === 1) {
+			console.log("errors")
+		} else {
+			console.log("please continue")
+		}
 		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
 		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
 	}
 
 	render() {
 		return (
-			<AvForm onChange={this.handleSubtotal}>
+			<AvForm onSubmit={this.handleSubmit}>
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -244,7 +251,9 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next" onClick={this.handleSubmit} type="button">NEXT</button>
+					<FormGroup>
+						<Button>NEXT</Button>
+					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>
 
