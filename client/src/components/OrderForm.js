@@ -21,7 +21,8 @@ class OrderForm extends React.Component {
 			selectedIcon: "$",
 			tipInDollars: "",
 			buttonTip: "",
-			values: []
+			values: [],
+			validated: true
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -137,13 +138,14 @@ class OrderForm extends React.Component {
 		console.log(values)
 		if (this.state.values.length === 1) {
 			console.log("errors")
-			return true;
+			this.setState({
+				validated: false
+			});
 		} else {
-			console.log("please continue")
-			return false;
-		}
-		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
-		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
+			console.log("please continue");
+			this.setState({
+				validated: true
+			});		}
 	}
 
 	render() {
@@ -255,9 +257,7 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<FormGroup>
-						
-						<Button><PaymentModal validated={this.handleSubmit}/>NEXT</Button>
-						
+							<PaymentModal validated={this.state.tipInDollars}/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>

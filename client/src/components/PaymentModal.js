@@ -11,7 +11,14 @@ const PaymentModal = (props) => {
   const [nestedModal, setNestedModal] = useState(false);
   const [closeAll, setCloseAll] = useState(false);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    console.log(props.validated)
+    if (!isNaN(props.validated)) {
+      setModal(!modal);
+    } else {
+      setModal(modal)
+    }
+  }
   const toggleNested = () => {
     setNestedModal(!nestedModal);
     setCloseAll(false);
@@ -23,7 +30,7 @@ const PaymentModal = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button type="submit" onClick={toggle}>{buttonLabel}NEXT</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
