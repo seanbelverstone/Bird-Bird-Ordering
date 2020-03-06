@@ -131,7 +131,7 @@ class OrderForm extends React.Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		console.log("hello")
+		console.log(event)
 		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
 		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
 	}
@@ -244,7 +244,7 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next" onClick={this.handleSubmit}>NEXT</button>
+					<button id="next" onClick={this.handleSubmit} type="button">NEXT</button>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>
 
