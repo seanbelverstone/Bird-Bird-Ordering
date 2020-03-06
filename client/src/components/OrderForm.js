@@ -27,8 +27,7 @@ class OrderForm extends React.Component {
 		this.addTip = this.addTip.bind(this);
 		this.changeIcon = this.changeIcon.bind(this);
 	}
-		
-
+	
 	// A function for when the quantity changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
@@ -119,6 +118,15 @@ class OrderForm extends React.Component {
 	// 			selectedIcon: "%"
 	// 		})
 	// 	} 
+	}
+
+	handleSubtotal = () => {
+		var subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
+		if (isNaN(subtotal)) {
+			return totalPrice;
+		} else {
+			return subtotal;
+		}
 	}
 
 	handleSubmit(event) {
@@ -237,7 +245,7 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<button id="next" onClick={this.handleSubmit}>NEXT</button>
-					<div id="subtotal">Subtotal: </div>
+					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>
 
 
