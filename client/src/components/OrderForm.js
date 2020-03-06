@@ -216,7 +216,7 @@ class OrderForm extends React.Component {
 									id="tipInDollars"
 									min="0.01"
 									step="0.01"
-									validate={{pattern: {value: "^100$|^[0-9]{0,2}$|^[0-9]{0,2}[0-9]{1,2}?$"}}}
+									validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
 									onChange={this.handleChange}
 									value={this.state.tipInDollars}
 									/>
