@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input, Row, Col, Button } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 import PaymentModal from "./PaymentModal";
