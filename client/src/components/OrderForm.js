@@ -1,13 +1,15 @@
 import React from 'react';
-import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Input, Row, Col, Button } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
+import PaymentModal from "./PaymentModal";
 
 
 var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+var subtotal;
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -20,6 +22,8 @@ class OrderForm extends React.Component {
 			selectedIcon: "$",
 			tipInDollars: "",
 			buttonTip: "",
+			values: [],
+			validated: true
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -121,24 +125,33 @@ class OrderForm extends React.Component {
 	}
 
 	handleSubtotal = () => {
-		var subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
+		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
-			return totalPrice;
-		} else {
-			return subtotal;
-		}
+			subtotal = totalPrice;
+		} 			
+		return subtotal;
+
 	}
 
-	handleSubmit(event) {
-		event.preventDefault();
-		console.log(event)
-		// Make sure to put an if statement, which asks that if there is a value in the custom tip box,
-		// and the state 'hidden' is set to false, to set the 'tip' state to 0, to prevent double tipping
+	handleSubmit(event, values) {
+		// event.preventDefault();
+		this.setState({values});
+		console.log(values)
+		if (this.state.values.length === 1) {
+			console.log("errors")
+			this.setState({
+				validated: false
+			});
+		} else {
+			console.log("please continue");
+			this.setState({
+				validated: true
+			});		}
 	}
 
 	render() {
 		return (
-			<AvForm onChange={this.handleSubtotal}>
+			<AvForm onSubmit={this.handleSubmit}>
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -244,7 +257,11 @@ class OrderForm extends React.Component {
 				</FormGroup>
 				</Row>
 				<Row>
-					<button id="next" onClick={this.handleSubmit} type="button">NEXT</button>
+					<FormGroup>
+							<PaymentModal 
+								tipValidation={this.state.tipInDollars}
+								total={subtotal}/>
+					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>
 
