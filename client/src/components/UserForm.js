@@ -8,11 +8,14 @@ export default class UserForm extends React.Component {
       <AvForm>
         <AvField name="nameCustomMessage" label="Name" type="text" validate={{
             required: {value: true, errorMessage: 'Please enter a name'},
-            pattern: {value: '^[A-Za-z0-9]+$', errorMessage: 'Your name must be composed only with letter and numbers'},
-            minLength: {value: 6, errorMessage: 'Your name must be between 6 and 16 characters'},
-            maxLength: {value: 16, errorMessage: 'Your name must be between 6 and 16 characters'}
+            pattern: {value: /^[a-zA-Z ]+$/, errorMessage: 'Your name must be composed only with letter and numbers'},
+            minLength: {value: 4, errorMessage: 'Your name must be between 4 and 32 characters'},
+            maxLength: {value: 32, errorMessage: 'Your name must be between 4 and 32 characters'}
           }} />
-        <Button color="primary">Submit</Button>
+        <AvField name="email" label="Email" type="text" validate={{email: true}} />
+		<AvField name="confirmationEmail" label="Re-enter your email" type="email" validate={{match:{value:'email'}}} />
+		<AvField name="telephoneProp" label="Phone" type="text" validate={{tel: true}} />
+		<Button color="primary">Submit</Button>
       </AvForm>
     );
   }
