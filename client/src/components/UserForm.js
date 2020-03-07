@@ -13,7 +13,7 @@ export default class UserForm extends React.Component {
             maxLength: {value: 32, errorMessage: 'Your name must be between 4 and 32 characters'}
           }} />
         <AvField name="email" label="Email" type="text" validate={{email: true}} />
-		<AvField name="confirmationEmail" label="Re-enter your email" type="email" validate={{match:{value:'email'}}} />
+		<AvField name="confirmationEmail" label="Confirm email" type="email" validate={{match:{value:'email'}}} />
 		<AvField name="telephoneProp" label="Phone" type="text" validate={{tel: true}} />
 		<Button color="primary">Submit</Button>
       </AvForm>
