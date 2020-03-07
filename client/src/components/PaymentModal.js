@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import UserForm from "./UserForm";
 
 const PaymentModal = (props) => {
   const {
@@ -32,9 +33,10 @@ const PaymentModal = (props) => {
     <div>
       <Button type="submit" onClick={toggle}>{buttonLabel}NEXT</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>
           Your subtotal is ${props.total}
+          <UserForm />
           <br />
           <Button color="success" onClick={toggleNested}>Show Nested Modal</Button>
           <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
