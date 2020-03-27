@@ -1,0 +1,16 @@
+.container {
+	font-style: normal;
+	font-family: 'Raleway', sans-serif;
+	margin-top: 64px;
+	margin-right: 26% !important;
+	margin-left: 26% !important;
+}
+
+#employeeButton {
+	font-weight: bold;
+}
+
+#biscuits {
+	margin-top: 50px;
+	width: 80%;
+}
