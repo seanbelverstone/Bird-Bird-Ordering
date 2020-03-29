@@ -3,6 +3,7 @@ import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 import PaymentModal from "./PaymentModal";
+import "../pages/css/home.css";
 
 
 var totalPrice = 30;
@@ -151,7 +152,7 @@ class OrderForm extends React.Component {
 
 	render() {
 		return (
-			<AvForm onSubmit={this.handleSubmit}>
+			<AvForm onSubmit={this.handleSubmit} id="orderForm">
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -248,7 +249,7 @@ class OrderForm extends React.Component {
 					<div>Select a pick-up date & time</div>
 				</Row>
 				<Row>
-					<UserCalendar />
+					<UserCalendar/>
 				</Row>
 				<Row>
 				<FormGroup>

@@ -8,9 +8,15 @@
 
 #employeeButton {
 	font-weight: bold;
+	position: relative;
+	float: left;
 }
 
 #biscuits {
 	margin-top: 50px;
 	width: 80%;
+}
+
+#orderForm, #quantity, button, #datePicker, #specialInstructions {
+	font-weight: 600;
 }
