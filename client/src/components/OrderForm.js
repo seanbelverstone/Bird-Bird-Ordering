@@ -24,7 +24,10 @@ class OrderForm extends React.Component {
 			tipInDollars: "",
 			buttonTip: "",
 			values: [],
-			validated: true
+			validated: true,
+			buttonOneColor: "#fbfbfb",
+			buttonTwoColor: "#fbfbfb",
+			buttonThreeColor: "#fbfbfb"
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -52,37 +55,46 @@ class OrderForm extends React.Component {
 
 	addTip = (event) => {
 		event.preventDefault();
+
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the
 			// custom amount to prevent double tipping
 			case "0.15":
 				this.setState({
 					buttonTip: "0.15",
-					tipInDollars: fifteenPercentTip
+					tipInDollars: fifteenPercentTip,
+					buttonOneColor: "goldenrod",
+					buttonTwoColor: "#fbfbfb",
+					buttonThreeColor: "#fbfbfb",
 				})
 				break;
 
 			case "0.18":
 				this.setState({
 					buttonTip: "0.18",
-					tipInDollars: eighteenPercentTip
+					tipInDollars: eighteenPercentTip,
+					buttonOneColor: "#fbfbfb",
+					buttonTwoColor: "goldenrod",
+					buttonThreeColor: "#fbfbfb"
 				})
 				break;
 
 			case "0.2":
 				this.setState({
 					buttonTip: "0.2",
-					tipInDollars: twentyPercentTip
+					tipInDollars: twentyPercentTip,
+					buttonOneColor: "#fbfbfb",
+					buttonTwoColor: "#fbfbfb",
+					buttonThreeColor: "goldenrod"
 				})
 				break;
 
 			default:
-				console.log("no tip selected")
 
+				console.log("no tip selected");
 
 		}
 	}
-
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
@@ -189,17 +201,17 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} value={0.15}>
+						<button onClick={this.addTip} value={0.15} style={{backgroundColor: this.state.buttonOneColor}}>
 							15%
 							<br />
 							${fifteenPercentTip}
 						</button>
-						<button onClick={this.addTip} value={0.18}>
+						<button onClick={this.addTip} value={0.18} style={{backgroundColor: this.state.buttonTwoColor}}>
 							18%
 							<br />
 							${eighteenPercentTip}
 						</button>
-						<button onClick={this.addTip} value={0.20}>
+						<button onClick={this.addTip} value={0.20} style={{backgroundColor: this.state.buttonThreeColor}}>
 							20%
 							<br />
 							${twentyPercentTip}
