@@ -1,0 +1,22 @@
+.container {
+	font-style: normal;
+	font-family: 'Raleway', sans-serif;
+	margin-top: 64px;
+	margin-right: 26% !important;
+	margin-left: 26% !important;
+}
+
+#employeeButton {
+	font-weight: bold;
+	position: relative;
+	float: left;
+}
+
+#biscuits {
+	margin-top: 50px;
+	width: 80%;
+}
+
+#orderForm, #quantity, button, #datePicker, #specialInstructions {
+	font-weight: 600;
+}

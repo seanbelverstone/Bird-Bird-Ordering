@@ -6,6 +6,7 @@ import setMinutes from "date-fns/setMinutes";
 
 
 import "react-datepicker/dist/react-datepicker.css";
+import "../pages/css/home.css";
  
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -24,6 +25,7 @@ class UserCalendar extends React.Component {
 	  render() {
 		return (
 		  <DatePicker
+			id="datePicker"
 			selected={this.state.startDate}
 			onChange={this.handleChange}
 			// min date makes sure users can't select a date sooner than 2 days from the current day

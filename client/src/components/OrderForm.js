@@ -3,6 +3,7 @@ import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import UserCalendar from "./UserCalendar";
 import PaymentModal from "./PaymentModal";
+import "../pages/css/home.css";
 
 
 var totalPrice = 30;
@@ -23,7 +24,7 @@ class OrderForm extends React.Component {
 			tipInDollars: "",
 			buttonTip: "",
 			values: [],
-			validated: true
+			validated: true,
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -51,37 +52,39 @@ class OrderForm extends React.Component {
 
 	addTip = (event) => {
 		event.preventDefault();
+		this.butttonColor(event);
+
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the
 			// custom amount to prevent double tipping
+
 			case "0.15":
 				this.setState({
 					buttonTip: "0.15",
-					tipInDollars: fifteenPercentTip
+					tipInDollars: fifteenPercentTip,
 				})
 				break;
 
 			case "0.18":
 				this.setState({
 					buttonTip: "0.18",
-					tipInDollars: eighteenPercentTip
+					tipInDollars: eighteenPercentTip,
 				})
 				break;
 
 			case "0.2":
 				this.setState({
 					buttonTip: "0.2",
-					tipInDollars: twentyPercentTip
+					tipInDollars: twentyPercentTip,
 				})
 				break;
 
 			default:
-				console.log("no tip selected")
 
+				console.log("no tip selected");
 
 		}
 	}
-
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
@@ -151,7 +154,7 @@ class OrderForm extends React.Component {
 
 	render() {
 		return (
-			<AvForm onSubmit={this.handleSubmit}>
+			<AvForm onSubmit={this.handleSubmit} id="orderForm">
 				<Row form>
 					<Col>
 						<FormGroup style={{width: "150px"}}>
@@ -248,7 +251,7 @@ class OrderForm extends React.Component {
 					<div>Select a pick-up date & time</div>
 				</Row>
 				<Row>
-					<UserCalendar />
+					<UserCalendar/>
 				</Row>
 				<Row>
 				<FormGroup>
