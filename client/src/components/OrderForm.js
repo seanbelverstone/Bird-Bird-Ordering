@@ -25,9 +25,6 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
-			buttonOneColor: "#fbfbfb",
-			buttonTwoColor: "#fbfbfb",
-			buttonThreeColor: "#fbfbfb"
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -55,17 +52,16 @@ class OrderForm extends React.Component {
 
 	addTip = (event) => {
 		event.preventDefault();
+		this.butttonColor(event);
 
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the
 			// custom amount to prevent double tipping
+
 			case "0.15":
 				this.setState({
 					buttonTip: "0.15",
 					tipInDollars: fifteenPercentTip,
-					buttonOneColor: "goldenrod",
-					buttonTwoColor: "#fbfbfb",
-					buttonThreeColor: "#fbfbfb",
 				})
 				break;
 
@@ -73,9 +69,6 @@ class OrderForm extends React.Component {
 				this.setState({
 					buttonTip: "0.18",
 					tipInDollars: eighteenPercentTip,
-					buttonOneColor: "#fbfbfb",
-					buttonTwoColor: "goldenrod",
-					buttonThreeColor: "#fbfbfb"
 				})
 				break;
 
@@ -83,9 +76,6 @@ class OrderForm extends React.Component {
 				this.setState({
 					buttonTip: "0.2",
 					tipInDollars: twentyPercentTip,
-					buttonOneColor: "#fbfbfb",
-					buttonTwoColor: "#fbfbfb",
-					buttonThreeColor: "goldenrod"
 				})
 				break;
 
@@ -201,17 +191,17 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} value={0.15} style={{backgroundColor: this.state.buttonOneColor}}>
+						<button onClick={this.addTip} value={0.15}>
 							15%
 							<br />
 							${fifteenPercentTip}
 						</button>
-						<button onClick={this.addTip} value={0.18} style={{backgroundColor: this.state.buttonTwoColor}}>
+						<button onClick={this.addTip} value={0.18}>
 							18%
 							<br />
 							${eighteenPercentTip}
 						</button>
-						<button onClick={this.addTip} value={0.20} style={{backgroundColor: this.state.buttonThreeColor}}>
+						<button onClick={this.addTip} value={0.20}>
 							20%
 							<br />
 							${twentyPercentTip}
