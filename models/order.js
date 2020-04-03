@@ -8,6 +8,6 @@ module.exports = (sequelize, DataTypes) => {
 	  totalCost: DataTypes.INTEGER,
 	}, {});
   
-	Order.sync();
+	Order.sync({force: true});
 	return Order;
   };
