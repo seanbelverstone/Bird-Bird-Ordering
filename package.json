@@ -2,11 +2,14 @@
   "name": "bird-bird-ordering",
   "version": "1.0.0",
   "description": "This is an online ordering form for biscuits by the dozen for Bird Bird Biscuit in Austin, TX.",
+  "engines": {
+    "node": "v13.12.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "start:prod": "node -r esm server.js",
+    "start:dev": "concurrently \"nodemon -r esm --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
@@ -16,15 +19,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^4.1.0",
+    "concurrently": "^5.0.0",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@std/esm": "^0.26.0",
     "availity-reactstrap-validation": "^2.6.1",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "date-fns": "^2.9.0",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "moment": "^2.24.0",
