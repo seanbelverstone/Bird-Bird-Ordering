@@ -3,8 +3,6 @@ import OrderForm from "../components/OrderForm";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 import "./css/home.css";
 
-
-
 class Home extends Component {
 	
 	

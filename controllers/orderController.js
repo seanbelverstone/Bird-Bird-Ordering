@@ -4,8 +4,8 @@ module.exports = {
   get: (request, response) => {
     console.log(request.user)
 	db.Order.findAll({}, 
-		).then((Order) => {
-      response.json(Order);
+		).then((orders) => {
+      response.json(orders);
     });
   },
 
@@ -22,8 +22,8 @@ module.exports = {
       .destroy({
         where: { id: id }
       })
-      .then(deletedDate => {
-          response.json(deletedDate)
+      .then(deletedOrder => {
+          response.json(deletedOrder)
       })
       .catch(err => response.status(422).json(err));
   }

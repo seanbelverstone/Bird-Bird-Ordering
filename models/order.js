@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+	
 	const Order = sequelize.define("Order", {
 	  name: DataTypes.STRING,
 	  telephone: DataTypes.INTEGER,
@@ -8,6 +9,6 @@ module.exports = (sequelize, DataTypes) => {
 	  totalCost: DataTypes.INTEGER,
 	}, {});
   
-	Order.sync({force: true});
+	Order.sync();
 	return Order;
   };
