@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
 	  telephone: DataTypes.STRING,
 	  biscuitQuantity: DataTypes.INTEGER,
 	  collectionDate: DataTypes.DATEONLY,
-	  collectionTime: DataTypes.INTEGER,
+	  collectionTime: DataTypes.TIME,
 	  totalCost: DataTypes.INTEGER,
 	}, {});
   
