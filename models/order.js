@@ -2,10 +2,10 @@ module.exports = (sequelize, DataTypes) => {
 	
 	const Order = sequelize.define("Order", {
 	  name: DataTypes.STRING,
-	  telephone: DataTypes.INTEGER,
+	  telephone: DataTypes.STRING,
 	  biscuitQuantity: DataTypes.INTEGER,
-	  collectionDate: DataTypes.INTEGER,
-	  collectionTime: DataTypes.DECIMAL,
+	  collectionDate: DataTypes.DATEONLY,
+	  collectionTime: DataTypes.TIME,
 	  totalCost: DataTypes.INTEGER,
 	}, {});
   

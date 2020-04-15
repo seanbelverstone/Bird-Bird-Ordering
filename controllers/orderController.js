@@ -2,17 +2,18 @@
 
 module.exports = {
   get: (request, response) => {
-    console.log(request.user)
-	db.Order.findAll({}, 
-		).then((orders) => {
+
+    db.Order.findAll({}, 
+		).then(orders => {
       response.json(orders);
     });
   },
 
   create: (request, response) => {
+    console.log(request.body);
     db.Order
       .create(request.body)
-      .then(dbModel => response.json(dbModel))
+      .then(newOrder => response.json(newOrder))
       .catch(err => response.status(422).json(err));
   },
 
