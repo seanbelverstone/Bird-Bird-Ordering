@@ -3,7 +3,6 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 require("dotenv").config();
-const models = require("./models");
 import routes from "./routes";
 
 // Serve up static assets (usually on heroku)
