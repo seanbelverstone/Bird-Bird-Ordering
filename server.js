@@ -21,13 +21,18 @@ app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+// Getting the client secret
+app.get("/secret", async (req, res) => {
 // Setting up the payment intent variable for Stripe.js
-const paymentIntent = await stripe.paymentIntents.create({
-  amount: 10,
-  currency: 'usd',
-  // Verifying integration 
-  metadata: {integration_check: "accept_a_payment"},
-});
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 10,
+    currency: 'usd',
+    // Verifying integration 
+    metadata: {integration_check: "accept_a_payment"},
+  });
+})
+
+
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
