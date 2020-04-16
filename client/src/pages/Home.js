@@ -7,16 +7,11 @@ import "./css/home.css";
 
 const stripePromise = loadStripe(process.env.stripe_secret_key);
 
-
 class Home extends Component {
-	
-
-	show = () => console.log(process.env.REACT_APP_STRIPE_KEY);
-
 
 	render() {
 		return(
-			<Elements stripe={stripePromise}>
+			// <Elements stripe={stripePromise}>
 
 				<div className="container">
 					<div className="row">
@@ -40,7 +35,7 @@ class Home extends Component {
 
 
 				</div>
-			</Elements>
+			// </Elements>
 
 		)
 	}
