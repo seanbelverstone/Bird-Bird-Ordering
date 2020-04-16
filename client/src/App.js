@@ -8,7 +8,8 @@ import Home from "../src/pages/Home";
 import Login from "../src/pages/Login";
 
 
-export default function App() {
+const App = () => {
+
   return (
       <Router>
         <div>
@@ -26,3 +27,5 @@ export default function App() {
 
     )
 }
+
+export default App;
