@@ -5,39 +5,43 @@ import OrderForm from "../components/OrderForm";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 import "./css/home.css";
 
-const stripePromise = loadStripe(process.env.REACT_APP_stripe_secret_key);
+const stripePromise = loadStripe(process.env.stripe_secret_key);
 
 
 class Home extends Component {
 	
 
-	show = () => console.log(process.env.REACT_APP_stripe_secret_key);
+	show = () => console.log(process.env.REACT_APP_STRIPE_KEY);
 
 
 	render() {
 		return(
-			<div className="container">
-				<div className="row">
-					<div className="col-12">
-						<button id="employeeButton" onClick={this.show}>Employee Login</button>
+			<Elements stripe={stripePromise}>
+
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<button id="employeeButton" onClick={this.show}>Employee Login</button>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="col-12">
-						<h1 id="pageTitle">BISCUITS BY THE DOZEN</h1>
+					<div className="row">
+						<div className="col-12">
+							<h1 id="pageTitle">BISCUITS BY THE DOZEN</h1>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="col-12">
-						<img id="biscuits" src={biscuits} alt="a dozen biscuits" />
+					<div className="row">
+						<div className="col-12">
+							<img id="biscuits" src={biscuits} alt="a dozen biscuits" />
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<OrderForm />
-				</div>
+					<div className="row">
+						<OrderForm />
+					</div>
 
 
-			</div>
+				</div>
+			</Elements>
+
 		)
 	}
 }

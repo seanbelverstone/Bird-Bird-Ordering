@@ -10,17 +10,19 @@ import Login from "../src/pages/Login";
 
 export default function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>  
+      <Router>
+        <div>
+            <Switch>
+              <Route exact path="/">
+                  <Home />
+              </Route>
+              <Route path="/login">
+                <Login />
+              </Route>
+            </Switch>
+        </div>
+      </Router>  
+
+
     )
 }
