@@ -52,7 +52,6 @@ class OrderForm extends React.Component {
 
 	addTip = (event) => {
 		event.preventDefault();
-		this.butttonColor(event);
 
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the

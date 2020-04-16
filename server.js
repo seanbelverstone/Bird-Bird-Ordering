@@ -7,6 +7,7 @@ const postCharge = require('./stripe')
 require("dotenv").config();
 import routes from "./routes";
 
+const environment = process.env.NODE_ENV || "development";
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
