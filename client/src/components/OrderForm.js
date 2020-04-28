@@ -138,6 +138,7 @@ class OrderForm extends React.Component {
 	handleSubmit(event, values) {
 		// event.preventDefault();
 		this.setState({values});
+
 		console.log(values)
 		if (this.state.values.length === 1) {
 			console.log("errors")
@@ -262,7 +263,8 @@ class OrderForm extends React.Component {
 					<FormGroup>
 							<PaymentModal 
 								tipValidation={this.state.tipInDollars}
-								total={subtotal}/>
+								total={subtotal}
+								handleSubmit={this.handleSubmit}/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>

@@ -36,7 +36,9 @@ const PaymentModal = (props) => {
         <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>
           Your subtotal is ${props.total}
-          <UserForm />
+
+          <UserForm handleSubmit={props.handleSubmit}/>
+          
           <br />
           <Button color="success" onClick={toggleNested}>Show Nested Modal</Button>
           <Modal isOpen={nestedModal} toggle={toggleNested} onClosed={closeAll ? toggle : undefined}>
