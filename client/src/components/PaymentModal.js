@@ -13,7 +13,7 @@ const PaymentModal = (props) => {
   const [closeAll, setCloseAll] = useState(false);
 
   const toggle = () => {
-    console.log(props.tipValidation)
+    // Extra validation to check if there is an error with the custom tip box.
     if (!isNaN(props.tipValidation)) {
       setModal(!modal);
     } else {
@@ -21,8 +21,12 @@ const PaymentModal = (props) => {
     }
   }
   const toggleNested = () => {
-    setNestedModal(!nestedModal);
-    setCloseAll(false);
+    console.log(props.values.length)
+    if (props.values.length === 0) {
+      setNestedModal(!nestedModal);
+      setCloseAll(false);
+    }
+
   }
   const toggleAll = () => {
     setNestedModal(!nestedModal);
@@ -37,7 +41,9 @@ const PaymentModal = (props) => {
         <ModalBody>
           Your subtotal is ${props.total}
 
-          <UserForm handleSubmit={props.handleSubmit}/>
+          <UserForm handleSubmit={props.handleSubmit}
+                    toggleNested={toggleNested}
+                    values={props.values}/>
           
           <br />
           <Button color="success" onClick={toggleNested}>Show Nested Modal</Button>
@@ -51,8 +57,6 @@ const PaymentModal = (props) => {
           </Modal>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </div>

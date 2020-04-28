@@ -140,7 +140,7 @@ class OrderForm extends React.Component {
 		this.setState({values});
 
 		console.log(values)
-		if (this.state.values.length === 1) {
+		if (this.state.values.length > 0) {
 			console.log("errors")
 			this.setState({
 				validated: false
@@ -149,7 +149,8 @@ class OrderForm extends React.Component {
 			console.log("please continue");
 			this.setState({
 				validated: true
-			});		}
+			});		
+		}
 	}
 
 	render() {
@@ -264,6 +265,7 @@ class OrderForm extends React.Component {
 							<PaymentModal 
 								tipValidation={this.state.tipInDollars}
 								total={subtotal}
+								values={this.state.values}
 								handleSubmit={this.handleSubmit}/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
