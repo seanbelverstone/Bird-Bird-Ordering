@@ -1,9 +1,9 @@
 import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button } from 'reactstrap';
+import Checkout from "./Checkout";
 
 const UserForm = (props) => {
- 
 
     return (
       <AvForm onSubmit={props.handleSubmit}>
@@ -26,7 +26,9 @@ const UserForm = (props) => {
           match:{value:'email', errorMessage: 'Email does not match'},
           required: {value: true, errorMessage: 'Please re-enter your email.'}}} />
 
-		    <Button color="primary" onClick={props.toggleNested}>Submit</Button>
+        {/* <Checkout /> */}
+
+		    <Button color="primary">Submit</Button>
       </AvForm>
     );
   }
