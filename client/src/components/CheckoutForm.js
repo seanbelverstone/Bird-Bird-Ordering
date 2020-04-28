@@ -6,6 +6,7 @@ import {
   injectStripe
 } from 'react-stripe-elements';
 import axios from 'axios';
+import "./CheckoutForm.scss";
 
 const CheckoutForm = (props, stripe) => {
 	  
@@ -16,7 +17,7 @@ const CheckoutForm = (props, stripe) => {
   
 	  const { token } = await stripe.createToken()
   
-	  const order = await axios.post('http://localhost:7000/api/stripe/charge', {
+	  const order = await axios.post('http://localhost:3000/api/stripe/charge', {
 		amount: props.total,
 		source: token.id,
 		receipt_email: 'customer@example.com'
