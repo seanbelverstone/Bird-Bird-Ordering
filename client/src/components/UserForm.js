@@ -26,7 +26,7 @@ const UserForm = (props) => {
           match:{value:'email', errorMessage: 'Email does not match'},
           required: {value: true, errorMessage: 'Please re-enter your email.'}}} />
 
-        <Checkout />
+        <Checkout total={props.total}/>
 
 		    <Button color="primary">Submit</Button>
       </AvForm>

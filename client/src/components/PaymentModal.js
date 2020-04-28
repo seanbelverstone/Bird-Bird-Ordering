@@ -28,7 +28,8 @@ const PaymentModal = (props) => {
           Your subtotal is ${props.total}
 
           <UserForm handleSubmit={props.handleSubmit}
-                    toggleClose={toggle}/>
+                    toggleClose={toggle}
+                    total={props.total}/>
           
           <br />
         </ModalBody>

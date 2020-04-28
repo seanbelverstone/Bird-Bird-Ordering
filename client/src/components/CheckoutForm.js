@@ -7,10 +7,8 @@ import {
 } from 'react-stripe-elements';
 import axios from 'axios';
 
-const CheckoutForm = ({ selectedProduct, stripe, history }) => {
-	
-	if (selectedProduct === null) history.push('/')
-  
+const CheckoutForm = (props, stripe) => {
+	  
 	const [receiptUrl, setReceiptUrl] = useState('')
   
 	const handleSubmit = async event => {
@@ -19,7 +17,7 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
 	  const { token } = await stripe.createToken()
   
 	  const order = await axios.post('http://localhost:7000/api/stripe/charge', {
-		amount: selectedProduct.price.toString().replace('.', ''),
+		amount: props.total,
 		source: token.id,
 		receipt_email: 'customer@example.com'
 	  })
@@ -38,7 +36,7 @@ const CheckoutForm = ({ selectedProduct, stripe, history }) => {
 
 	return (
 	<div className="checkout-form">
-		<p>Amount: ${selectedProduct.price}</p>
+		<p>Amount: ${props.total}</p>
 		<form onSubmit={handleSubmit}>
 		<label>
 			Card details
