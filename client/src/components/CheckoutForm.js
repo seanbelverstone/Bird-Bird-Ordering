@@ -1,62 +1,71 @@
-import React, { useState } from 'react';
-import {
-  CardNumberElement,
-  CardExpiryElement,
-  CardCVCElement,
-  injectStripe
-} from 'react-stripe-elements';
-import axios from 'axios';
-import "./CheckoutForm.scss";
+import React from 'react';
+import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
-const CheckoutForm = (props, stripe) => {
-	  
-	const [receiptUrl, setReceiptUrl] = useState('')
-  
-	const handleSubmit = async event => {
-	  event.preventDefault()
-  
-	  const { token } = await stripe.createToken()
-  
-	  const order = await axios.post('http://localhost:3000/api/stripe/charge', {
-		amount: props.total,
-		source: token.id,
-		receipt_email: 'customer@example.com'
-	  })
-  
-	  setReceiptUrl(order.data.charge.receipt_url)
-	}
+const CheckoutForm = (props) => {
 
-	if (receiptUrl) {
-		return (
-		  <div className="success">
-			<h2>Payment Successful!</h2>
-			<a href={receiptUrl}>View Receipt</a>
-		  </div>
-		)
-	  }
+  const stripe = useStripe();
+  const elements = useElements();
 
-	return (
-	<div className="checkout-form">
-		<p>Amount: ${props.total}</p>
-		<form onSubmit={handleSubmit}>
-		<label>
-			Card details
-			<CardNumberElement />
-		</label>
-		<label>
-			Expiration date
-			<CardExpiryElement />
-		</label>
-		<label>
-			CVC
-			<CardCVCElement />
-		</label>
-		<button type="submit" className="order-button">
-			Pay
-		</button>
-		</form>
-	</div>
-	)
+  const handleSubmit = async (event) => {
+    // We don't want to let default form submission happen here,
+    // which would refresh the page.
+    event.preventDefault();
+
+    const result = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement),
+      billing_details: {
+        // Include any additional collected billing details.
+        name: 'Jenny Rosen',
+      },
+    });
+
+    handlePaymentMethodResult(result);
+  };
+
+  const handlePaymentMethodResult = async (result) => {
+    if (result.error) {
+      // An error happened when collecting card details,
+      // show `result.error.message` in the payment form.
+    } else {
+      // Otherwise send paymentMethod.id to your server (see Step 3)
+      const response = await fetch('/pay', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          payment_method_id: result.paymentMethod.id,
+        }),
+      });
+
+      const serverResponse = await response.json();
+
+      handleServerResponse(serverResponse);
+    }
+  };
+
+  const handleServerResponse = (serverResponse) => {
+    if (serverResponse.error) {
+      // An error happened when charging the card,
+      // show the error in the payment form.
+    } else {
+      // Show a success message
+    }
+  };
+
+  const handleCardChange = (event) => {
+    if (event.error) {
+      // Show `event.error.message` in the payment form.
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <CardElement onChange={handleCardChange} />
+      <button type="submit" disabled={!stripe}>
+        Submit Payment
+      </button>
+    </form>
+  );
 }
-	
-	export default injectStripe(CheckoutForm)
+
+export default CheckoutForm;
