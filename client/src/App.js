@@ -14,7 +14,6 @@ const App = () => {
 
   const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-
   return (
       <Elements stripe={stripePromise}>
         <Router>
