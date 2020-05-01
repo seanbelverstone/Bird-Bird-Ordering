@@ -3,14 +3,10 @@ import DatePicker from "react-datepicker";
 import subDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
-
-
 import "react-datepicker/dist/react-datepicker.css";
 import "../pages/css/home.css";
  
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
- 
+
 class UserCalendar extends React.Component {
 	state = {
 		startDate: new Date()
@@ -21,13 +17,20 @@ class UserCalendar extends React.Component {
 		  startDate: date
 		});
 	  };
-	 
+
+	  componentDidMount() {
+		this.setState({
+			startDate: subDays(new Date(), -2)
+		})
+	  }
+
 	  render() {
 		return (
 		  <DatePicker
 			id="datePicker"
 			selected={this.state.startDate}
 			onChange={this.handleChange}
+			dateFormat="MMMM d, h:mm aa"
 			// min date makes sure users can't select a date sooner than 2 days from the current day
 			minDate={subDays(new Date(), -2)}
 			showTimeSelect
