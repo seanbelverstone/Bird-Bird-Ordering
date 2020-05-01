@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import OrderForm from "../components/OrderForm";
+import BottomNav from "../components/BottomNav";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 import "./css/home.css";
 
@@ -28,7 +29,7 @@ class Home extends Component {
 					<OrderForm />
 				</div>
 
-
+				<BottomNav />
 			</div>
 
 		)
