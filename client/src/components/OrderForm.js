@@ -52,7 +52,6 @@ class OrderForm extends React.Component {
 
 	addTip = (event) => {
 		event.preventDefault();
-		this.butttonColor(event);
 
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the
@@ -139,8 +138,9 @@ class OrderForm extends React.Component {
 	handleSubmit(event, values) {
 		// event.preventDefault();
 		this.setState({values});
+
 		console.log(values)
-		if (this.state.values.length === 1) {
+		if (this.state.values.length > 0) {
 			console.log("errors")
 			this.setState({
 				validated: false
@@ -149,7 +149,8 @@ class OrderForm extends React.Component {
 			console.log("please continue");
 			this.setState({
 				validated: true
-			});		}
+			});		
+		}
 	}
 
 	render() {
@@ -263,7 +264,9 @@ class OrderForm extends React.Component {
 					<FormGroup>
 							<PaymentModal 
 								tipValidation={this.state.tipInDollars}
-								total={subtotal}/>
+								total={subtotal}
+								values={this.state.values}
+								handleSubmit={this.handleSubmit}/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>

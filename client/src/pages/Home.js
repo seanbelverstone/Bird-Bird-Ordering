@@ -3,15 +3,15 @@ import OrderForm from "../components/OrderForm";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 import "./css/home.css";
 
+
 class Home extends Component {
-	
-	
+
 	render() {
 		return(
 			<div className="container">
 				<div className="row">
 					<div className="col-12">
-						<button id="employeeButton">Employee Login</button>
+						<button id="employeeButton" onClick={this.show}>Employee Login</button>
 					</div>
 				</div>
 				<div className="row">
@@ -30,6 +30,7 @@ class Home extends Component {
 
 
 			</div>
+
 		)
 	}
 }
