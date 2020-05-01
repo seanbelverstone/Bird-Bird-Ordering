@@ -9,7 +9,7 @@ class Home extends Component {
 
 	render() {
 		return(
-			<div class="extendedContainer">
+			<div className="extendedContainer">
 				<div className="container">
 					<div className="row">
 						<div className="col-12">

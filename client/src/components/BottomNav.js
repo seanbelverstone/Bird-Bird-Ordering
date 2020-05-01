@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Navbar,
   Nav,
   NavItem,
-  NavLink,
-  NavbarText
+  NavLink
 } from 'reactstrap';
+import instaLogo from "../images/insta-logo.svg";
+import fbLogo from "../images/facebook.png";
 import "./css/bottomNav.css";
 
-const BottomNav = (props) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
+const BottomNav = () => {
 
   return (
     <div>
-      <Navbar light expand="md">
+      <Navbar fixed="bottom" light expand="md">
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
@@ -25,7 +23,7 @@ const BottomNav = (props) => {
             </NavItem>
             <NavItem>
               {/* this will be the live website when done */}
-              <NavLink href="#">DOZENS</NavLink>
+              <NavLink href="#" id="dozens">DOZENS</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/">OUR STORY</NavLink>
@@ -49,7 +47,8 @@ const BottomNav = (props) => {
               <NavLink href="https://www.birdbirdbiscuit.com/now-hiring">NOW HIRING</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
+          <img src={instaLogo} alt="Instagram logo" id="insta" href="http://instagram.com/birdbirdbiscuit"/>
+          <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
         </Navbar>
       </div>
   );
