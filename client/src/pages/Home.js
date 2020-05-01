@@ -9,28 +9,31 @@ class Home extends Component {
 
 	render() {
 		return(
-			<div className="container">
-				<div className="row">
-					<div className="col-12">
-						<button id="employeeButton" onClick={this.show}>Employee Login</button>
+			<div class="extendedContainer">
+				<div className="container">
+					<div className="row">
+						<div className="col-12">
+							<button id="employeeButton" onClick={this.show}>Employee Login</button>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="col-12">
-						<h1 id="pageTitle">BISCUITS BY THE DOZEN</h1>
+					<div className="row">
+						<div className="col-12">
+							<h1 id="pageTitle">BISCUITS BY THE DOZEN</h1>
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<div className="col-12">
-						<img id="biscuits" src={biscuits} alt="a dozen biscuits" />
+					<div className="row">
+						<div className="col-12">
+							<img id="biscuits" src={biscuits} alt="a dozen biscuits" />
+						</div>
 					</div>
-				</div>
-				<div className="row">
-					<OrderForm />
-				</div>
+					<div className="row">
+						<OrderForm />
+					</div>
 
+					</div>
 				<BottomNav />
-			</div>
+
+				</div>
 
 		)
 	}

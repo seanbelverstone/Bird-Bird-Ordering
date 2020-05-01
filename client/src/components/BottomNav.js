@@ -6,6 +6,7 @@ import {
   NavLink,
   NavbarText
 } from 'reactstrap';
+import "./css/bottomNav.css";
 
 const BottomNav = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,7 @@ const BottomNav = (props) => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar light expand="md">
           <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
