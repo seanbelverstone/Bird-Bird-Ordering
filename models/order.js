@@ -3,10 +3,11 @@ module.exports = (sequelize, DataTypes) => {
 	const Order = sequelize.define("Order", {
 	  name: DataTypes.STRING,
 	  telephone: DataTypes.STRING,
+	  email: DataTypes.STRING,
 	  biscuitQuantity: DataTypes.INTEGER,
-	  collectionDate: DataTypes.DATEONLY,
-	  collectionTime: DataTypes.TIME,
-	  totalCost: DataTypes.INTEGER,
+	  totalCost: DataTypes.DECIMAL(10,2),
+	  pickupDateTime: DataTypes.STRING,
+	  specialInstructions: DataTypes.STRING
 	}, {});
   
 	Order.sync();
