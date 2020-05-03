@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "react-scripts": "^2.1.1"
   },
   "scripts": {

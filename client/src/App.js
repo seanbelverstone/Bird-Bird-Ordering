@@ -8,8 +8,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Home from "../src/pages/Home";
 import Login from "../src/pages/Login";
+import "dotenv/config";
 import "./App.css";
-
 
 const App = () => {
 

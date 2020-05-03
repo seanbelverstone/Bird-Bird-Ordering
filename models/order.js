@@ -12,3 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 	Order.sync();
 	return Order;
   };
+
+//   Maybe change date and time to dateTime
+// Add in email
+// Add in special notes
