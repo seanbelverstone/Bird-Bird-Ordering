@@ -1,6 +1,7 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../utils/API";
+import ToastSuccess from "../ToastSuccess";
 
 const CheckoutForm = (props) => {
 
@@ -87,6 +88,8 @@ const CheckoutForm = (props) => {
         console.log(response)
         // then maybe a toast saying "your order was placed" then toggle the modal
         props.toggleClose();
+        // Just adding in an alert for now.. will change to the proposed Toast later
+        alert(`Thanks for placing an order ${props.name}!\nWe look forward to seeing you!`)
       })
   }
 
@@ -97,12 +100,14 @@ const CheckoutForm = (props) => {
   };
 
   return (
+    <div>
       <form onSubmit={handleSubmit}>
         <CardElement onChange={handleCardChange} />
         <button type="submit" disabled={!stripe}>
           Submit Order
         </button>
       </form>
+    </div>
 
   );
 }
