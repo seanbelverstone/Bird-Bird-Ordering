@@ -1,7 +1,5 @@
 import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
-import { Button } from 'reactstrap';
-import CheckoutForm from "./CheckoutForm";
 
 const UserForm = (props) => {
 
@@ -26,9 +24,6 @@ const UserForm = (props) => {
           match:{value:'email', errorMessage: 'Email does not match'},
           required: {value: true, errorMessage: 'Please re-enter your email.'}}} />
 
-        <CheckoutForm total={props.total}/>
-
-		    <Button color="primary">Submit</Button>
       </AvForm>
     );
   }
