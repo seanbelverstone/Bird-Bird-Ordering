@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
+import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -26,13 +27,15 @@ class OrderForm extends React.Component {
 			values: [],
 			validated: true,
 			specialInstructions: "",
-			pickupDateTime: ""
+			pickupDateTime: new Date()
 			}
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.changeIcon = this.changeIcon.bind(this);
+		this.handleCalendarChange = this.handleCalendarChange.bind(this);
+
 	}
 	
 	// A function for when the quantity changes
@@ -126,6 +129,21 @@ class OrderForm extends React.Component {
 	// 			selectedIcon: "%"
 	// 		})
 	// 	} 
+	}
+
+	// Calendar based functions
+
+	handleCalendarChange = date => {
+		this.setState({
+			pickupDateTime: date
+		});
+	  };
+
+	  
+	componentDidMount() {
+		this.setState({
+			pickupDateTime: subDays(new Date(), -2)
+		})
 	}
 
 	handleSubtotal = () => {
@@ -254,7 +272,8 @@ class OrderForm extends React.Component {
 					<div>Select a pick-up date & time</div>
 				</Row>
 				<Row>
-					<UserCalendar pickupDateTime={this.state.pickupDateTime}/>
+					<UserCalendar pickupDateTime={this.state.pickupDateTime}
+								  handleCalendarChange={this.handleCalendarChange}/>
 				</Row>
 				<Row>
 				<FormGroup>
