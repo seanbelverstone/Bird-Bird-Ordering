@@ -4,7 +4,7 @@ import subDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import "react-datepicker/dist/react-datepicker.css";
- 
+import "./style.css"; 
 
 class UserCalendar extends React.Component {
 	state = {
@@ -37,7 +37,7 @@ class UserCalendar extends React.Component {
 			timeIntervals={15}
 			timeCaption="Time"
 			// the min/max time reflect Bird Bird Biscuit's weekday opening hours
-			minTime={setHours(setMinutes(new Date(), 0), 7)}
+			minTime={setHours(setMinutes(new Date(), 0), 8)}
 			maxTime={setHours(setMinutes(new Date(), 0), 14)}
 			/>
 		);
