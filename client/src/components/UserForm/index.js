@@ -1,7 +1,7 @@
 import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import { Button } from 'reactstrap';
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "../CheckoutForm";
 
 const UserForm = (props) => {
 

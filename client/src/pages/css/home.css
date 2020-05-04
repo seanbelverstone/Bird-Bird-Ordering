@@ -16,7 +16,3 @@
 	margin-top: 50px;
 	width: 80%;
 }
-
-#orderForm, #quantity, button, #datePicker, #specialInstructions {
-	font-weight: 600;
-}
