@@ -19,7 +19,6 @@ const CheckoutForm = (props) => {
         // Include any additional collected billing details.
         name: props.name,
         email: props.email,
-        telephone: props.telephone
       },
     });
 
@@ -60,7 +59,11 @@ const CheckoutForm = (props) => {
         props.total,
         props.pickupDateTime,
         props.specialInstructions,
-        )
+        ).then(response => {
+          console.log(response)
+          // then maybe a toast saying "your order was placed" then toggle the modal
+          props.toggleClose();
+        })
     }
   };
 

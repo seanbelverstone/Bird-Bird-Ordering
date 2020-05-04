@@ -47,7 +47,8 @@ class UserForm extends React.Component {
         </AvForm>
 
         <div>
-          <CheckoutForm total={this.props.total}
+          <CheckoutForm toggleClose={this.props.toggleClose}
+                        total={this.props.total}
                         specialInstructions={this.props.specialInstructions}
                         pickupDateTime={this.props.pickupDateTime}
                         quantity={this.props.quantity}
