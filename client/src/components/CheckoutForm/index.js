@@ -19,7 +19,6 @@ const CheckoutForm = (props) => {
         // Include any additional collected billing details.
         name: props.name,
         email: props.email,
-        // amount: props.total
       },
     });
 
