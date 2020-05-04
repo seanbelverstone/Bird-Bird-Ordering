@@ -19,6 +19,7 @@ const CheckoutForm = (props) => {
         // Include any additional collected billing details.
         name: props.name,
         email: props.email,
+        // amount: props.total
       },
     });
 
@@ -31,7 +32,7 @@ const CheckoutForm = (props) => {
       // show `result.error.message` in the payment form.
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 3)
-      const response = await fetch('/pay', {
+      const response = await fetch('/stripe/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
