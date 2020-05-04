@@ -25,18 +25,18 @@ class UserForm extends React.Component {
     return (
       <div>
         <AvForm>
-          <AvField name="name" label="name" type="text" onChange={this.handleChange} validate={{
+          <AvField name="name" label="Name" type="text" onChange={this.handleChange} validate={{
               required: {value: true, errorMessage: 'Please enter a name'},
               pattern: {value: /^[a-zA-Z ]+$/, errorMessage: 'Your name must be composed only with letter and numbers'},
               minLength: {value: 4, errorMessage: 'Your name must be between 4 and 32 characters'},
               maxLength: {value: 32, errorMessage: 'Your name must be between 4 and 32 characters'}
             }} />
 
-          <AvField name="telephone" label="telephone" type="text" onChange={this.handleChange} validate={{
+          <AvField name="telephone" label="Telephone" type="text" onChange={this.handleChange} validate={{
             tel: true,
             required: {value: true, errorMessage: 'Please enter a phone number'}}} />
 
-          <AvField name="email" label="email" type="text" onChange={this.handleChange} validate={{
+          <AvField name="email" label="Email" type="text" onChange={this.handleChange} validate={{
             email: true,
             required: {value: true, errorMessage: 'Please enter an email address.'}}} />
 
