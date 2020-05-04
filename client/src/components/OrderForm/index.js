@@ -55,6 +55,8 @@ class OrderForm extends React.Component {
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
 
+	// Handling tip function
+
 	addTip = (event) => {
 		event.preventDefault();
 
@@ -90,6 +92,8 @@ class OrderForm extends React.Component {
 		}
 	}
 
+	// Hidden tip input functions
+
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
 	handleForm = (event) => {
@@ -116,19 +120,9 @@ class OrderForm extends React.Component {
 	}
 	
 	changeIcon(event) {
-		this.setState({
-			selectedOption: event.target.value
-		});
-	// Not sure if this is necessary yet. Commenting out for further changes. Icon is changing after opposite selection
-	// 	if (this.state.selectedOption === "dollars") {
-	// 		this.setState({
-	// 			selectedIcon: "$"
-	// 		});
-	// 	} else {
-	// 		this.setState({
-	// 			selectedIcon: "%"
-	// 		})
-	// 	} 
+		// Make this into something different.
+		// Remove the option to select a percentage, and instead have a percentage of the entered amount
+		// appear at the end of the input box, dynamically changing whenever a new value is entered.
 	}
 
 	// Calendar based functions
@@ -146,6 +140,7 @@ class OrderForm extends React.Component {
 		})
 	}
 
+	// End-of-form functions
 	handleSubtotal = () => {
 		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
