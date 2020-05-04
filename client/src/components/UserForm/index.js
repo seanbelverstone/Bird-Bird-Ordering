@@ -50,6 +50,7 @@ class UserForm extends React.Component {
           <CheckoutForm total={this.props.total}
                         specialInstructions={this.props.specialInstructions}
                         pickupDateTime={this.props.pickupDateTime}
+                        quantity={this.props.quantity}
                         name={this.state.name}
                         email={this.state.email}
                         telephone={this.state.telephone}

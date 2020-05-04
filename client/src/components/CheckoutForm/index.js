@@ -52,6 +52,15 @@ const CheckoutForm = (props) => {
       // show the error in the payment form.
     } else {
       // Show a success message
+      API.createOrder(
+        props.name, 
+        props.telephone, 
+        props.email, 
+        props.quantity,
+        props.total,
+        props.pickupDateTime,
+        props.specialInstructions,
+        )
     }
   };
 
