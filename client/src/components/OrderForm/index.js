@@ -266,7 +266,8 @@ class OrderForm extends React.Component {
 								tipValidation={this.state.tipInDollars}
 								total={subtotal}
 								values={this.state.values}
-								handleSubmit={this.handleSubmit}/>
+								handleSubmit={this.handleSubmit}
+								/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>

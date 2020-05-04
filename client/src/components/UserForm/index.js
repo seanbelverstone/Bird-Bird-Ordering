@@ -1,11 +1,30 @@
 import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 
-const UserForm = (props) => {
+class UserForm extends React.Component {
+  constructor(props) {
+		super(props);
+		this.state = {
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
+  handleChange = (event) => {
+		const {name, value} = event.target;
+		this.setState(
+		  {[name]: value}
+		)
+  };
+  
+  handleSubmit = () => {
+    console.log("Submitting...")
+  }
+
+  render() {
     return (
-      <AvForm onSubmit={props.handleSubmit}>
-        <AvField name="nameCustomMessage" label="Name" type="text" validate={{
+      <AvForm onSubmit={this.handleSubmit}>
+        <AvField name="nameCustomMessage" label="Name" type="text" onChange={this.handleChange} validate={{
             required: {value: true, errorMessage: 'Please enter a name'},
             pattern: {value: /^[a-zA-Z ]+$/, errorMessage: 'Your name must be composed only with letter and numbers'},
             minLength: {value: 4, errorMessage: 'Your name must be between 4 and 32 characters'},
@@ -27,5 +46,6 @@ const UserForm = (props) => {
       </AvForm>
     );
   }
+}
 
 export default UserForm;
