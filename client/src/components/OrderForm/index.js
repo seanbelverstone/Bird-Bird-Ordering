@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
+import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -25,12 +26,16 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
+			specialInstructions: "",
+			pickupDateTime: new Date()
 			}
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.changeIcon = this.changeIcon.bind(this);
+		this.handleCalendarChange = this.handleCalendarChange.bind(this);
+
 	}
 	
 	// A function for when the quantity changes
@@ -49,6 +54,8 @@ class OrderForm extends React.Component {
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
+
+	// Handling tip function
 
 	addTip = (event) => {
 		event.preventDefault();
@@ -85,6 +92,8 @@ class OrderForm extends React.Component {
 		}
 	}
 
+	// Hidden tip input functions
+
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
 	// of the form where they can choose to enter an amount using $ or %
 	handleForm = (event) => {
@@ -111,21 +120,27 @@ class OrderForm extends React.Component {
 	}
 	
 	changeIcon(event) {
-		this.setState({
-			selectedOption: event.target.value
-		});
-	// Not sure if this is necessary yet. Commenting out for further changes. Icon is changing after opposite selection
-	// 	if (this.state.selectedOption === "dollars") {
-	// 		this.setState({
-	// 			selectedIcon: "$"
-	// 		});
-	// 	} else {
-	// 		this.setState({
-	// 			selectedIcon: "%"
-	// 		})
-	// 	} 
+		// Make this into something different.
+		// Remove the option to select a percentage, and instead have a percentage of the entered amount
+		// appear at the end of the input box, dynamically changing whenever a new value is entered.
 	}
 
+	// Calendar based functions
+
+	handleCalendarChange = date => {
+		this.setState({
+			pickupDateTime: date
+		});
+	  };
+
+	  
+	componentDidMount() {
+		this.setState({
+			pickupDateTime: subDays(new Date(), -2)
+		})
+	}
+
+	// End-of-form functions
 	handleSubtotal = () => {
 		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
@@ -252,12 +267,13 @@ class OrderForm extends React.Component {
 					<div>Select a pick-up date & time</div>
 				</Row>
 				<Row>
-					<UserCalendar/>
+					<UserCalendar pickupDateTime={this.state.pickupDateTime}
+								  handleCalendarChange={this.handleCalendarChange}/>
 				</Row>
 				<Row>
 				<FormGroup>
 					<Label for="specialInstructions">Would you like to include any special instructions?</Label>
-					<Input type="textarea" name="text" id="specialInstructions" />
+					<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
 				</FormGroup>
 				</Row>
 				<Row>
@@ -266,7 +282,11 @@ class OrderForm extends React.Component {
 								tipValidation={this.state.tipInDollars}
 								total={subtotal}
 								values={this.state.values}
-								handleSubmit={this.handleSubmit}/>
+								handleSubmit={this.handleSubmit}
+								specialInstructions={this.state.specialInstructions}
+								pickupDateTime={this.state.pickupDateTime}
+								quantity={this.state.quantity}
+								/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
 				</Row>

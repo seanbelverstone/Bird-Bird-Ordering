@@ -1,5 +1,7 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import API from "../../utils/API";
+import ToastSuccess from "../ToastSuccess";
 
 const CheckoutForm = (props) => {
 
@@ -16,7 +18,8 @@ const CheckoutForm = (props) => {
       card: elements.getElement(CardElement),
       billing_details: {
         // Include any additional collected billing details.
-        name: 'Jenny Rosen',
+        name: props.name,
+        email: props.email,
       },
     });
 
@@ -29,7 +32,7 @@ const CheckoutForm = (props) => {
       // show `result.error.message` in the payment form.
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 3)
-      const response = await fetch('/pay', {
+      const response = await fetch('/stripe/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -47,10 +50,48 @@ const CheckoutForm = (props) => {
     if (serverResponse.error) {
       // An error happened when charging the card,
       // show the error in the payment form.
-    } else {
-      // Show a success message
+    } else if (serverResponse.requiresAction) {
+      // Use Stripe.js to handle required card action
+      stripe.handleCardAction(
+        serverResponse.clientSecret
+      ).then(function(result) {
+        if (result.error) {
+          // Show `result.error.message` in payment form
+        } else {
+          // The card action has been handled
+          // The PaymentIntent can be confirmed again on the server
+          fetch('/stripe/charge', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ payment_intent_id: result.paymentIntent.id })
+          }).then(function(confirmResult) {
+            return confirmResult.json();
+          }).then(handleServerResponse);
+        }
+      });
+      } else {
+        // Show a success message
+        createOrder();
     }
   };
+
+  const createOrder = () => {
+    API.createOrder(
+      props.name, 
+      props.telephone, 
+      props.email, 
+      props.quantity,
+      props.total,
+      props.pickupDateTime,
+      props.specialInstructions,
+      ).then(response => {
+        console.log(response)
+        // then maybe a toast saying "your order was placed" then toggle the modal
+        props.toggleClose();
+        // Just adding in an alert for now.. will change to the proposed Toast later
+        alert(`Thanks for placing an order ${props.name}!\nWe look forward to seeing you!`)
+      })
+  }
 
   const handleCardChange = (event) => {
     if (event.error) {
@@ -59,12 +100,14 @@ const CheckoutForm = (props) => {
   };
 
   return (
+    <div>
       <form onSubmit={handleSubmit}>
         <CardElement onChange={handleCardChange} />
         <button type="submit" disabled={!stripe}>
           Submit Order
         </button>
       </form>
+    </div>
 
   );
 }

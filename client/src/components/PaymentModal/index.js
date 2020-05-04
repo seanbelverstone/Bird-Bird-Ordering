@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import UserForm from "../UserForm";
-import CheckoutForm from "../CheckoutForm";
 import "./style.css";
 
 const PaymentModal = (props) => {
@@ -29,13 +28,13 @@ const PaymentModal = (props) => {
         <ModalBody>
           Your subtotal is ${props.total}
 
-          <UserForm handleSubmit={props.handleSubmit}
-                    toggleClose={toggle}
-                    total={props.total}/>
+          <UserForm toggleClose={toggle}
+                    total={props.total}
+                    specialInstructions={props.specialInstructions}
+                    pickupDateTime={props.pickupDateTime}
+                    quantity={props.quantity}/>
           
           <br />
-
-          <CheckoutForm total={props.total}/>
 
         </ModalBody>
         <ModalFooter>
