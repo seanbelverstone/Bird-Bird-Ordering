@@ -1,3 +1,7 @@
 .react-datepicker__time-list-item--disabled {
 	display: none;
 }
+
+.react-datepicker {
+	font-size: 15px
+}
