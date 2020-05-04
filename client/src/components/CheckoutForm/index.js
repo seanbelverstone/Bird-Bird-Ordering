@@ -1,5 +1,6 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import API from "../../utils/API";
 
 const CheckoutForm = (props) => {
 
@@ -16,7 +17,9 @@ const CheckoutForm = (props) => {
       card: elements.getElement(CardElement),
       billing_details: {
         // Include any additional collected billing details.
-        name: 'Jenny Rosen',
+        name: props.name,
+        email: props.email,
+        telephone: props.telephone
       },
     });
 
