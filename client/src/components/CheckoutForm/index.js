@@ -59,12 +59,13 @@ const CheckoutForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement onChange={handleCardChange} />
-      <button type="submit" disabled={!stripe}>
-        Submit Payment
-      </button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <CardElement onChange={handleCardChange} />
+        <button type="submit" disabled={!stripe}>
+          Submit Order
+        </button>
+      </form>
+
   );
 }
 
