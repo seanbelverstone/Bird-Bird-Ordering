@@ -284,6 +284,7 @@ class OrderForm extends React.Component {
 								values={this.state.values}
 								handleSubmit={this.handleSubmit}
 								specialInstructions={this.state.specialInstructions}
+								pickupDateTime={this.state.pickupDateTime}
 								/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
