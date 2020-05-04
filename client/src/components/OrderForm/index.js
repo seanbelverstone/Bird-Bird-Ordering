@@ -25,6 +25,7 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
+			specialInstructions: ""
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -257,7 +258,7 @@ class OrderForm extends React.Component {
 				<Row>
 				<FormGroup>
 					<Label for="specialInstructions">Would you like to include any special instructions?</Label>
-					<Input type="textarea" name="text" id="specialInstructions" />
+					<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
 				</FormGroup>
 				</Row>
 				<Row>
@@ -267,6 +268,7 @@ class OrderForm extends React.Component {
 								total={subtotal}
 								values={this.state.values}
 								handleSubmit={this.handleSubmit}
+								specialInstructions={this.state.specialInstructions}
 								/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
