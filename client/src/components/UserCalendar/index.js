@@ -8,18 +8,18 @@ import "./style.css";
 
 class UserCalendar extends React.Component {
 	state = {
-		startDate: new Date()
+		pickupDateTime: new Date()
 	  };
 	 
-	  handleChange = date => {
+	  handleCalendarChange = date => {
 		this.setState({
-		  startDate: date
+			pickupDateTime: date
 		});
 	  };
 
 	  componentDidMount() {
 		this.setState({
-			startDate: subDays(new Date(), -2)
+			pickupDateTime: subDays(new Date(), -2)
 		})
 	  }
 
@@ -27,8 +27,8 @@ class UserCalendar extends React.Component {
 		return (
 		  <DatePicker
 			id="datePicker"
-			selected={this.state.startDate}
-			onChange={this.handleChange}
+			selected={this.state.pickupDateTime}
+			onChange={this.handleCalendarChange}
 			dateFormat="MMMM d, h:mm aa"
 			// min date makes sure users can't select a date sooner than 2 days from the current day
 			minDate={subDays(new Date(), -2)}

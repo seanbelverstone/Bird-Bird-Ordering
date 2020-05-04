@@ -25,7 +25,8 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
-			specialInstructions: ""
+			specialInstructions: "",
+			pickupDateTime: ""
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -253,7 +254,7 @@ class OrderForm extends React.Component {
 					<div>Select a pick-up date & time</div>
 				</Row>
 				<Row>
-					<UserCalendar/>
+					<UserCalendar pickupDateTime={this.state.pickupDateTime}/>
 				</Row>
 				<Row>
 				<FormGroup>

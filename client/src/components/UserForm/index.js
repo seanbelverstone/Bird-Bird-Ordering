@@ -48,9 +48,11 @@ class UserForm extends React.Component {
 
         <div>
           <CheckoutForm total={this.props.total}
+                        specialInstructions={this.props.specialInstructions}
                         name={this.state.name}
                         email={this.state.email}
-                        telephone={this.state.telephone}/>
+                        telephone={this.state.telephone}
+                        />
         </div>
       </div>
 
