@@ -7,6 +7,9 @@ class UserForm extends React.Component {
   constructor(props) {
 		super(props);
 		this.state = {
+      name: "",
+      email: "",
+      telephone: ""
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -44,7 +47,10 @@ class UserForm extends React.Component {
         </AvForm>
 
         <div>
-          <CheckoutForm total={this.props.total}/>
+          <CheckoutForm total={this.props.total}
+                        name={this.state.name}
+                        email={this.state.email}
+                        telephone={this.state.telephone}/>
         </div>
       </div>
 
