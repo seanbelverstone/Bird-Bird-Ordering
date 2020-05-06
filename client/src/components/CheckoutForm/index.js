@@ -4,7 +4,7 @@ import API from "../../utils/API";
 import emailjs from "emailjs-com";
 import ToastSuccess from "../ToastSuccess";
 
-const templateParams = {};
+let templateParams = {};
 
 const CheckoutForm = (props) => {
 
@@ -90,6 +90,8 @@ const CheckoutForm = (props) => {
       ).then(response => {
         console.log(response)
 
+        // Stores the response data into the templateParams variable, allowing us to send an email with the 
+        // relevant information to the user
         templateParams = {
           name: response.data.name,
           orderNumber: response.data.id,
@@ -98,7 +100,13 @@ const CheckoutForm = (props) => {
           total: response.data.totalCost,
         };
 
-        emailjs.sendForm(process.env.REACT_APP_SERVICE_ID)
+        // Emailjs send form function.
+        emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
+          .then((response) => {
+            console.log("SUCCESS!", response.status, response.text)
+          }, (err) => {
+            console.log("FAILED...", err)
+          });
         // then maybe a toast saying "your order was placed" then toggle the modal
         props.toggleClose();
         // Just adding in an alert for now.. will change to the proposed Toast later
