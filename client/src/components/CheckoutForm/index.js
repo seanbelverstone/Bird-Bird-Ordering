@@ -94,14 +94,18 @@ const CheckoutForm = (props) => {
         // relevant information to the user
         templateParams = {
           name: response.data.name,
+          email: response.data.email,
+          telephone: response.data.telephone,
+          specialInstructions: response.data.specialInstructions,
           orderNumber: response.data.id,
           quantity: response.data.biscuitQuantity,
           pickupDateTime: response.data.pickupDateTime,
           total: response.data.totalCost,
+          timePlaced: response.data.createdAt
         };
 
         // Emailjs send form function.
-        emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
+        emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
           .then((response) => {
             console.log("SUCCESS!", response.status, response.text)
           }, (err) => {
