@@ -17,6 +17,13 @@ class Login extends Component {
 						<button id="backToHome" onClick={this.homePage}>Back to Home</button>
 					</div>
 				</div>
+				<div className="loginArea" style={{border: "2px black"}}>
+					<div className="row">
+						<div className="col-12">
+
+						</div>
+					</div>
+				</div>
 			</div>
 		)
 	}
