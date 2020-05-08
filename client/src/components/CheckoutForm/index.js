@@ -1,7 +1,10 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../utils/API";
+import emailjs from "emailjs-com";
 import ToastSuccess from "../ToastSuccess";
+
+let templateParams = {};
 
 const CheckoutForm = (props) => {
 
@@ -86,6 +89,29 @@ const CheckoutForm = (props) => {
       props.specialInstructions,
       ).then(response => {
         console.log(response)
+
+        // Stores the response data into the templateParams variable, allowing us to send an email with the 
+        // relevant information to the user
+        templateParams = {
+          name: response.data.name,
+          email: response.data.email,
+          telephone: response.data.telephone,
+          specialInstructions: response.data.specialInstructions,
+          orderNumber: response.data.id,
+          quantity: response.data.biscuitQuantity,
+          pickupDateTime: response.data.pickupDateTime,
+          total: response.data.totalCost,
+          timePlaced: response.data.createdAt
+        };
+
+        // Emailjs send form function.
+        emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
+          .then((response) => {
+            console.log("Email successfully sent", response.status, response.text)
+          }, (err) => {
+            console.log("Email sending failed", err)
+          });
+
         // then maybe a toast saying "your order was placed" then toggle the modal
         props.toggleClose();
         // Just adding in an alert for now.. will change to the proposed Toast later
