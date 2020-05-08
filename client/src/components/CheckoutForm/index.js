@@ -107,10 +107,11 @@ const CheckoutForm = (props) => {
         // Emailjs send form function.
         emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
           .then((response) => {
-            console.log("SUCCESS!", response.status, response.text)
+            console.log("Email successfully sent", response.status, response.text)
           }, (err) => {
-            console.log("FAILED...", err)
+            console.log("Email sending failed", err)
           });
+
         // then maybe a toast saying "your order was placed" then toggle the modal
         props.toggleClose();
         // Just adding in an alert for now.. will change to the proposed Toast later
