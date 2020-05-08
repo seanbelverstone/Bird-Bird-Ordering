@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import OrderForm from "../components/OrderForm";
-import BottomNav from "../components/BottomNav";
+import OrderForm from "../components/HomeComponents/OrderForm";
+import BottomNav from "../components/HomeComponents/BottomNav";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
 import logo from "../images/birdbirdlogo.png";
 import "./css/home.css";

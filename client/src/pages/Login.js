@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
 
 
 class Login extends Component {
@@ -17,10 +17,15 @@ class Login extends Component {
 						<button id="backToHome" onClick={this.homePage}>Back to Home</button>
 					</div>
 				</div>
-				<div className="loginArea" style={{border: "2px black"}}>
+				<div className="loginArea" style={{border: "2px black solid"}}>
 					<div className="row">
 						<div className="col-12">
-
+							Employee Login
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-12">
+							<EmployeeLogin />
 						</div>
 					</div>
 				</div>

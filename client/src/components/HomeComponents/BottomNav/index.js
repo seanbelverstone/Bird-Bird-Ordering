@@ -5,8 +5,8 @@ import {
   NavItem,
   NavLink
 } from 'reactstrap';
-import instaLogo from "../../images/insta-logo.svg";
-import fbLogo from "../../images/facebook.png";
+import instaLogo from "../../../images/insta-logo.svg";
+import fbLogo from "../../../images/facebook.png";
 import "./style.css";
 
 const BottomNav = () => {
