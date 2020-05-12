@@ -5,12 +5,12 @@ const EmployeeLogin = (props) => {
   return (
     <Form>
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        <Label for="username">Username</Label>
+        <Input type="name" name="username" id="username" placeholder="Username" />
       </FormGroup>
       <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+        <Label for="password">Password</Label>
+        <Input type="password" name="password" id="password" placeholder="Password" />
       </FormGroup>
       <Button>Submit</Button>
     </Form>

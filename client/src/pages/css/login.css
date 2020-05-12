@@ -1,0 +1,11 @@
+#title {
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.loginArea {
+	box-shadow: 2px 2px #888888;
+	border: 2px black solid;
+	padding: 50px;
+	margin: 50px 150px 0px 0;
+}
