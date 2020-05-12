@@ -1,6 +1,6 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
-import API from "../../utils/API";
+import API from "../../../utils/API";
 import emailjs from "emailjs-com";
 import ToastSuccess from "../ToastSuccess";
 

@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import OrderForm from "../components/OrderForm";
-import BottomNav from "../components/BottomNav";
+import OrderForm from "../components/HomeComponents/OrderForm";
+import BottomNav from "../components/HomeComponents/BottomNav";
 import biscuits from "../images/dozenbiscuitsflip.jpg";
+import logo from "../images/birdbirdlogo.png";
 import "./css/home.css";
 
 
 class Home extends Component {
+
+	loginPage(event) {
+		event.preventDefault();
+		window.location = window.location + "login";
+	}
 
 	render() {
 		return(
@@ -13,7 +19,7 @@ class Home extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-12">
-							<button id="employeeButton" onClick={this.show}>Employee Login</button>
+							<button id="employeeButton" onClick={this.loginPage}>Employee Login</button>
 						</div>
 					</div>
 					<div className="row">
