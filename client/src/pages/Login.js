@@ -24,6 +24,7 @@ class Login extends Component {
 		let displayedComponent;
 
 		if (loggedIn === false) {
+			// Passing setState down into the child so the child can update the parent's state
 			displayedComponent = <EmployeeLogin setState = {(parameter) => {this.setState(parameter)}}/>
 		} else {
 			displayedComponent = <OrderCalendar />
