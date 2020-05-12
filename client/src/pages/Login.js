@@ -23,8 +23,8 @@ class Login extends Component {
 		const loggedIn = this.state.loggedIn;
 		let displayedComponent;
 
-		if (loggedIn) {
-			displayedComponent = <EmployeeLogin />
+		if (loggedIn === false) {
+			displayedComponent = <EmployeeLogin setState = {(parameter) => {this.setState(parameter)}}/>
 		} else {
 			displayedComponent = <OrderCalendar />
 		}

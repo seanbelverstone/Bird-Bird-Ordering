@@ -7,7 +7,6 @@ class EmployeeLogin extends React.Component {
     this.state = {
       username: "",
       password: "",
-      loggedIn: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,13 +20,12 @@ class EmployeeLogin extends React.Component {
   };
 
   handleSubmit(event) {
-    event.preventDefault();
     if (this.state.username === process.env.REACT_APP_EMPLOYEE_USERNAME && this.state.password === process.env.REACT_APP_EMPLOYEE_PASSWORD) {
-      this.setState({
+      this.props.setState({
         loggedIn: true
       })
     } else {
-      this.setState({
+      this.props.setState({
         loggedIn: false
       })
     }
