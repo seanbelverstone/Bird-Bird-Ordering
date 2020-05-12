@@ -1,24 +1,9 @@
 import React from "react";
-import { Calendar, dateFnsLocalizer, Views } from "react-big-calendar"
-import format from "date-fns/format"
-import parse from "date-fns/parse"
-import startOfWeek from "date-fns/startOfWeek"
-import getDay from "date-fns/getDay"
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar"
+import moment from "moment";
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-let allViews = Object.keys(Views).map(k => Views[k])
-
-const locales = {
-  "en-US": require("date-fns/locale/en-US"),
-}
-
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-});
+const localizer = momentLocalizer(moment);
 
 class OrderCalendar extends React.Component {
 	constructor(props) {
@@ -27,13 +12,20 @@ class OrderCalendar extends React.Component {
 			events: [
 				{
 					"title": "test",
-					"start": new Date(2020, 4, 12, 12, 0, 0, 0),
+					"start": new Date(2020, 5, 12, 12, 0, 0, 0),
 					"end": new Date(2020, 5, 12, 13, 0, 0, 0),
 					"desc": "First order of the day"
 				}
 			]
 		}
 	}
+
+	// onComponentDidMount, do a pull request to grab all the database data.
+	// Check that the collection date is in the right format
+	// push to this.state.events
+	// make sure that the message goes into the description
+	// Add a popup for the order
+	// Make the title the name and amount(?)
 
 	render() {
 
@@ -45,7 +37,7 @@ class OrderCalendar extends React.Component {
 				<Calendar
 					localizer = {localizer}
 					events = {events}
-					views = {allViews}
+					views = {[Views.DAY, Views.WEEK, Views.MONTH]}
 					showMultiDayTimes
 					startAccessor = "start"
 					endAccessor = "end"
