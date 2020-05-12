@@ -1,0 +1,5 @@
+#errorMessage {
+	color: rgb(160, 0, 0) !important;
+	font-style: italic !important;
+	margin-top: 20px;
+}

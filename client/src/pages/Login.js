@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
+import OrderCalendar from "../components/LoginComponents/OrderCalendar";
 import "./css/login.css";
 
 
 class Login extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			loggedIn: false
+		}
+	}
 	
 	homePage(event) {
 		event.preventDefault();
@@ -11,6 +19,18 @@ class Login extends Component {
 	}
 	
 	render() {
+
+		const loggedIn = this.state.loggedIn;
+		let displayedComponent;
+
+		if (loggedIn === false) {
+			// Passing setState down into the child so the child can update the parent's state
+			displayedComponent = <EmployeeLogin setState = {(parameter) => {this.setState(parameter)}}/>
+		} else {
+			displayedComponent = <OrderCalendar />
+		}
+
+
 		return(
 			<div className="container">
 				<div className="row">
@@ -26,7 +46,7 @@ class Login extends Component {
 					</div>
 					<div className="row">
 						<div className="col-12">
-							<EmployeeLogin />
+							{displayedComponent}
 						</div>
 					</div>
 				</div>
