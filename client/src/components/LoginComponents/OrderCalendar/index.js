@@ -27,7 +27,7 @@ class OrderCalendar extends React.Component {
 			events: [
 				{
 					"title": "test",
-					"start": new Date(2020, 5, 12, 12, 0, 0, 0),
+					"start": new Date(2020, 4, 12, 12, 0, 0, 0),
 					"end": new Date(2020, 5, 12, 13, 0, 0, 0),
 					"desc": "First order of the day"
 				}
@@ -43,14 +43,14 @@ class OrderCalendar extends React.Component {
 			<div>
 				<h1>ORDER CALENDAR</h1>
 				<Calendar
-					localizer={localizer}
-					events={events}
-					views={allViews}
-					step={60}
+					localizer = {localizer}
+					events = {events}
+					views = {allViews}
 					showMultiDayTimes
-					startAccessor="start"
-					endAccessor="end"
-					style={{ height: 500 }}
+					startAccessor = "start"
+					endAccessor = "end"
+					popup = {true}
+					style = {{ height: 500 }}
 					/>
 			</div>
 
