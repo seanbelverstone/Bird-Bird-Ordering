@@ -23,7 +23,9 @@ class OrderCalendar extends React.Component {
 	}
 
 	componentDidMount = () => {
-		API.
+		API.getAllOrders().then(response => {
+			console.log(response);
+		})
 	}
 	// onComponentDidMount, do a pull request to grab all the database data.
 	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,

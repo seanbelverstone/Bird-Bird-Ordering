@@ -20,7 +20,7 @@ export default {
 				specialInstructions})
 		},
 	
-	getOrders: function(
-		
-	)
+	getAllOrders: () => {
+		return axios.get("/api/order/all")
+	}
 }
