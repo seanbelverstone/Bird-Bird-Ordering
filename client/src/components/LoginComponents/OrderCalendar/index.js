@@ -1,6 +1,7 @@
 import React from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar"
 import moment from "moment";
+import API from "../../../utils/API";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
@@ -21,6 +22,9 @@ class OrderCalendar extends React.Component {
 		}
 	}
 
+	componentDidMount = () => {
+		API.
+	}
 	// onComponentDidMount, do a pull request to grab all the database data.
 	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,
 	// due to the note above about months being in an array format starting at 0
