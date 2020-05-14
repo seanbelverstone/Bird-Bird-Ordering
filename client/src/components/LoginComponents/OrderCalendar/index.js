@@ -13,8 +13,8 @@ class OrderCalendar extends React.Component {
 				{
 					// NOTES: Months are in an array format, going from 0 - 11
 					"title": "test",
-					"start": new Date(2020, 4, 12, 12, 0, 0, 0),
-					"end": new Date(2020, 4, 12, 13, 0, 0, 0),
+					"start": new Date(2020, 4, 12, 12, 0),
+					"end": new Date(2020, 4, 12, 13, 0),
 					"desc": "First order of the day"
 				}
 			]
