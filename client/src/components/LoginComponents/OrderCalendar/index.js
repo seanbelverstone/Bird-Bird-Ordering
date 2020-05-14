@@ -10,6 +10,7 @@ class OrderCalendar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			rawData: [],
 			events: [
 				{
 					// NOTES: Months are in an array format, going from 0 - 11
@@ -24,8 +25,25 @@ class OrderCalendar extends React.Component {
 
 	componentDidMount = () => {
 		API.getAllOrders().then(response => {
-			console.log(response);
+			console.log(response.data);
+			this.setState({
+				rawData: response.data
+			})
+			sortData();
 		})
+	}
+
+	sortData = () => {
+		var unsortedEvents = this.state.rawData
+		for (var i = 0; i < unsortedEvents.length; i++) {
+			this.state.events.push({
+				"title": `${unsortedEvents.name[i]} #${unsortedEvents.id}`,
+				"start": ,
+				"end": ,
+				"desc": 
+
+			})
+		}
 	}
 	// onComponentDidMount, do a pull request to grab all the database data.
 	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,
