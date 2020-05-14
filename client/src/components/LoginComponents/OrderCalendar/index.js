@@ -17,7 +17,7 @@ class OrderCalendar extends React.Component {
 
 	componentDidMount = () => {
 		API.getAllOrders().then(response => {
-			console.log(response.data);
+
 			this.setState({
 				rawData: response.data
 			}, () => {
@@ -29,11 +29,14 @@ class OrderCalendar extends React.Component {
 	sortData = () => {
 		var unsortedEvents = this.state.rawData
 		for (var i = 0; i < unsortedEvents.length; i++) {
+
+			console.log(unsortedEvents[i].pickupDateTime);
+
 			this.state.events.push({
-				title: `${unsortedEvents[i].name} #${unsortedEvents[i].id}`,
-				start: unsortedEvents[i].pickupDateTime.split("T"),
-				end: unsortedEvents[i].pickupDateTime,
-				desc: `\nQuantity: ${unsortedEvents[i].biscuitQuantity}\n
+				"title": `${unsortedEvents[i].name} #${unsortedEvents[i].id}`,
+				"start": new Date(unsortedEvents[i].pickupDateTime),
+				"end": new Date(unsortedEvents[i].pickupDateTime),
+				"desc": `\nQuantity: ${unsortedEvents[i].biscuitQuantity}\n
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
 							Total: ${unsortedEvents[i].totalCost}\n
@@ -41,6 +44,7 @@ class OrderCalendar extends React.Component {
 							
 			})
 		}
+		console.log(this.state.events);
 	}
 	// onComponentDidMount, do a pull request to grab all the database data.
 	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,
