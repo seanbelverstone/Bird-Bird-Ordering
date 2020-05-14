@@ -11,15 +11,7 @@ class OrderCalendar extends React.Component {
 		super(props);
 		this.state = {
 			rawData: [],
-			events: [
-				{
-					// NOTES: Months are in an array format, going from 0 - 11
-					"title": "test",
-					"start": new Date(2020, 4, 12, 12, 0),
-					"end": new Date(2020, 4, 12, 13, 0),
-					"desc": "First order of the day"
-				}
-			]
+			events: []
 		}
 	}
 
@@ -28,8 +20,9 @@ class OrderCalendar extends React.Component {
 			console.log(response.data);
 			this.setState({
 				rawData: response.data
+			}, () => {
+				this.sortData();
 			})
-			sortData();
 		})
 	}
 
@@ -37,11 +30,15 @@ class OrderCalendar extends React.Component {
 		var unsortedEvents = this.state.rawData
 		for (var i = 0; i < unsortedEvents.length; i++) {
 			this.state.events.push({
-				"title": `${unsortedEvents.name[i]} #${unsortedEvents.id}`,
-				"start": ,
-				"end": ,
-				"desc": 
-
+				title: `${unsortedEvents[i].name} #${unsortedEvents[i].id}`,
+				start: unsortedEvents[i].pickupDateTime.split("T"),
+				end: unsortedEvents[i].pickupDateTime,
+				desc: `\nQuantity: ${unsortedEvents[i].biscuitQuantity}\n
+							Telephone: ${unsortedEvents[i].telephone}\n
+							Email: ${unsortedEvents[i].email}\n
+							Total: ${unsortedEvents[i].totalCost}\n
+							Notes: ${unsortedEvents[i].specialInstructions}`
+							
 			})
 		}
 	}
