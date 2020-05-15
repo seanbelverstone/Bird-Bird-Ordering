@@ -21,6 +21,9 @@ class EmployeeLogin extends React.Component {
 		)
   };
 
+  // function that checks if the user has logged in already by checking the cookies, then proceeds with
+  // rendering the calendar if they are. Setting cookies to expire after 6 hours
+
   handleSubmit(event) {
     event.preventDefault();
     //if the username & password match the env file, set the parent's state of loggedIn to true 
