@@ -19,4 +19,8 @@ export default {
 				pickupDateTime, 
 				specialInstructions})
 		},
+	
+	getAllOrders: () => {
+		return axios.get("/api/order/all")
+	}
 }
