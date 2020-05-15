@@ -53,13 +53,10 @@ class OrderCalendar extends React.Component {
 			})
 		}
 	}
-	// onComponentDidMount, do a pull request to grab all the database data.
-	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,
-	// due to the note above about months being in an array format starting at 0
-	// push to this.state.events
-	// make sure that the message goes into the description
-	// Add a popup for the order
-	// Make the title the name and amount(?)
+
+	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
+	// also need to figure out how to refresh the component when its recieved the data
+	// Make it so a popup appears detailing all of the information of the order on click
 
 	render() {
 
