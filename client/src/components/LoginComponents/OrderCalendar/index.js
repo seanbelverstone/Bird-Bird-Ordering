@@ -15,7 +15,7 @@ class OrderCalendar extends React.Component {
 		}
 	}
 
-	componentDidMount = () => {
+	componentWillMount = () => {
 		API.getAllOrders().then(response => {
 
 			this.setState({
@@ -26,16 +26,24 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
+	// adds 30 minutes onto the finishing time, giving us a collection window
+	addMinutes = (date, minutes) => {
+		return new Date(date.getTime() + minutes*60000)
+	}
+
+	// this function fires after the get request has finished
 	sortData = () => {
 		var unsortedEvents = this.state.rawData
-		for (var i = 0; i < unsortedEvents.length; i++) {
 
-			console.log(unsortedEvents[i].pickupDateTime);
+		// loops through the array, and pushes all the necessary data to a new 'events' array, giving it the
+		// titles needed to translate into the calendar
+		for (var i = 0; i < unsortedEvents.length; i++) {
 
 			this.state.events.push({
 				"title": `${unsortedEvents[i].name} #${unsortedEvents[i].id}`,
 				"start": new Date(unsortedEvents[i].pickupDateTime),
-				"end": new Date(unsortedEvents[i].pickupDateTime),
+				// added 30 minutes onto the end time
+				"end": this.addMinutes(new Date(unsortedEvents[i].pickupDateTime), 30),
 				"desc": `\nQuantity: ${unsortedEvents[i].biscuitQuantity}\n
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
@@ -44,7 +52,6 @@ class OrderCalendar extends React.Component {
 							
 			})
 		}
-		console.log(this.state.events);
 	}
 	// onComponentDidMount, do a pull request to grab all the database data.
 	// Check that the collection date is in the right format. Also to make the month date 1 less than it is,
