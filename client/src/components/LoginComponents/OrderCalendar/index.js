@@ -5,7 +5,6 @@ import API from "../../../utils/API";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
-
 const list = [];
 
 class OrderCalendar extends React.Component {
@@ -66,7 +65,6 @@ class OrderCalendar extends React.Component {
 	}
 
 	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
-	// also need to figure out how to refresh the component when its recieved the data
 	// Make it so a popup appears detailing all of the information of the order on click
 
 	render() {
