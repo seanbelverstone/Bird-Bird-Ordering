@@ -6,6 +6,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
 
+const list = [];
+
 class OrderCalendar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -35,11 +37,12 @@ class OrderCalendar extends React.Component {
 	sortData = () => {
 		var unsortedEvents = this.state.rawData
 
-		// loops through the array, and pushes all the necessary data to a new 'events' array, giving it the
-		// titles needed to translate into the calendar
+		// loops through the array, and pushes all the necessary data to a new 'list' array, giving it the
+		// titles needed to translate into the calendar. Had to push to a global const variable as pushing 
+		// directly to an array in state is bad practice.
 		for (var i = 0; i < unsortedEvents.length; i++) {
 
-			this.state.events.push({
+			list.push({
 				"title": `${unsortedEvents[i].name} #${unsortedEvents[i].id}`,
 				"start": new Date(unsortedEvents[i].pickupDateTime),
 				// added 30 minutes onto the end time
@@ -52,6 +55,14 @@ class OrderCalendar extends React.Component {
 							
 			})
 		}
+		this.setState(state => {
+			// then using concat(), update the events state object to trigger a re-render
+			const events = state.events.concat(list);
+
+			return {
+				events,
+			}
+		})
 	}
 
 	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
