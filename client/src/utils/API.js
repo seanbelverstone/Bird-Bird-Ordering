@@ -2,14 +2,14 @@ import axios from "axios";
 
 export default {
 
-	createOrder: function(
+	createOrder: (
 		name, 
 		telephone, 
 		email, 
 		biscuitQuantity,
 		totalCost,
 		pickupDateTime,
-		specialInstructions) {
+		specialInstructions) => {
 			return axios.post("/api/order", {
 				name, 
 				telephone, 
@@ -22,5 +22,14 @@ export default {
 	
 	getAllOrders: () => {
 		return axios.get("/api/order/all")
+	},
+
+	validateLogin: (username, password, secretUsername, secretPassword) => {
+		return axios.post("/api/login", {
+			username,
+			password,
+			secretUsername,
+			secretPassword
+		})
 	}
 }

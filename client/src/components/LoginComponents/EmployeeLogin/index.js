@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import API from "../../../utils/API";
 import "./style.css";
 
 class EmployeeLogin extends React.Component {
@@ -26,22 +27,30 @@ class EmployeeLogin extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    API.validateLogin(this.state.username, 
+                      this.state.password,
+                      process.env.REACT_APP_EMPLOYEE_USERNAME,
+                      process.env.REACT_APP_EMPLOYEE_PASSWORD).then((results) => {
+      console.log(results.data);
+                      })
+
     //if the username & password match the env file, set the parent's state of loggedIn to true 
-    if (this.state.username === process.env.REACT_APP_EMPLOYEE_USERNAME && this.state.password === process.env.REACT_APP_EMPLOYEE_PASSWORD) {
-      this.props.setState({
-        loggedIn: true,
-      })
-      this.setState({
-        errorMessage: ""
-      })
-    } else {
-      this.props.setState({
-        loggedIn: false
-      })
-      this.setState({
-        errorMessage: "Your username or password is incorrect."
-      })
-    }
+
+    // if (this.state.username === process.env.REACT_APP_EMPLOYEE_USERNAME && this.state.password === process.env.REACT_APP_EMPLOYEE_PASSWORD) {
+    //   this.props.setState({
+    //     loggedIn: true,
+    //   })
+    //   this.setState({
+    //     errorMessage: ""
+    //   })
+    // } else {
+    //   this.props.setState({
+    //     loggedIn: false
+    //   })
+    //   this.setState({
+    //     errorMessage: "Your username or password is incorrect."
+    //   })
+    // }
   }
 
   render() {
