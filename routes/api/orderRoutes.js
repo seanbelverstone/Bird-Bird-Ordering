@@ -10,6 +10,6 @@ export default function(app) {
 		.delete(orderController.delete);
 
 	app.route("/api/order/all")
-		.get(orderController.get)
+		.get(orderController.get);
 
 }

@@ -23,11 +23,12 @@ class Login extends Component {
 		const loggedIn = this.state.loggedIn;
 		let displayedComponent;
 
-		if (loggedIn === false) {
+		if (loggedIn === true || localStorage.getItem("token")) {
+			displayedComponent = <OrderCalendar />
+
+		} else {
 			// Passing setState down into the child so the child can update the parent's state
 			displayedComponent = <EmployeeLogin setState = {(parameter) => {this.setState(parameter)}}/>
-		} else {
-			displayedComponent = <OrderCalendar />
 		}
 
 
