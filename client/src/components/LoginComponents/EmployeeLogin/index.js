@@ -38,7 +38,8 @@ class EmployeeLogin extends React.Component {
       if (results.data.complete === true) {
 
         localStorage.setItem("token", results.data.token)
-        
+
+        // sets the parent's state of loggedIn to true
         this.props.setState({
           loggedIn: true,
         })
