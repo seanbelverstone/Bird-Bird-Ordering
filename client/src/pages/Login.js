@@ -28,7 +28,7 @@ class Login extends Component {
 
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
-			displayedComponent = <EmployeeLogin setState = {(parameter) => {this.setState(parameter)}}/>
+			displayedComponent = <EmployeeLogin setState={(parameter) => {this.setState(parameter)}}/>
 		}
 
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar"
 import moment from "moment";
 import API from "../../../utils/API";
+import EventModal from "../EventModal";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
@@ -12,7 +13,8 @@ class OrderCalendar extends React.Component {
 		super(props);
 		this.state = {
 			rawData: [],
-			events: []
+			events: [],
+			clicked: false
 		}
 		this.handleSelect = this.handleSelect.bind(this);
 	}
@@ -58,7 +60,6 @@ class OrderCalendar extends React.Component {
 		this.setState(state => {
 			// then using concat(), update the events state object to trigger a re-render
 			const events = state.events.concat(list);
-
 			return {
 				events,
 			}
@@ -67,7 +68,13 @@ class OrderCalendar extends React.Component {
 
 	handleSelect = (event) => {
 		console.log(event);
-		alert(`Name: ${event.title}\n${event.desc}`)
+		this.toggleModal();
+	}
+
+	toggleModal = () => {
+		this.setState({
+			clicked: !this.state.clicked
+		})
 	}
 
 	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
@@ -91,6 +98,9 @@ class OrderCalendar extends React.Component {
 					style = {{ height: 500 }}
 					onSelectEvent={this.handleSelect}
 					/>
+
+				<EventModal show={this.state.clicked} onClose={this.toggleModal}/>
+
 			</div>
 
 		)
