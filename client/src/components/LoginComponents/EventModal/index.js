@@ -5,14 +5,16 @@ class EventModal extends React.Component {
 
 	sortDescription = (desc) => {
 		// split the description array up by the space and enters that was jumbling it up
-		let splitDesc = desc.split(/[\s ↵↵]+/);
+		let splitDesc = desc.trim().split(/[\s ↵↵]+/);
 		let justNotes = desc.split("Notes: ")
 
+		console.log(splitDesc);
+
 		// I then use interpolation to make it easier to display each item individually.
-		let quantity = `${splitDesc[1]} ${splitDesc[2]}`;
-		let telephone = `${splitDesc[3]} ${splitDesc[4]}`;
-		let email = `${splitDesc[5]} ${splitDesc[6]}`;
-		let total = `${splitDesc[7]} ${splitDesc[8]}`;
+		let quantity = `${splitDesc[0]} ${splitDesc[1]}`;
+		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
+		let email = `${splitDesc[4]} ${splitDesc[5]}`;
+		let total = `${splitDesc[6]} ${splitDesc[7]}`;
 		let notes = `${splitDesc[9]} ${justNotes[1]}`;
 
 		return (

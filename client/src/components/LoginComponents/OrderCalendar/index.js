@@ -75,7 +75,7 @@ class OrderCalendar extends React.Component {
 		this.setState({
 			clickedTitle: event.title,
 			clickedDesc: event.desc,
-			clickedTime: toString(event.start)
+			clickedTime: event.start.toUTCString()
 		})
 		this.toggleModal();
 	}
