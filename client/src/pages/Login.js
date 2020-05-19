@@ -23,7 +23,7 @@ class Login extends Component {
 		const loggedIn = this.state.loggedIn;
 		let displayedComponent;
 
-		if (loggedIn === true || localStorage.getItem("token")) {
+		if (loggedIn === true || sessionStorage.getItem("birdBirdWebToken")) {
 			displayedComponent = <OrderCalendar />
 
 		} else {
