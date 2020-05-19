@@ -103,6 +103,8 @@ class OrderCalendar extends React.Component {
 					events = {events}
 					views = {[Views.DAY, Views.WEEK, Views.MONTH]}
 					showMultiDayTimes
+					min={new Date(0, 0, 0, 7, 0, 0)}
+					max={new Date(0, 0, 0, 15, 0, 0)}
 					startAccessor = "start"
 					endAccessor = "end"
 					popup = {true}
