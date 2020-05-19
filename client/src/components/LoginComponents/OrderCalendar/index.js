@@ -18,7 +18,9 @@ class OrderCalendar extends React.Component {
 			clickedTitle: "",
 			clickedDesc: "",
 			clickedTime: "",
-			clickedDate: ""
+			clickedDate: "",
+			totalOrders: "",
+			totalBiscuits: ""
 		}
 		this.handleSelect = this.handleSelect.bind(this);
 	}
@@ -32,11 +34,6 @@ class OrderCalendar extends React.Component {
 				this.sortData();
 			})
 		})
-	}
-
-	// adds 30 minutes onto the finishing time, giving us a collection window
-	addMinutes = (date, minutes) => {
-		return new Date(date.getTime() + minutes*60000)
 	}
 
 	// this function fires after the get request has finished
@@ -67,7 +64,13 @@ class OrderCalendar extends React.Component {
 			return {
 				events,
 			}
-		})
+		});
+		this.totalOrdersAndBiscuits();
+	}
+	
+	// adds 30 minutes onto the finishing time, giving us a collection window
+	addMinutes = (date, minutes) => {
+		return new Date(date.getTime() + minutes*60000)
 	}
 
 	handleSelect = (event) => {
@@ -88,8 +91,11 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
-	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
-	// Make it so a popup appears detailing all of the information of the order on click
+	// This function gets called after the state has been set for the calendar, and API call has finished. It
+	// will display the total number of orders and biscuits on the top right for easy reading
+	totalOrdersAndBiscuits = () => {
+		console.log("ello")
+	}
 
 	render() {
 
@@ -97,7 +103,18 @@ class OrderCalendar extends React.Component {
 
 		return(
 			<div>
-				<h1>ORDER CALENDAR</h1>
+				<div className="row">
+					<div className="col 11">
+						<h1>ORDER CALENDAR</h1>
+					</div>
+					<div className="col 1">
+						<div className="orderTotals">
+							<div>Orders: {this.state.totalOrders}</div>
+							<div>Total Biscuits: {this.state.totalBiscuits}</div>
+						</div>
+					</div>
+				</div>
+
 				<Calendar
 					localizer = {localizer}
 					events = {events}
