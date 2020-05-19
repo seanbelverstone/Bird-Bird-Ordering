@@ -19,7 +19,6 @@ class OrderCalendar extends React.Component {
 			clickedDesc: "",
 			clickedTime: "",
 			clickedDate: "",
-			totalOrders: "",
 			totalBiscuits: ""
 		}
 		this.handleSelect = this.handleSelect.bind(this);
@@ -65,7 +64,7 @@ class OrderCalendar extends React.Component {
 				events,
 			}
 		});
-		this.totalOrdersAndBiscuits();
+		this.totalBiscuits();
 	}
 	
 	// adds 30 minutes onto the finishing time, giving us a collection window
@@ -92,9 +91,15 @@ class OrderCalendar extends React.Component {
 	}
 
 	// This function gets called after the state has been set for the calendar, and API call has finished. It
-	// will display the total number of orders and biscuits on the top right for easy reading
-	totalOrdersAndBiscuits = () => {
-		console.log("ello")
+	// will display the total number biscuits for the whole month on the top right for easy reading
+	totalBiscuits = () => {
+		let biscuitQuantity = 0;
+		for (var i = 0; i < this.state.rawData.length; i++) {
+			biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
+		}
+		this.setState({
+			totalBiscuits: biscuitQuantity * 12
+		})
 	}
 
 	render() {
@@ -109,7 +114,7 @@ class OrderCalendar extends React.Component {
 					</div>
 					<div className="col 1">
 						<div className="orderTotals">
-							<div>Orders: {this.state.totalOrders}</div>
+							<div>Orders: {this.state.events.length}</div>
 							<div>Total Biscuits: {this.state.totalBiscuits}</div>
 						</div>
 					</div>
