@@ -15,7 +15,7 @@ class EventModal extends React.Component {
 		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
 		let email = `${splitDesc[4]} ${splitDesc[5]}`;
 		let total = `${splitDesc[6]} ${splitDesc[7]}`;
-		let notes = `${splitDesc[9]} ${justNotes[1]}`;
+		let notes = `${splitDesc[8]} ${justNotes[1]}`;
 
 		return (
 			<div>
