@@ -14,9 +14,10 @@ class OrderCalendar extends React.Component {
 			rawData: [],
 			events: []
 		}
+		this.handleSelect = this.handleSelect.bind(this);
 	}
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		API.getAllOrders().then(response => {
 
 			this.setState({
@@ -64,6 +65,11 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
+	handleSelect = (event) => {
+		console.log(event);
+		alert(`Name: ${event.title}\n${event.desc}`)
+	}
+
 	// need to make a function with componentWillRecieveProps? to check if there's a change in the database. 
 	// Make it so a popup appears detailing all of the information of the order on click
 
@@ -83,6 +89,7 @@ class OrderCalendar extends React.Component {
 					endAccessor = "end"
 					popup = {true}
 					style = {{ height: 500 }}
+					onSelectEvent={this.handleSelect}
 					/>
 			</div>
 
