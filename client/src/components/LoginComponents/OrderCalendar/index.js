@@ -2,6 +2,7 @@ import React from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar"
 import moment from "moment";
 import API from "../../../utils/API";
+import EventModal from "../EventModal";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const localizer = momentLocalizer(moment);
@@ -12,11 +13,17 @@ class OrderCalendar extends React.Component {
 		super(props);
 		this.state = {
 			rawData: [],
-			events: []
+			events: [],
+			clicked: false,
+			clickedTitle: "",
+			clickedDesc: "",
+			clickedTime: "",
+			clickedDate: ""
 		}
+		this.handleSelect = this.handleSelect.bind(this);
 	}
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		API.getAllOrders().then(response => {
 
 			this.setState({
@@ -57,10 +64,27 @@ class OrderCalendar extends React.Component {
 		this.setState(state => {
 			// then using concat(), update the events state object to trigger a re-render
 			const events = state.events.concat(list);
-
 			return {
 				events,
 			}
+		})
+	}
+
+	handleSelect = (event) => {
+		console.log(event);
+		
+		this.setState({
+			clickedTitle: event.title,
+			clickedDesc: event.desc,
+			clickedTime: event.start.toTimeString(),
+			clickedDate: event.start.toDateString()
+		})
+		this.toggleModal();
+	}
+
+	toggleModal = () => {
+		this.setState({
+			clicked: !this.state.clicked
 		})
 	}
 
@@ -79,11 +103,24 @@ class OrderCalendar extends React.Component {
 					events = {events}
 					views = {[Views.DAY, Views.WEEK, Views.MONTH]}
 					showMultiDayTimes
+					min={new Date(0, 0, 0, 7, 0, 0)}
+					max={new Date(0, 0, 0, 16, 0, 0)}
 					startAccessor = "start"
 					endAccessor = "end"
 					popup = {true}
 					style = {{ height: 500 }}
+					onSelectEvent={this.handleSelect}
 					/>
+
+				<EventModal 
+					show={this.state.clicked} 
+					onClose={this.toggleModal}
+					title={this.state.clickedTitle}
+					desc={this.state.clickedDesc}
+					pickupTime={this.state.clickedTime}
+					pickupDate={this.state.clickedDate}
+					/>
+
 			</div>
 
 		)
