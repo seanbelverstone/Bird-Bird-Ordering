@@ -17,7 +17,8 @@ class OrderCalendar extends React.Component {
 			clicked: false,
 			clickedTitle: "",
 			clickedDesc: "",
-			clickedTime: ""
+			clickedTime: "",
+			clickedDate: ""
 		}
 		this.handleSelect = this.handleSelect.bind(this);
 	}
@@ -75,7 +76,8 @@ class OrderCalendar extends React.Component {
 		this.setState({
 			clickedTitle: event.title,
 			clickedDesc: event.desc,
-			clickedTime: event.start.toString()
+			clickedTime: event.start.toTimeString(),
+			clickedDate: event.start.toDateString()
 		})
 		this.toggleModal();
 	}
@@ -113,7 +115,8 @@ class OrderCalendar extends React.Component {
 					onClose={this.toggleModal}
 					title={this.state.clickedTitle}
 					desc={this.state.clickedDesc}
-					pickupDateTime={this.state.clickedTime}
+					pickupTime={this.state.clickedTime}
+					pickupDate={this.state.clickedDate}
 					/>
 
 			</div>

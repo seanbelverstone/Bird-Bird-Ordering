@@ -18,7 +18,7 @@ class EventModal extends React.Component {
 		let notes = `${splitDesc[8]} ${justNotes[1]}`;
 
 		return (
-			<div>
+			<div className="eventData">
 				<p>{quantity}</p>
 				<p>{telephone}</p>
 				<p>{email}</p>
@@ -38,13 +38,13 @@ class EventModal extends React.Component {
 			
 			<div>
 				<Modal isOpen={this.props.show}>
-				<ModalHeader>{this.props.title}</ModalHeader>
+				<ModalHeader className="eventTitle">{this.props.title}</ModalHeader>
 				<ModalBody>
 					{this.sortDescription(this.props.desc)}
 					<br />
 					<br />
 
-					Pick Up Date and Time: {this.props.pickupDateTime}
+					Pick Up Date and Time: {this.props.pickupDate} @ {this.props.pickupTime}
 				</ModalBody>
 				<ModalFooter>
 					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
