@@ -72,8 +72,19 @@ class OrderCalendar extends React.Component {
 		return new Date(date.getTime() + minutes*60000)
 	}
 
+	// This function gets called after the state has been set for the calendar, and API call has finished. It
+	// will display the total number biscuits for the whole month on the top right for easy reading
+	totalBiscuits = () => {
+		let biscuitQuantity = 0;
+		for (var i = 0; i < this.state.rawData.length; i++) {
+			biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
+		}
+		this.setState({
+			totalBiscuits: biscuitQuantity * 12
+		})
+	}
+
 	handleSelect = (event) => {
-		console.log(event);
 		
 		this.setState({
 			clickedTitle: event.title,
@@ -90,17 +101,18 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
-	// This function gets called after the state has been set for the calendar, and API call has finished. It
-	// will display the total number biscuits for the whole month on the top right for easy reading
-	totalBiscuits = () => {
-		let biscuitQuantity = 0;
-		for (var i = 0; i < this.state.rawData.length; i++) {
-			biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
-		}
-		this.setState({
-			totalBiscuits: biscuitQuantity * 12
-		})
+	test = (view) => {
+		console.log(view);
 	}
+
+	// Need to figure out how to access the calendar's view state. If I can do that, I can run a switch
+	// case that has like `case calendar.view === week`, only access the events that are within that specified
+	// range. 
+	// OOH. Maybe do a forEach, that says for each event.pickupDateTime is within the selected time range, 
+	// add the quantity to the biscuit quantity variable. 
+	// use the selectedTimeRange function to calculate the range
+
+
 
 	render() {
 
@@ -132,6 +144,7 @@ class OrderCalendar extends React.Component {
 					popup = {true}
 					style = {{ height: 500 }}
 					onSelectEvent={this.handleSelect}
+					onView={this.test()}
 					/>
 
 				<EventModal 
