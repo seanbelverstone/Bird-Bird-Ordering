@@ -3,6 +3,15 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class EventModal extends React.Component {
 
+	sortDescription = (desc) => {
+		let splitDesc = desc.split(/[\s ↵↵]+/);
+		let joinedDesc = splitDesc.join(" ");
+
+		console.log(joinedDesc);
+		return joinedDesc;
+	}
+
+
 	render() {
 		if(!this.props.show) {
 			return null;
@@ -12,9 +21,13 @@ class EventModal extends React.Component {
 			
 			<div>
 				<Modal isOpen={this.props.show}>
-				<ModalHeader>Modal title</ModalHeader>
+				<ModalHeader>{this.props.title}</ModalHeader>
 				<ModalBody>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					{this.sortDescription(this.props.desc)}
+					<br />
+					<br />
+
+					Pick Up Date and Time: {this.props.pickupDateTime}
 				</ModalBody>
 				<ModalFooter>
 					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
