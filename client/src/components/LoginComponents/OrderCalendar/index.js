@@ -19,12 +19,18 @@ class OrderCalendar extends React.Component {
 			clickedDesc: "",
 			clickedTime: "",
 			clickedDate: "",
-			totalBiscuits: ""
+			totalBiscuits: "",
+			currentDate: new Date(),
+			currentView: "month",
+			currentDateRange: {}
 		}
 		this.handleSelect = this.handleSelect.bind(this);
 	}
 
 	componentDidMount = () => {
+		// sets the date range right from the get-go
+		this.setDateRange();
+		// performs an API call to pull all the orders from the database.
 		API.getAllOrders().then(response => {
 
 			this.setState({
@@ -63,25 +69,14 @@ class OrderCalendar extends React.Component {
 			return {
 				events,
 			}
+		}, () => {
+			this.totalBiscuits();
 		});
-		this.totalBiscuits();
 	}
 	
 	// adds 30 minutes onto the finishing time, giving us a collection window
 	addMinutes = (date, minutes) => {
 		return new Date(date.getTime() + minutes*60000)
-	}
-
-	// This function gets called after the state has been set for the calendar, and API call has finished. It
-	// will display the total number biscuits for the whole month on the top right for easy reading
-	totalBiscuits = () => {
-		let biscuitQuantity = 0;
-		for (var i = 0; i < this.state.rawData.length; i++) {
-			biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
-		}
-		this.setState({
-			totalBiscuits: biscuitQuantity * 12
-		})
 	}
 
 	handleSelect = (event) => {
@@ -101,8 +96,70 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
-	test = (view) => {
-		console.log(view);
+	// Section for calculating the total orders and biscuits. Need the date range in order to do this.
+	// Waits for everything else to render, then updates the state for currentDate and currentView
+	setCurrentDate = async (date) => {
+		await this.setState({
+			currentDate: date
+		});
+		this.setDateRange();
+	}
+
+	setCurrentView = async (view) => {
+		await this.setState({
+			currentView: view
+		});
+		this.setDateRange();
+	}
+
+	setDateRange = () => {
+		// Using moment, sets the start and end variables to be tips of the current date, using the current view
+		let start = moment(this.state.currentDate).startOf(this.state.currentView);
+		let end = moment(this.state.currentDate).endOf(this.state.currentView);
+		if (this.state.currentView === "month") {
+			start = start.startOf("week");
+			end = end.endOf("week");
+		}
+		this.setState({
+			currentDateRange: {
+				start: start.toString(),
+				end: end.toString()
+			}
+		});
+	}
+
+	// This function gets called after the state has been set for the calendar, and API call has finished. It
+	// will display the total number biscuits for the whole month on the top right for easy reading
+	totalBiscuits = () => {
+		let biscuitQuantity = 0;
+		// Converting the start and end into unix for easier comparison
+		let start = this.state.currentDateRange.start
+		let end = this.state.currentDateRange.end
+
+		console.log(start)
+
+		// this.state.rawData.forEach((element, index) => {
+		// 	console.log(element, index);
+		// 	let elementDateTime = element.pickupDateTime.getTime()
+		// 	console.log(elementDateTime);
+
+		// 	if (elementDateTime >= start && elementDateTime <= end) {
+		// 		console.log(element)
+		// 	}
+		// })
+
+		console.log(end);
+		console.log(this.state.events.length)
+
+		for (var i = 0; i < this.state.events.length; i++) {
+			let elementDateTime = this.state.events[i].pickupDateTime;
+			console.log(this.state.events[i])
+			console.log('hi')
+			// biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
+		}
+		// this.setState({
+		// 	totalBiscuits: biscuitQuantity * 12
+		// })
 	}
 
 	// Need to figure out how to access the calendar's view state. If I can do that, I can run a switch
@@ -133,18 +190,21 @@ class OrderCalendar extends React.Component {
 				</div>
 
 				<Calendar
-					localizer = {localizer}
-					events = {events}
-					views = {[Views.DAY, Views.WEEK, Views.MONTH]}
+					localizer={localizer}
+					events={events}
+					views={[Views.DAY, Views.WEEK, Views.MONTH]}
 					showMultiDayTimes
 					min={new Date(0, 0, 0, 7, 0, 0)}
 					max={new Date(0, 0, 0, 16, 0, 0)}
-					startAccessor = "start"
-					endAccessor = "end"
-					popup = {true}
-					style = {{ height: 500 }}
+					startAccessor="start"
+					endAccessor="end"
+					popup={true}
+					style={{ height: 500 }}
 					onSelectEvent={this.handleSelect}
-					onView={this.test()}
+					date={this.state.currentDate}
+					view={this.state.currentView}
+					onNavigate={this.setCurrentDate}
+					onView={this.setCurrentView}
 					/>
 
 				<EventModal 
