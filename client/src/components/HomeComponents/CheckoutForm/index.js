@@ -135,14 +135,24 @@ const CheckoutForm = (props) => {
             });
           }, (err) => {
             console.log("Email sending failed", err)
-          });
+          }).then((response) => {
+            if (response) {
+              checkSuccessMessage();
+            }
+          })
         // then maybe a toast saying "your order was placed" then toggle the modal
-        if (props.showSuccess === false) {
-          props.toggleClose();
-        }
       })
   }
 
+  function checkSuccessMessage() {
+    if (props.showSuccess === false) {
+      console.log("Done");
+      console.log(props.toggleClose);
+      props.toggleClose();
+    } else {
+      checkSuccessMessage();
+    }
+  }
   const handleCardChange = (event) => {
     if (event.error) {
       // Show `event.error.message` in the payment form.
