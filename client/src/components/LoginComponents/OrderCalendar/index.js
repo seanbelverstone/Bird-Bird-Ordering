@@ -20,6 +20,7 @@ class OrderCalendar extends React.Component {
 			clickedTime: "",
 			clickedDate: "",
 			totalBiscuits: "",
+			totalOrders: "",
 			currentDate: new Date(),
 			currentView: "month",
 			currentDateRange: {}
@@ -125,13 +126,16 @@ class OrderCalendar extends React.Component {
 				start: start.toString(),
 				end: end.toString()
 			}
+		}, () => {
+			this.totalBiscuits();
 		});
 	}
 
 	// This function gets called after the state has been set for the calendar, and API call has finished. It
-	// will display the total number biscuits for the whole month on the top right for easy reading
+	// will display the total number biscuits that are visible on the screen at the top right for easy reading
 	totalBiscuits = () => {
 		let biscuitQuantity = 0;
+		let ordersOnScreen = 0;
 		let start = this.state.currentDateRange.start;
 		let end = this.state.currentDateRange.end;
 		// Converting the start and end into unix for easier comparison
@@ -140,14 +144,14 @@ class OrderCalendar extends React.Component {
 
 		this.state.rawData.forEach((element, index) => {
 			let elementDateTime = new Date(element.pickupDateTime).getTime();
-			console.log(elementDateTime);
 
 			if (elementDateTime >= start && elementDateTime <= end) {
-				console.log(element)
-				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)*12
+				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)
+				ordersOnScreen++;
 			}
 			this.setState({
-				totalBiscuits: biscuitQuantity
+				totalBiscuits: biscuitQuantity * 12,
+				totalOrders: ordersOnScreen
 			})
 		})
 	}
@@ -173,7 +177,7 @@ class OrderCalendar extends React.Component {
 					</div>
 					<div className="col 1">
 						<div className="orderTotals">
-							<div>Orders: {this.state.events.length}</div>
+							<div>Orders: {this.state.totalOrders}</div>
 							<div>Total Biscuits: {this.state.totalBiscuits}</div>
 						</div>
 					</div>
