@@ -2,7 +2,6 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
-import ToastSuccess from "../ToastSuccess";
 
 let templateParams = {};
 
@@ -31,10 +30,20 @@ const CheckoutForm = (props) => {
 
   const handlePaymentMethodResult = async (result) => {
     if (result.error) {
+      // sets the parent's state of errors to true, so the alert appears
+      props.setState({
+        errors: true,
+        loading: false
+      })
       // An error happened when collecting card details,
       // show `result.error.message` in the payment form.
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 3)
+      // loading symbol appears
+      props.setState({
+        loading: true,
+        errors: false
+      });
       const response = await fetch('/stripe/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,6 +60,10 @@ const CheckoutForm = (props) => {
 
   const handleServerResponse = (serverResponse) => {
     if (serverResponse.error) {
+      props.setState({
+        errors: true,
+        loading: false
+      })
       // An error happened when charging the card,
       // show the error in the payment form.
     } else if (serverResponse.requiresAction) {
@@ -60,6 +73,10 @@ const CheckoutForm = (props) => {
       ).then(function(result) {
         if (result.error) {
           // Show `result.error.message` in payment form
+          props.setState({
+            errors: true,
+            loading: false
+          })
         } else {
           // The card action has been handled
           // The PaymentIntent can be confirmed again on the server
@@ -74,7 +91,10 @@ const CheckoutForm = (props) => {
       });
       } else {
         // Show a success message
-        createOrder();
+        props.setState({
+          showSuccess: true
+        })
+        createOrder()
     }
   };
 
@@ -108,17 +128,26 @@ const CheckoutForm = (props) => {
         emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
           .then((response) => {
             console.log("Email successfully sent", response.status, response.text)
+            // hides the loading symbol
+            props.setState({
+              loading: false,
+            });
+          checkSuccessMessage();
+          
           }, (err) => {
             console.log("Email sending failed", err)
           });
-
-        // then maybe a toast saying "your order was placed" then toggle the modal
-        props.toggleClose();
-        // Just adding in an alert for now.. will change to the proposed Toast later
-        alert(`Thanks for placing an order ${props.name}!\nWe look forward to seeing you!`)
-      })
+        })
   }
 
+  function checkSuccessMessage() {
+    if (props.showSuccess === false) {
+      console.log("Done");
+      props.toggleClose();
+    } else {
+      checkSuccessMessage().call();
+    }
+  }
   const handleCardChange = (event) => {
     if (event.error) {
       // Show `event.error.message` in the payment form.

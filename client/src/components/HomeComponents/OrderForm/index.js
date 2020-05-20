@@ -27,7 +27,7 @@ class OrderForm extends React.Component {
 			values: [],
 			validated: true,
 			specialInstructions: "",
-			pickupDateTime: new Date()
+			pickupDateTime: new Date(),
 			}
 
 		this.handleChange = this.handleChange.bind(this);
