@@ -1,7 +1,7 @@
 import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import CheckoutForm from "../CheckoutForm";
-
+import PaymentLoader from "../PaymentLoader";
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -48,6 +48,8 @@ class UserForm extends React.Component {
         </AvForm>
 
         <div>
+          {this.state.loading ? <PaymentLoader /> : 
+          
           <CheckoutForm toggleClose={this.props.toggleClose}
                         total={this.props.total}
                         specialInstructions={this.props.specialInstructions}
@@ -58,7 +60,7 @@ class UserForm extends React.Component {
                         telephone={this.state.telephone}
                         loading={this.state.loading}
                         setState={(parameter) => {this.setState(parameter)}}
-                        />
+                        />}
         </div>
       </div>
 

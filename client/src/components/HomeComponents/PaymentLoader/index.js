@@ -6,7 +6,7 @@ export default class PaymentLoader extends React.Component {
    render() {
 	return(
 	 <Loader
-		type="ThreeDots"
+		type="Oval"
 		color="black"
 		height={100}
 		width={100}

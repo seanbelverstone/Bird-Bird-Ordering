@@ -2,7 +2,6 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
-import PaymentLoader from "../PaymentLoader";
 import ToastSuccess from "../ToastSuccess";
 
 let templateParams = {};
@@ -142,7 +141,6 @@ const CheckoutForm = (props) => {
           Submit Order
         </button>
       </form>
-      {props.loading ? <PaymentLoader /> : <div></div>}
     </div>
 
   );
