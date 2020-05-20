@@ -15,6 +15,10 @@ const CheckoutForm = (props) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
+    // Sets the parent's loading state to true, thus rendering the PaymentLoader
+    props.setState({
+      loading: true
+    });
 
     const result = await stripe.createPaymentMethod({
       type: 'card',
@@ -89,7 +93,9 @@ const CheckoutForm = (props) => {
       props.specialInstructions,
       ).then(response => {
         console.log(response)
-
+        props.setState({
+          loading: false
+        })
         // Stores the response data into the templateParams variable, allowing us to send an email with the 
         // relevant information to the user
         templateParams = {
@@ -133,6 +139,7 @@ const CheckoutForm = (props) => {
           Submit Order
         </button>
       </form>
+      {this.props.loading ? <PaymentLoader /> : <div />}
     </div>
 
   );

@@ -9,7 +9,8 @@ class UserForm extends React.Component {
 		this.state = {
       name: "",
       email: "",
-      telephone: ""
+      telephone: "",
+      loading: false
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -55,6 +56,8 @@ class UserForm extends React.Component {
                         name={this.state.name}
                         email={this.state.email}
                         telephone={this.state.telephone}
+                        loading={this.state.loading}
+                        setState={(parameter) => {this.setState(parameter)}}
                         />
         </div>
       </div>
