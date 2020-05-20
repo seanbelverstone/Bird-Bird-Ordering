@@ -132,34 +132,24 @@ class OrderCalendar extends React.Component {
 	// will display the total number biscuits for the whole month on the top right for easy reading
 	totalBiscuits = () => {
 		let biscuitQuantity = 0;
+		let start = this.state.currentDateRange.start;
+		let end = this.state.currentDateRange.end;
 		// Converting the start and end into unix for easier comparison
-		let start = this.state.currentDateRange.start
-		let end = this.state.currentDateRange.end
+		start = new Date(start).getTime()
+		end = new Date(end).getTime();
 
-		console.log(start)
+		this.state.rawData.forEach((element, index) => {
+			let elementDateTime = new Date(element.pickupDateTime).getTime();
+			console.log(elementDateTime);
 
-		// this.state.rawData.forEach((element, index) => {
-		// 	console.log(element, index);
-		// 	let elementDateTime = element.pickupDateTime.getTime()
-		// 	console.log(elementDateTime);
-
-		// 	if (elementDateTime >= start && elementDateTime <= end) {
-		// 		console.log(element)
-		// 	}
-		// })
-
-		console.log(end);
-		console.log(this.state.events.length)
-
-		for (var i = 0; i < this.state.events.length; i++) {
-			let elementDateTime = this.state.events[i].pickupDateTime;
-			console.log(this.state.events[i])
-			console.log('hi')
-			// biscuitQuantity = biscuitQuantity + this.state.rawData[i].biscuitQuantity;
-		}
-		// this.setState({
-		// 	totalBiscuits: biscuitQuantity * 12
-		// })
+			if (elementDateTime >= start && elementDateTime <= end) {
+				console.log(element)
+				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)*12
+			}
+			this.setState({
+				totalBiscuits: biscuitQuantity
+			})
+		})
 	}
 
 	// Need to figure out how to access the calendar's view state. If I can do that, I can run a switch
