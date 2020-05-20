@@ -2,8 +2,6 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
-import IncorrectCardAlert from "../IncorrectCardAlert";
-import ToastSuccess from "../ToastSuccess";
 
 let templateParams = {};
 
@@ -93,7 +91,11 @@ const CheckoutForm = (props) => {
       });
       } else {
         // Show a success message
-        createOrder();
+        props.setState({
+          showSuccess: true
+        }, () => {
+          createOrder()
+        });
     }
   };
 
@@ -129,16 +131,15 @@ const CheckoutForm = (props) => {
             console.log("Email successfully sent", response.status, response.text)
             // hides the loading symbol
             props.setState({
-              loading: false
+              loading: false,
             });
           }, (err) => {
             console.log("Email sending failed", err)
           });
-
         // then maybe a toast saying "your order was placed" then toggle the modal
-        props.toggleClose();
-        // Just adding in an alert for now.. will change to the proposed Toast later
-        alert(`Thanks for placing an order ${props.name}!\nWe look forward to seeing you!`)
+        if (props.showSuccess === false) {
+          props.toggleClose();
+        }
       })
   }
 

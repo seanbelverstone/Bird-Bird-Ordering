@@ -3,6 +3,7 @@ import { AvForm, AvField } from 'availity-reactstrap-validation';
 import CheckoutForm from "../CheckoutForm";
 import PaymentLoader from "../PaymentLoader";
 import IncorrectCardAlert from "../IncorrectCardAlert";
+import CorrectCardAlert from "../CorrectCardAlert";
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class UserForm extends React.Component {
       email: "",
       telephone: "",
       loading: false,
-      errors: false
+      errors: false,
+      showSuccess: false
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -61,9 +63,11 @@ class UserForm extends React.Component {
                         email={this.state.email}
                         telephone={this.state.telephone}
                         loading={this.state.loading}
+                        showSuccess={this.state.showSuccess}
                         setState={(parameter) => {this.setState(parameter)}}
                         />}
           <IncorrectCardAlert errors={this.state.errors} setState={(parameter) => {this.setState(parameter)}}/>
+          <CorrectCardAlert showSuccess={this.state.showSuccess} name={this.state.name} setState={(parameter) => {this.setState(parameter)}} />
         </div>
       </div>
 
