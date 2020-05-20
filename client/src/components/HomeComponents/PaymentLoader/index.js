@@ -7,7 +7,7 @@ export default class PaymentLoader extends React.Component {
 	return(
 	 <Loader
 		type="ThreeDots"
-		color="#00BFFF"
+		color="black"
 		height={100}
 		width={100}
 		visible={this.props.loading}
