@@ -132,12 +132,12 @@ const CheckoutForm = (props) => {
             props.setState({
               loading: false,
             });
+          checkSuccessMessage();
+          
           }, (err) => {
             console.log("Email sending failed", err)
           });
-          
-          checkSuccessMessage();
-      })
+        })
   }
 
   function checkSuccessMessage() {
@@ -145,7 +145,7 @@ const CheckoutForm = (props) => {
       console.log("Done");
       props.toggleClose();
     } else {
-      checkSuccessMessage().call(this);
+      checkSuccessMessage().call();
     }
   }
   const handleCardChange = (event) => {
