@@ -143,8 +143,11 @@ class OrderCalendar extends React.Component {
 		end = new Date(end).getTime();
 
 		this.state.rawData.forEach((element, index) => {
+			// converting this to unix as well
 			let elementDateTime = new Date(element.pickupDateTime).getTime();
 
+			// if the element's timestamp is within the end and the start, add the quantity to the total quantity
+			// and add one to the orders on screen variable.
 			if (elementDateTime >= start && elementDateTime <= end) {
 				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)
 				ordersOnScreen++;
@@ -155,15 +158,6 @@ class OrderCalendar extends React.Component {
 			})
 		})
 	}
-
-	// Need to figure out how to access the calendar's view state. If I can do that, I can run a switch
-	// case that has like `case calendar.view === week`, only access the events that are within that specified
-	// range. 
-	// OOH. Maybe do a forEach, that says for each event.pickupDateTime is within the selected time range, 
-	// add the quantity to the biscuit quantity variable. 
-	// use the selectedTimeRange function to calculate the range
-
-
 
 	render() {
 

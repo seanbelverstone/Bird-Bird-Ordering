@@ -11,10 +11,10 @@ class EventModal extends React.Component {
 		console.log(splitDesc);
 
 		// I then use interpolation to make it easier to display each item individually.
-		let quantity = `${splitDesc[0]} ${splitDesc[1]}`;
+		let quantity = `${splitDesc[0]} ${splitDesc[1]} dozen - (${splitDesc[1]*12} total)`;
 		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
 		let email = `${splitDesc[4]} ${splitDesc[5]}`;
-		let total = `${splitDesc[6]} ${splitDesc[7]}`;
+		let total = `${splitDesc[6]} $${splitDesc[7]}`;
 		let notes = `${splitDesc[8]} ${justNotes[1]}`;
 
 		return (
