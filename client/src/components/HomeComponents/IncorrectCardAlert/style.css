@@ -1,0 +1,13 @@
+.alert {
+    position: fixed !important; 
+    bottom: 0px !important; 
+    left: 25% !important; 
+    width: 50% !important;
+    z-index: 9999 !important; 
+	border-radius: 50px !important;
+	text-align: center;
+}
+
+.alert-dismissible .close {
+	font-size: 50px !important;
+}

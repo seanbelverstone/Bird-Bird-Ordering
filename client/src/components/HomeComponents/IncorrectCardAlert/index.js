@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Alert } from 'reactstrap';
+import "./style.css";
 
 const IncorrectCardAlert = (props) => {
 
@@ -11,7 +12,7 @@ const IncorrectCardAlert = (props) => {
 
   return (
     <div>
-      <Alert color="warning" isOpen={props.errors} toggle={hideAlert}>
+      <Alert color="danger" isOpen={props.errors} toggle={hideAlert}>
         <h4 className="alert-heading">Card Error</h4>
         <p>
         	There was a problem with your card details.
