@@ -2,6 +2,7 @@ import React from 'react';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import CheckoutForm from "../CheckoutForm";
 import PaymentLoader from "../PaymentLoader";
+import IncorrectCardAlert from "../IncorrectCardAlert";
 
 class UserForm extends React.Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class UserForm extends React.Component {
       name: "",
       email: "",
       telephone: "",
-      loading: false
+      loading: false,
+      errors: false
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -61,6 +63,7 @@ class UserForm extends React.Component {
                         loading={this.state.loading}
                         setState={(parameter) => {this.setState(parameter)}}
                         />}
+          <IncorrectCardAlert errors={this.state.errors} setState={(parameter) => {this.setState(parameter)}}/>
         </div>
       </div>
 

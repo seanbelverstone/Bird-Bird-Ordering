@@ -2,6 +2,7 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
+import IncorrectCardAlert from "../IncorrectCardAlert";
 import ToastSuccess from "../ToastSuccess";
 
 let templateParams = {};
@@ -31,13 +32,19 @@ const CheckoutForm = (props) => {
 
   const handlePaymentMethodResult = async (result) => {
     if (result.error) {
+      // sets the parent's state of errors to true, so the alert appears
+      props.setState({
+        errors: true,
+        loading: false
+      })
       // An error happened when collecting card details,
       // show `result.error.message` in the payment form.
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 3)
       // loading symbol appears
       props.setState({
-        loading: true
+        loading: true,
+        errors: false
       });
       const response = await fetch('/stripe/charge', {
         method: 'POST',
@@ -55,6 +62,10 @@ const CheckoutForm = (props) => {
 
   const handleServerResponse = (serverResponse) => {
     if (serverResponse.error) {
+      props.setState({
+        errors: true,
+        loading: false
+      })
       // An error happened when charging the card,
       // show the error in the payment form.
     } else if (serverResponse.requiresAction) {
@@ -64,6 +75,10 @@ const CheckoutForm = (props) => {
       ).then(function(result) {
         if (result.error) {
           // Show `result.error.message` in payment form
+          props.setState({
+            errors: true,
+            loading: false
+          })
         } else {
           // The card action has been handled
           // The PaymentIntent can be confirmed again on the server
