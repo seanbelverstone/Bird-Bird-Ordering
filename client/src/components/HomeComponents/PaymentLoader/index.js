@@ -1,8 +1,8 @@
+import React from "react";
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
-export default class App extends React.Component {
- //other logic
+export default class PaymentLoader extends React.Component {
    render() {
 	return(
 	 <Loader

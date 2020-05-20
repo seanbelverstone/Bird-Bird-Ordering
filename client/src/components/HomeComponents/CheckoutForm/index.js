@@ -2,6 +2,7 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
+import PaymentLoader from "../PaymentLoader";
 import ToastSuccess from "../ToastSuccess";
 
 let templateParams = {};
@@ -15,10 +16,6 @@ const CheckoutForm = (props) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
-    // Sets the parent's loading state to true, thus rendering the PaymentLoader
-    props.setState({
-      loading: true
-    });
 
     const result = await stripe.createPaymentMethod({
       type: 'card',
@@ -39,6 +36,10 @@ const CheckoutForm = (props) => {
       // show `result.error.message` in the payment form.
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 3)
+      // loading symbol appears
+      props.setState({
+        loading: true
+      });
       const response = await fetch('/stripe/charge', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -93,9 +94,7 @@ const CheckoutForm = (props) => {
       props.specialInstructions,
       ).then(response => {
         console.log(response)
-        props.setState({
-          loading: false
-        })
+
         // Stores the response data into the templateParams variable, allowing us to send an email with the 
         // relevant information to the user
         templateParams = {
@@ -114,6 +113,10 @@ const CheckoutForm = (props) => {
         emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
           .then((response) => {
             console.log("Email successfully sent", response.status, response.text)
+            // hides the loading symbol
+            props.setState({
+              loading: false
+            });
           }, (err) => {
             console.log("Email sending failed", err)
           });
@@ -139,7 +142,7 @@ const CheckoutForm = (props) => {
           Submit Order
         </button>
       </form>
-      {this.props.loading ? <PaymentLoader /> : <div />}
+      {props.loading ? <PaymentLoader /> : <div></div>}
     </div>
 
   );
