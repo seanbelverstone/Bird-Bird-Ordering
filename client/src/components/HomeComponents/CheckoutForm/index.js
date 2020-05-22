@@ -124,8 +124,7 @@ const CheckoutForm = (props) => {
             props.setState({
               loading: false,
             });
-          checkSuccessMessage();
-          
+            checkSuccessMessage();
           }, (err) => {
             console.log("Email sending failed", err)
           });
@@ -136,26 +135,21 @@ const CheckoutForm = (props) => {
     while (props.showSuccess === false) {
       return;
     }
-    closeModal();
-   }
+  }
 
-  const closeModal = () => {
-    props.toggleClose();
-  };
+  // sets the parent's state of errors to true, so the alert appears
+  const showErrorMessage = () => {
+    props.setState({
+      errors: true,
+      loading: false
+    })
+  }
 
   const handleCardChange = (event) => {
     if (event.error) {
       // Show `event.error.message` in the payment form.
     }
   };
-
-  // sets the parent's state of errors to true, so the alert appears
-  const showErrorMessage = (props) => {
-    props.setState({
-      errors: true,
-      loading: false
-    })
-  }
 
   return (
     <div>

@@ -7,7 +7,8 @@ const CorrectCardAlert = (props) => {
 	const hideAlert = () => {
 		props.setState({
 			showSuccess: false
-		});
+    });
+    props.toggleClose();
 	}
 
   return (

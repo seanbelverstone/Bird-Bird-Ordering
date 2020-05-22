@@ -54,8 +54,7 @@ class UserForm extends React.Component {
         <div>
           {this.state.loading ? <PaymentLoader /> : 
           
-          <CheckoutForm toggleClose={this.props.toggleClose}
-                        total={this.props.total}
+          <CheckoutForm total={this.props.total}
                         specialInstructions={this.props.specialInstructions}
                         pickupDateTime={this.props.pickupDateTime}
                         quantity={this.props.quantity}
@@ -66,8 +65,12 @@ class UserForm extends React.Component {
                         showSuccess={this.state.showSuccess}
                         setState={(parameter) => {this.setState(parameter)}}
                         />}
-          <IncorrectCardAlert errors={this.state.errors} setState={(parameter) => {this.setState(parameter)}}/>
-          <CorrectCardAlert showSuccess={this.state.showSuccess} name={this.state.name} setState={(parameter) => {this.setState(parameter)}} />
+          <IncorrectCardAlert errors={this.state.errors} 
+                              setState={(parameter) => {this.setState(parameter)}}/>
+          <CorrectCardAlert showSuccess={this.state.showSuccess} 
+                            name={this.state.name} 
+                            setState={(parameter) => {this.setState(parameter)}}
+                            toggleClose={this.props.toggleClose} />
         </div>
       </div>
 
