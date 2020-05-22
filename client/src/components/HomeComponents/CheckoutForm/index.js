@@ -30,11 +30,7 @@ const CheckoutForm = (props) => {
 
   const handlePaymentMethodResult = async (result) => {
     if (result.error) {
-      // sets the parent's state of errors to true, so the alert appears
-      props.setState({
-        errors: true,
-        loading: false
-      })
+      showErrorMessage();
       // An error happened when collecting card details,
       // show `result.error.message` in the payment form.
     } else {
@@ -60,10 +56,8 @@ const CheckoutForm = (props) => {
 
   const handleServerResponse = (serverResponse) => {
     if (serverResponse.error) {
-      props.setState({
-        errors: true,
-        loading: false
-      })
+      showErrorMessage();
+
       // An error happened when charging the card,
       // show the error in the payment form.
     } else if (serverResponse.requiresAction) {
@@ -73,10 +67,8 @@ const CheckoutForm = (props) => {
       ).then(function(result) {
         if (result.error) {
           // Show `result.error.message` in payment form
-          props.setState({
-            errors: true,
-            loading: false
-          })
+          showErrorMessage();
+
         } else {
           // The card action has been handled
           // The PaymentIntent can be confirmed again on the server
@@ -141,18 +133,25 @@ const CheckoutForm = (props) => {
   }
 
   function checkSuccessMessage() {
-    if (props.showSuccess === false) {
-      console.log("Done");
-      props.toggleClose();
-    } else {
-      checkSuccessMessage().call();
+    while (props.showSuccess === true) {
+      console.log("Waiting to close...");
     }
-  }
+    props.toggleClose();
+   }
+
   const handleCardChange = (event) => {
     if (event.error) {
       // Show `event.error.message` in the payment form.
     }
   };
+
+  // sets the parent's state of errors to true, so the alert appears
+  const showErrorMessage = (props) => {
+    props.setState({
+      errors: true,
+      loading: false
+    })
+  }
 
   return (
     <div>
