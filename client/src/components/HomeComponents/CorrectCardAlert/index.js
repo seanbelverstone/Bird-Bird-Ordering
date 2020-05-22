@@ -2,12 +2,13 @@ import React from 'react';
 import { Alert } from 'reactstrap';
 import "../IncorrectCardAlert/style.css";
 
-const IncorrectCardAlert = (props) => {
+const CorrectCardAlert = (props) => {
 
 	const hideAlert = () => {
 		props.setState({
 			showSuccess: false
-		});
+    });
+    props.toggleClose();
 	}
 
   return (
@@ -26,4 +27,4 @@ const IncorrectCardAlert = (props) => {
   );
 };
 
-export default IncorrectCardAlert;
+export default CorrectCardAlert;
