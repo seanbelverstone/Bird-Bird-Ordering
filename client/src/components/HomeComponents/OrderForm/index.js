@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
-import { AvForm, AvField } from 'availity-reactstrap-validation';
+import { FormGroup, Label, Row, Col, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
@@ -211,10 +211,8 @@ class OrderForm extends React.Component {
 							onClick={this.handleForm}>Custom Amount</button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
-							<InputGroup placeholder="Enter your custom tip amount">
-								<InputGroupAddon addonType="prepend">
-									<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
-										<AvField 
+							<AvGroup className="input-group">
+									<AvInput 
 										type="text" 
 										name="tipInDollars" 
 										id="tipInDollars"
@@ -223,12 +221,16 @@ class OrderForm extends React.Component {
 										validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
 										onChange={this.handleChange}
 										value={this.state.tipInDollars}
-										/>
+									/>
+								<InputGroupAddon>
 									<InputGroupText>
-									{this.state.tipInDollars}
+										{this.state.tipInDollars}
 									</InputGroupText>
 								</InputGroupAddon>
-							</InputGroup>
+								<AvFeedback>
+								Please enter a valid tip amount in dollars
+								</AvFeedback>
+							</AvGroup>
 						</div>
 					</Col>
 				</Row>
