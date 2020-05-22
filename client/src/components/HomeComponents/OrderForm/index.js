@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
@@ -211,39 +211,24 @@ class OrderForm extends React.Component {
 							onClick={this.handleForm}>Custom Amount</button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
-							<FormGroup check>
-								<Label check>
-								<Input 
-									type="radio" 
-									name="radio2" 
-									value="dollars" 
-									onChange={this.changeIcon}
-									checked={this.state.selectedOption === "dollars"}/>{' '}
-								$
-								</Label>
-							</FormGroup>
-							<FormGroup check>
-								<Label check>
-								<Input 
-									type="radio" 
-									name="radio2" 
-									value="percentage" 
-									onChange={this.changeIcon}
-									checked={this.state.selectedOption === "percentage"}/>{' '}
-								%
-								</Label>
-							</FormGroup>
-								<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
-									<AvField 
-									type="text" 
-									name="tipInDollars" 
-									id="tipInDollars"
-									min="0.01"
-									step="0.01"
-									validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
-									onChange={this.handleChange}
-									value={this.state.tipInDollars}
-									/>
+							<InputGroup placeholder="Enter your custom tip amount">
+								<InputGroupAddon addonType="prepend">
+									<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
+										<AvField 
+										type="text" 
+										name="tipInDollars" 
+										id="tipInDollars"
+										min="0.01"
+										step="0.01"
+										validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
+										onChange={this.handleChange}
+										value={this.state.tipInDollars}
+										/>
+									<InputGroupText>
+									{this.state.tipInDollars}
+									</InputGroupText>
+								</InputGroupAddon>
+							</InputGroup>
 						</div>
 					</Col>
 				</Row>
