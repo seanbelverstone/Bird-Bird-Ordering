@@ -34,7 +34,6 @@ class OrderForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
-		this.changeIcon = this.changeIcon.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
 
 	}
@@ -49,7 +48,6 @@ class OrderForm extends React.Component {
 
 	handleTotals = () => {
 		totalPrice = parseInt(this.state.quantity)*30;
-
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
@@ -64,30 +62,25 @@ class OrderForm extends React.Component {
 		switch (event.target.value) {
 			// This switch case sets the tip amount to reflect the button pressed, and clears the
 			// custom amount to prevent double tipping
-
 			case "0.15":
 				this.setState({
 					buttonTip: "0.15",
 					tipInDollars: fifteenPercentTip,
 				})
 				break;
-
 			case "0.18":
 				this.setState({
 					buttonTip: "0.18",
 					tipInDollars: eighteenPercentTip,
 				})
 				break;
-
 			case "0.2":
 				this.setState({
 					buttonTip: "0.2",
 					tipInDollars: twentyPercentTip,
 				})
 				break;
-
 			default:
-
 				console.log("no tip selected");
 
 		}
@@ -119,15 +112,8 @@ class OrderForm extends React.Component {
 			hidden: true
 		})
 	}
-	
-	changeIcon(event) {
-		// Make this into something different.
-		// Remove the option to select a percentage, and instead have a percentage of the entered amount
-		// appear at the end of the input box, dynamically changing whenever a new value is entered.
-	}
 
 	// Calendar based functions
-
 	handleCalendarChange = date => {
 		this.setState({
 			pickupDateTime: date
@@ -157,12 +143,10 @@ class OrderForm extends React.Component {
 
 		console.log(values)
 		if (this.state.values.length > 0) {
-			console.log("errors")
 			this.setState({
 				validated: false
 			});
 		} else {
-			console.log("please continue");
 			this.setState({
 				validated: true
 			});		
@@ -250,7 +234,6 @@ class OrderForm extends React.Component {
 								</Label>
 							</FormGroup>
 								<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
-								{/* <p>{this.state.selectedIcon}</p> */}
 									<AvField 
 									type="text" 
 									name="tipInDollars" 
