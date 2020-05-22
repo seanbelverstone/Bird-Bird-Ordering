@@ -133,8 +133,8 @@ const CheckoutForm = (props) => {
   }
 
   function checkSuccessMessage() {
-    while (props.showSuccess === true) {
-      console.log("Waiting to close...");
+    while (props.showSuccess === false) {
+      return;
     }
     props.toggleClose();
    }
