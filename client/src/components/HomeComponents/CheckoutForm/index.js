@@ -132,12 +132,16 @@ const CheckoutForm = (props) => {
         })
   }
 
-  function checkSuccessMessage() {
+  const checkSuccessMessage = () => {
     while (props.showSuccess === false) {
       return;
     }
-    props.toggleClose();
+    closeModal();
    }
+
+  const closeModal = () => {
+    props.toggleClose();
+  };
 
   const handleCardChange = (event) => {
     if (event.error) {
