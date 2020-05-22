@@ -124,17 +124,10 @@ const CheckoutForm = (props) => {
             props.setState({
               loading: false,
             });
-            checkSuccessMessage();
           }, (err) => {
             console.log("Email sending failed", err)
           });
         })
-  }
-
-  const checkSuccessMessage = () => {
-    while (props.showSuccess === false) {
-      return;
-    }
   }
 
   // sets the parent's state of errors to true, so the alert appears

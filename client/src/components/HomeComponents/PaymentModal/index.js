@@ -32,7 +32,8 @@ const PaymentModal = (props) => {
                     total={props.total}
                     specialInstructions={props.specialInstructions}
                     pickupDateTime={props.pickupDateTime}
-                    quantity={props.quantity}/>
+                    quantity={props.quantity}
+                    />
           
           <br />
 
