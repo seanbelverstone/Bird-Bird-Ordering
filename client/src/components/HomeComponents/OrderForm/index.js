@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormGroup, Label, Input, Row, Col } from 'reactstrap';
-import { AvForm, AvField } from 'availity-reactstrap-validation';
+import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
@@ -11,6 +11,9 @@ var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+// Using this disabler because I am using the customPercentage amount later
+// eslint-disable-next-line
+var customPercentageAmount;
 var subtotal;
 
 class OrderForm extends React.Component {
@@ -23,6 +26,7 @@ class OrderForm extends React.Component {
 			selectedOption: "dollars",
 			selectedIcon: "$",
 			tipInDollars: "",
+			tipInPercentage: 0,
 			buttonTip: "",
 			values: [],
 			validated: true,
@@ -89,7 +93,7 @@ class OrderForm extends React.Component {
 	// Hidden tip input functions
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
-	// of the form where they can choose to enter an amount using $ or %
+	// of the form where they can choose to enter an amount using $
 	handleForm = (event) => {
 		event.preventDefault()
 		if (this.state.hidden) {
@@ -124,7 +128,8 @@ class OrderForm extends React.Component {
 	componentDidMount() {
 		this.setState({
 			pickupDateTime: subDays(new Date(), -2)
-		})
+		});
+		customPercentageAmount = this.state.tipInDollars;
 	}
 
 	// End-of-form functions
@@ -211,39 +216,26 @@ class OrderForm extends React.Component {
 							onClick={this.handleForm}>Custom Amount</button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
-							<FormGroup check>
-								<Label check>
-								<Input 
-									type="radio" 
-									name="radio2" 
-									value="dollars" 
-									onChange={this.changeIcon}
-									checked={this.state.selectedOption === "dollars"}/>{' '}
-								$
-								</Label>
-							</FormGroup>
-							<FormGroup check>
-								<Label check>
-								<Input 
-									type="radio" 
-									name="radio2" 
-									value="percentage" 
-									onChange={this.changeIcon}
-									checked={this.state.selectedOption === "percentage"}/>{' '}
-								%
-								</Label>
-							</FormGroup>
-								<Label for="tipInDollars" sm={2}>Enter your custom amount below</Label>
-									<AvField 
-									type="text" 
-									name="tipInDollars" 
-									id="tipInDollars"
-									min="0.01"
-									step="0.01"
-									validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
-									onChange={this.handleChange}
-									value={this.state.tipInDollars}
+							<AvGroup className="input-group">
+									<AvInput 
+										type="text" 
+										name="tipInDollars" 
+										id="tipInDollars"
+										min="0.01"
+										step="0.01"
+										validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
+										onChange={this.handleChange}
+										value={this.state.tipInDollars}
 									/>
+								<InputGroupAddon addonType="prepend">
+									<InputGroupText>
+										{customPercentageAmount = (this.state.tipInDollars / (totalPrice / 100)).toFixed(2)}%
+									</InputGroupText>
+								</InputGroupAddon>
+								<AvFeedback>
+								Please enter a valid tip amount in dollars
+								</AvFeedback>
+							</AvGroup>
 						</div>
 					</Col>
 				</Row>
