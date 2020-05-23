@@ -224,7 +224,7 @@ class OrderForm extends React.Component {
 										onChange={this.handleChange}
 										value={this.state.tipInDollars}
 									/>
-								<InputGroupAddon>
+								<InputGroupAddon addonType="prepend">
 									<InputGroupText>
 										{customPercentageAmount = (this.state.tipInDollars / (totalPrice / 100)).toFixed(2)}%
 									</InputGroupText>
