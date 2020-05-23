@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Row, Col, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
@@ -11,6 +11,7 @@ var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+var customPercentageAmount;
 var subtotal;
 
 class OrderForm extends React.Component {
@@ -23,6 +24,7 @@ class OrderForm extends React.Component {
 			selectedOption: "dollars",
 			selectedIcon: "$",
 			tipInDollars: "",
+			tipInPercentage: 0,
 			buttonTip: "",
 			values: [],
 			validated: true,
@@ -89,7 +91,7 @@ class OrderForm extends React.Component {
 	// Hidden tip input functions
 
 	// This waits until a user selects the Custom Amount button. If they do, it reveals a hidden section
-	// of the form where they can choose to enter an amount using $ or %
+	// of the form where they can choose to enter an amount using $
 	handleForm = (event) => {
 		event.preventDefault()
 		if (this.state.hidden) {
@@ -224,7 +226,7 @@ class OrderForm extends React.Component {
 									/>
 								<InputGroupAddon>
 									<InputGroupText>
-										{this.state.tipInDollars}
+										{customPercentageAmount = (this.state.tipInDollars / (totalPrice / 100)).toFixed(2)}%
 									</InputGroupText>
 								</InputGroupAddon>
 								<AvFeedback>
