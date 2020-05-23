@@ -11,6 +11,8 @@ var totalPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
+// Using this disabler because I am using the customPercentage amount later
+// eslint-disable-next-line
 var customPercentageAmount;
 var subtotal;
 
@@ -126,7 +128,8 @@ class OrderForm extends React.Component {
 	componentDidMount() {
 		this.setState({
 			pickupDateTime: subDays(new Date(), -2)
-		})
+		});
+		customPercentageAmount = this.state.tipInDollars;
 	}
 
 	// End-of-form functions
