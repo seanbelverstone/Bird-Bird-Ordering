@@ -192,6 +192,23 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
+						<div>Add Jam</div>
+					</Col>
+					<Col>
+						<div>Add Gravy</div>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+					<img src="https://via.placeholder.com/250" alt="Picture Of Jam" className="jamGravy"/>
+					</Col>
+					<Col>
+					<img src="https://via.placeholder.com/250" alt="Picture Of Gravy" className="jamGravy"/>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col>
 						<div>Add a tip</div>
 					</Col>
 				</Row>
