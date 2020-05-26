@@ -17,7 +17,7 @@
 
 button.jamGravyImages:hover {
 	width: 250px;
-	border: goldenrod 5px solid;
+	border: goldenrod 5px solid !important;
 	transition: 0.2s ease-in-out;
 }
 

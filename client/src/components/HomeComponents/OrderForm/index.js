@@ -56,14 +56,15 @@ class OrderForm extends React.Component {
 	};
 
 	handleTotals = () => {
-		totalPrice = parseInt(this.state.quantity)*30;
+		totalPrice = (parseInt(this.state.quantity)*30) + this.state.sides;
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
 
-	// Selecting jam or gravy
+	// Selecting jam or gravy. This updates the state called sides, to calculate how much this extra addition
+	// will cost, and it also changes the style of the button to indicate it has been selected.
 	selectJam = (event) => {
 		var sides = this.state.sides;
 		var jamValue = parseInt(event.target.value);
@@ -190,7 +191,7 @@ class OrderForm extends React.Component {
 
 	// End-of-form functions
 	handleSubtotal = () => {
-		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
+		subtotal = (totalPrice + parseFloat(this.state.sides) + parseFloat(this.state.tipInDollars)).toFixed(2);
 		if (isNaN(subtotal)) {
 			subtotal = totalPrice;
 		} 			
