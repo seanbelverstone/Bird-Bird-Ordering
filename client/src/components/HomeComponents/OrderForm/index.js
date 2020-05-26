@@ -200,14 +200,14 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<a>
-							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravy"/>
-						</a>
+						<button className="jamGravyButtons">
+							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravyImages"/>
+						</button>
 					</Col>
 					<Col>
-						<a>
-							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravy"/>
-						</a>					
+						<button className="jamGravyButtons">
+							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
+						</button>					
 					</Col>
 				</Row>
 

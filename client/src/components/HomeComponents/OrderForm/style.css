@@ -2,15 +2,19 @@
 	font-weight: 600;
 }
 
-img.jamGravy {
+.jamGravyButtons {
+	width: fit-content;
+	position: relative;
+}
+
+
+img.jamGravyImages:hover {
 	width: 250px;
+	border: goldenrod 5px solid;
+	transition: 0.2s ease-in-out;
 }
 
-img.jamGravy:link {
-	border-color: red;
-}
-
-img.jamGravy:hover {
-	width: 270px;
-	transition: width 0.2s ease-in-out;
+img.jamGravyImages:active {
+	border: rgb(150, 114, 22) 10px solid;
+	transition: 0.1s ease-in-out;
 }
