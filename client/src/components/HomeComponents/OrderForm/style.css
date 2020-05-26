@@ -1,3 +1,16 @@
 #orderForm, #quantity, button, #datePicker, #specialInstructions {
 	font-weight: 600;
 }
+
+img.jamGravy {
+	width: 250px;
+}
+
+img.jamGravy:link {
+	border-color: red;
+}
+
+img.jamGravy:hover {
+	width: 270px;
+	transition: width 0.2s ease-in-out;
+}
