@@ -25,6 +25,7 @@ class OrderForm extends React.Component {
 			gravySelected: false,
 			jamStyle: {},
 			gravyStyle: {},
+			sides: 0,
 			hiddenForm: {display: "none"},
 			hidden: true,
 			tipInDollars: "",
@@ -65,37 +66,37 @@ class OrderForm extends React.Component {
 
 	// Selecting jam or gravy
 	selectJam = (event) => {
+		if (!this.state.jamSelected) {
+			this.setState({
+				jamSelected: true,
+				sides: - 15
+			})
+		}
 		this.setState({
-			jamSelected: true,
-			gravySelected: false
-		}, () => {
-			console.log("jam", this.state.jamSelected);
-			console.log("gravy", this.state.gravySelected);
-			this.handleJamOrGravySelect();
-		})
+			jamSelected: false,
+			sides: + 15
+		});
+		// add event.value to total
+		this.handleJamOrGravySelect();
 	}
 
 	selectGravy = () => {
+		if (!this.state.gravySelected) {
+			this.setState({
+				gravySelected: true,
+				sides: - 15
+			})
+		}
 		this.setState({
-			jamSelected: false,
-			gravySelected: true
-		}, () => {
-			console.log("jam", this.state.jamSelected);
-			console.log("gravy", this.state.gravySelected);
-			this.handleJamOrGravySelect();
-		})
-	}
-
-	selectNone = () => {
-		this.setState({
-			jamSelected: false,
-			gravySelected: false
-		})
+			gravySelected: false,
+			sides: + 15
+		});
+		// add event.value to total
+		this.handleJamOrGravySelect();
 	}
 
 	handleJamOrGravySelect = () => {
 		if (this.state.jamSelected && !this.state.gravySelected) {
-			totalPrice = totalPrice + 15;
 			this.setState({
 				jamStyle: {
 					border: "goldenrod 5px solid",
@@ -107,7 +108,6 @@ class OrderForm extends React.Component {
 				}
 			})
 		} else if (!this.state.jamSelected && this.state.gravySelected) {
-			totalPrice = totalPrice + 15;
 			this.setState({
 				jamStyle: {
 					border: "none"
@@ -118,7 +118,6 @@ class OrderForm extends React.Component {
 				}
 			})
 		} else if (!this.state.jamSelected && !this.state.gravySelected) {
-			totalPrice = totalPrice - 15;
 			this.setState({
 				jamStyle: {
 					border: "none"
@@ -207,7 +206,7 @@ class OrderForm extends React.Component {
 
 	// End-of-form functions
 	handleSubtotal = () => {
-		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
+		subtotal = (totalPrice + this.state.sides + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
 			subtotal = totalPrice;
 		} 			
