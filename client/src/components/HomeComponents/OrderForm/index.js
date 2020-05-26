@@ -263,6 +263,7 @@ class OrderForm extends React.Component {
 							selected={this.state.jamSelected}
 							style={this.state.jamStyle}
 							value={15}
+							disabled
 							>
 						</button>
 					</Col>
