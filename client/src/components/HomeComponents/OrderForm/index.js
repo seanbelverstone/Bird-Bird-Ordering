@@ -40,6 +40,7 @@ class OrderForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.selectJam = this.selectJam.bind(this);
 		this.selectGravy = this.selectGravy.bind(this);
+		this.selectNone = this.selectNone.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
@@ -63,7 +64,7 @@ class OrderForm extends React.Component {
 	};
 
 	// Selecting jam or gravy
-	selectJam = () => {
+	selectJam = (event) => {
 		this.setState({
 			jamSelected: true,
 			gravySelected: false
@@ -85,26 +86,45 @@ class OrderForm extends React.Component {
 		})
 	}
 
+	selectNone = () => {
+		this.setState({
+			jamSelected: false,
+			gravySelected: false
+		})
+	}
+
 	handleJamOrGravySelect = () => {
-		if (this.state.jamSelected) {
+		if (this.state.jamSelected && !this.state.gravySelected) {
+			totalPrice = totalPrice + 15;
 			this.setState({
 				jamStyle: {
-					border: "lightGreen 5px solid",
-					boxShadow: "darkGreen 4px 4px"
+					border: "goldenrod 5px solid",
+					boxShadow: "rgb(150, 114, 22) 4px 4px"
 				},
 				gravyStyle: {
 					border: "none",
 					boxShadow: "none"
 				}
 			})
-		} else {
+		} else if (!this.state.jamSelected && this.state.gravySelected) {
+			totalPrice = totalPrice + 15;
 			this.setState({
 				jamStyle: {
 					border: "none"
 				},
 				gravyStyle: {
-					border: "lightGreen 5px solid",
-					boxShadow: "darkGreen 4px 4px"
+					border: "goldenrod 5px solid",
+					boxShadow: "rgb(150, 114, 22) 4px 4px"
+				}
+			})
+		} else if (!this.state.jamSelected && !this.state.gravySelected) {
+			totalPrice = totalPrice - 15;
+			this.setState({
+				jamStyle: {
+					border: "none"
+				},
+				gravyStyle: {
+					border: "none"
 				}
 			})
 		}
@@ -249,23 +269,35 @@ class OrderForm extends React.Component {
 					<Col>
 						<div>Add Gravy</div>
 					</Col>
+					<Col>
+						<div>Neither</div>
+					</Col>
 				</Row>
 				<Row>
 					<Col>
 						<button className="jamGravyButtons" 
 								onClick={this.selectJam} 
-								value={this.state.jamSelected}
-								style={this.state.jamStyle}>
+								selected={this.state.jamSelected}
+								style={this.state.jamStyle}
+								value={15}>
 							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravyImages"/>
 						</button>
 					</Col>
 					<Col>
 						<button className="jamGravyButtons" 
 								onClick={this.selectGravy} 
-								value={this.state.gravySelected}
-								style={this.state.gravyStyle}>
+								selected={this.state.gravySelected}
+								style={this.state.gravyStyle}
+								value={15}>
 							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
-						</button>					
+						</button>
+					</Col>
+					<Col>
+						<button className="jamGravyButtons" 
+								onClick={this.selectNone} 
+								value={0}>
+							<img src="https://via.placeholder.com/250" alt="None"  className="jamGravyImages"/>
+						</button>							
 					</Col>
 				</Row>
 
