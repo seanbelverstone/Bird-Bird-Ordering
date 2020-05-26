@@ -2,19 +2,26 @@
 	font-weight: 600;
 }
 
-.jamGravyButtons {
-	width: fit-content;
-	position: relative;
+#jam {
+	background-image: url("https://via.placeholder.com/250");
+	width: 250px;
+	height: 250px;
+}
+
+#gravy {
+	background-image: url("https://via.placeholder.com/250");
+	width: 250px;
+	height: 250px;
 }
 
 
-img.jamGravyImages:hover {
+button.jamGravyImages:hover {
 	width: 250px;
 	border: goldenrod 5px solid;
 	transition: 0.2s ease-in-out;
 }
 
-img.jamGravyImages:active {
+button.jamGravyImages:active {
 	border: rgb(150, 114, 22) 10px solid;
 	transition: 0.1s ease-in-out;
 }

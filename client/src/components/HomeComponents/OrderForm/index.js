@@ -65,31 +65,41 @@ class OrderForm extends React.Component {
 
 	// Selecting jam or gravy
 	selectJam = (event) => {
+		var sides = this.state.sides;
+		var jamValue = parseInt(event.target.value);
+
 		if (!this.state.jamSelected) {
 			this.setState({
 				jamSelected: true,
-				sides: - 15
-			})
+				sides: sides - jamValue
+			});
+		} else {
+			this.setState({
+				jamSelected: false,
+				sides: sides + jamValue
+			});
 		}
-		this.setState({
-			jamSelected: false,
-			sides: + 15
-		});
+
 		// add event.value to total
 		this.handleJamOrGravySelect();
 	}
 
-	selectGravy = () => {
+	selectGravy = (event) => {
+		var sides = this.state.sides;
+		var gravyValue = parseInt(event.target.value);
+
 		if (!this.state.gravySelected) {
 			this.setState({
 				gravySelected: true,
-				sides: - 15
-			})
+				sides: sides - gravyValue
+			});
+		} else {
+			this.setState({
+				gravySelected: false,
+				sides: sides + gravyValue
+			});
 		}
-		this.setState({
-			gravySelected: false,
-			sides: + 15
-		});
+
 		// add event.value to total
 		this.handleJamOrGravySelect();
 	}
@@ -205,7 +215,7 @@ class OrderForm extends React.Component {
 
 	// End-of-form functions
 	handleSubtotal = () => {
-		subtotal = (totalPrice + this.state.sides + parseFloat(this.state.tipInDollars)).toFixed(2)
+		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2)
 		if (isNaN(subtotal)) {
 			subtotal = totalPrice;
 		} 			
@@ -270,21 +280,27 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button className="jamGravyButtons" 
-								onClick={this.selectJam} 
-								selected={this.state.jamSelected}
-								style={this.state.jamStyle}
-								value={15}>
-							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravyImages"/>
+						<button 
+							alt="Jam"  
+							className="jamGravyImages"
+							id="jam"
+							onClick={this.selectJam} 
+							selected={this.state.jamSelected}
+							style={this.state.jamStyle}
+							value={15}
+							>
 						</button>
 					</Col>
 					<Col>
-						<button className="jamGravyButtons" 
-								onClick={this.selectGravy} 
-								selected={this.state.gravySelected}
-								style={this.state.gravyStyle}
-								value={15}>
-							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
+						<button 
+							alt="Gravy"  
+							className="jamGravyImages"
+							id="gravy" 
+							onClick={this.selectGravy} 
+							selected={this.state.gravySelected}
+							style={this.state.gravyStyle}
+							value={15}
+						>
 						</button>
 					</Col>
 				</Row>
