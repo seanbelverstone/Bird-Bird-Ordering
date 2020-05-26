@@ -41,7 +41,6 @@ class OrderForm extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.selectJam = this.selectJam.bind(this);
 		this.selectGravy = this.selectGravy.bind(this);
-		this.selectNone = this.selectNone.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
