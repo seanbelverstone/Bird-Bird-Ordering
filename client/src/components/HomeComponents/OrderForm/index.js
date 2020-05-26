@@ -268,9 +268,6 @@ class OrderForm extends React.Component {
 					<Col>
 						<div>Add Gravy</div>
 					</Col>
-					<Col>
-						<div>Neither</div>
-					</Col>
 				</Row>
 				<Row>
 					<Col>
@@ -290,13 +287,6 @@ class OrderForm extends React.Component {
 								value={15}>
 							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
 						</button>
-					</Col>
-					<Col>
-						<button className="jamGravyButtons" 
-								onClick={this.selectNone} 
-								value={0}>
-							<img src="https://via.placeholder.com/250" alt="None"  className="jamGravyImages"/>
-						</button>							
 					</Col>
 				</Row>
 
