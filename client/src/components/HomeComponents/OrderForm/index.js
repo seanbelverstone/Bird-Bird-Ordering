@@ -67,19 +67,20 @@ class OrderForm extends React.Component {
 		this.setState({
 			jamSelected: true,
 			gravySelected: false
+		}, () => {
+			console.log("jam", this.state.jamSelected);
+			console.log("gravy", this.state.gravySelected);
 		})
-		console.log("jam", this.state.jamSelected);
-		console.log("gravy", this.state.gravySelected);
-
 	}
 
 	selectGravy = () => {
 		this.setState({
 			jamSelected: false,
 			gravySelected: true
+		}, () => {
+			console.log("jam", this.state.jamSelected);
+			console.log("gravy", this.state.gravySelected);
 		})
-		console.log("jam", this.state.jamSelected);
-		console.log("gravy", this.state.gravySelected);
 	}
 
 	// Handling tip function
@@ -170,7 +171,6 @@ class OrderForm extends React.Component {
 		// event.preventDefault();
 		this.setState({values});
 
-		console.log(values)
 		if (this.state.values.length > 0) {
 			this.setState({
 				validated: false
