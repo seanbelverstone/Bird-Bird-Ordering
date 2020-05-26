@@ -71,17 +71,22 @@ class OrderForm extends React.Component {
 		if (!this.state.jamSelected) {
 			this.setState({
 				jamSelected: true,
-				sides: sides - jamValue
+				sides: sides + jamValue,
+				jamStyle: {
+					border: "goldenrod 5px solid",
+					boxShadow: "rgb(150, 114, 22) 4px 4px"
+				}				
 			});
 		} else {
 			this.setState({
 				jamSelected: false,
-				sides: sides + jamValue
+				sides: sides - jamValue,
+				jamStyle: {
+					border: "none",
+					boxShadow: "none"
+				}				
 			});
 		}
-
-		// add event.value to total
-		this.handleJamOrGravySelect();
 	}
 
 	selectGravy = (event) => {
@@ -91,53 +96,23 @@ class OrderForm extends React.Component {
 		if (!this.state.gravySelected) {
 			this.setState({
 				gravySelected: true,
-				sides: sides - gravyValue
+				sides: sides + gravyValue,
+				gravyStyle: {
+					border: "goldenrod 5px solid",
+					boxShadow: "rgb(150, 114, 22) 4px 4px"
+				}
 			});
 		} else {
 			this.setState({
 				gravySelected: false,
-				sides: sides + gravyValue
-			});
-		}
-
-		// add event.value to total
-		this.handleJamOrGravySelect();
-	}
-
-	handleJamOrGravySelect = () => {
-		if (this.state.jamSelected && !this.state.gravySelected) {
-			this.setState({
-				jamStyle: {
-					border: "goldenrod 5px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				},
+				sides: sides - gravyValue,
 				gravyStyle: {
 					border: "none",
 					boxShadow: "none"
 				}
 			})
-		} else if (!this.state.jamSelected && this.state.gravySelected) {
-			this.setState({
-				jamStyle: {
-					border: "none"
-				},
-				gravyStyle: {
-					border: "goldenrod 5px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				}
-			})
-		} else if (!this.state.jamSelected && !this.state.gravySelected) {
-			this.setState({
-				jamStyle: {
-					border: "none"
-				},
-				gravyStyle: {
-					border: "none"
-				}
-			})
 		}
-	};
-
+	}
 
 	// Handling tip function
 
