@@ -21,6 +21,8 @@ class OrderForm extends React.Component {
 		super(props);
 		this.state = {
 			quantity: 1,
+			jamSelected: false,
+			gravySelected: false,
 			hiddenForm: {display: "none"},
 			hidden: true,
 			selectedOption: "dollars",
@@ -36,6 +38,8 @@ class OrderForm extends React.Component {
 			}
 
 		this.handleChange = this.handleChange.bind(this);
+		this.selectJam = this.selectJam.bind(this);
+		this.selectGravy = this.selectGravy.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
@@ -57,6 +61,26 @@ class OrderForm extends React.Component {
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
+
+	// Selecting jam or gravy
+	selectJam = () => {
+		this.setState({
+			jamSelected: true,
+			gravySelected: false
+		})
+		console.log("jam", this.state.jamSelected);
+		console.log("gravy", this.state.gravySelected);
+
+	}
+
+	selectGravy = () => {
+		this.setState({
+			jamSelected: false,
+			gravySelected: true
+		})
+		console.log("jam", this.state.jamSelected);
+		console.log("gravy", this.state.gravySelected);
+	}
 
 	// Handling tip function
 
@@ -200,12 +224,12 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button className="jamGravyButtons">
+						<button className="jamGravyButtons" onClick={this.selectJam} value={this.state.jamSelected}>
 							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravyImages"/>
 						</button>
 					</Col>
 					<Col>
-						<button className="jamGravyButtons">
+						<button className="jamGravyButtons" onClick={this.selectGravy} value={this.state.gravySelected}>
 							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
 						</button>					
 					</Col>
