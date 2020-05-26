@@ -23,10 +23,10 @@ class OrderForm extends React.Component {
 			quantity: 1,
 			jamSelected: false,
 			gravySelected: false,
+			jamStyle: {},
+			gravyStyle: {},
 			hiddenForm: {display: "none"},
 			hidden: true,
-			selectedOption: "dollars",
-			selectedIcon: "$",
 			tipInDollars: "",
 			tipInPercentage: 0,
 			buttonTip: "",
@@ -70,6 +70,7 @@ class OrderForm extends React.Component {
 		}, () => {
 			console.log("jam", this.state.jamSelected);
 			console.log("gravy", this.state.gravySelected);
+			this.handleJamOrGravySelect();
 		})
 	}
 
@@ -80,8 +81,35 @@ class OrderForm extends React.Component {
 		}, () => {
 			console.log("jam", this.state.jamSelected);
 			console.log("gravy", this.state.gravySelected);
+			this.handleJamOrGravySelect();
 		})
 	}
+
+	handleJamOrGravySelect = () => {
+		if (this.state.jamSelected) {
+			this.setState({
+				jamStyle: {
+					border: "lightGreen 5px solid",
+					boxShadow: "darkGreen 4px 4px"
+				},
+				gravyStyle: {
+					border: "none",
+					boxShadow: "none"
+				}
+			})
+		} else {
+			this.setState({
+				jamStyle: {
+					border: "none"
+				},
+				gravyStyle: {
+					border: "lightGreen 5px solid",
+					boxShadow: "darkGreen 4px 4px"
+				}
+			})
+		}
+	};
+
 
 	// Handling tip function
 
@@ -224,12 +252,18 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button className="jamGravyButtons" onClick={this.selectJam} value={this.state.jamSelected}>
+						<button className="jamGravyButtons" 
+								onClick={this.selectJam} 
+								value={this.state.jamSelected}
+								style={this.state.jamStyle}>
 							<img src="https://via.placeholder.com/250" alt="Jam"  className="jamGravyImages"/>
 						</button>
 					</Col>
 					<Col>
-						<button className="jamGravyButtons" onClick={this.selectGravy} value={this.state.gravySelected}>
+						<button className="jamGravyButtons" 
+								onClick={this.selectGravy} 
+								value={this.state.gravySelected}
+								style={this.state.gravyStyle}>
 							<img src="https://via.placeholder.com/250" alt="Gravy"  className="jamGravyImages"/>
 						</button>					
 					</Col>
