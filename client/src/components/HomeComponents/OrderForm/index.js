@@ -56,7 +56,7 @@ class OrderForm extends React.Component {
 	};
 
 	handleTotals = () => {
-		totalPrice = (parseInt(this.state.quantity)*30) + this.state.sides;
+		totalPrice = (parseFloat(this.state.quantity)*30) + this.state.sides;
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
@@ -229,9 +229,13 @@ class OrderForm extends React.Component {
 								onChange={this.handleChange}
 								onClick={this.handleTotals()}>
 
+								<option value="0.5">half dozen</option>
 								<option value="1">1 dozen</option>
+								<option value="1.5">1 and a half dozens</option>
 								<option value="2">2 dozens</option>
+								<option value="2.5">2 and a half dozens</option>
 								<option value="3">3 dozens</option>
+								<option value="3.5">3 and a half dozens</option>
 								<option value="4">4 dozens</option>
 
 							</Input>
@@ -240,10 +244,6 @@ class OrderForm extends React.Component {
 					<Col>
 						<Label for="price">Price</Label>
 						<div id="price" name="price">$30.00</div>
-					</Col>
-					<Col>
-						<Label for="totalPrice">Total</Label>
-						<div id="totalPrice" name="totalPrice">${totalPrice}</div>
 					</Col>
 				</Row>
 				<Row>

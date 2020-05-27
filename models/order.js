@@ -4,7 +4,9 @@ module.exports = (sequelize, DataTypes) => {
 	  name: DataTypes.STRING,
 	  telephone: DataTypes.STRING,
 	  email: DataTypes.STRING,
-	  biscuitQuantity: DataTypes.INTEGER,
+	  biscuitQuantity: DataTypes.DECIMAL,
+	  gravy: DataTypes.TINYINT(1),
+	  jam: DataTypes.TINYINT(1),
 	  totalCost: DataTypes.DECIMAL(10,2),
 	  pickupDateTime: DataTypes.STRING,
 	  specialInstructions: DataTypes.STRING
