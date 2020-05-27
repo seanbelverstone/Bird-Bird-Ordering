@@ -202,7 +202,6 @@ class OrderForm extends React.Component {
 	handleSubmit(event, values) {
 		// event.preventDefault();
 		this.setState({values});
-		console.log(this.state.values)
 
 		if (this.state.values.length > 0) {
 			this.setState({
