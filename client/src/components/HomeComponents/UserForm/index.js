@@ -61,6 +61,8 @@ class UserForm extends React.Component {
                         name={this.state.name}
                         email={this.state.email}
                         telephone={this.state.telephone}
+                        jamSelected={this.props.jamSelected}
+                        gravySelected={this.props.gravySelected}
                         loading={this.state.loading}
                         showSuccess={this.state.showSuccess}
                         setState={(parameter) => {this.setState(parameter)}}

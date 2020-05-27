@@ -1,3 +1,28 @@
 #orderForm, #quantity, button, #datePicker, #specialInstructions {
 	font-weight: 600;
 }
+
+#jam {
+	background-image: url("https://via.placeholder.com/250");
+	width: 250px;
+	height: 250px;
+	opacity: 0.2;
+}
+
+#gravy {
+	background-image: url("https://via.placeholder.com/250");
+	width: 250px;
+	height: 250px;
+}
+
+
+button.jamGravyImages:hover {
+	width: 250px;
+	border: goldenrod 5px solid !important;
+	transition: 0.2s ease-in-out;
+}
+
+button.jamGravyImages:active {
+	border: rgb(150, 114, 22) 10px solid;
+	transition: 0.1s ease-in-out;
+}

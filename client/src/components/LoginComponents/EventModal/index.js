@@ -6,20 +6,23 @@ class EventModal extends React.Component {
 	sortDescription = (desc) => {
 		// split the description array up by the space and enters that was jumbling it up
 		let splitDesc = desc.trim().split(/[\s ↵↵]+/);
+		// splits the description array by just where it says Notes, so we can access all of the text after that
 		let justNotes = desc.split("Notes: ")
-
-		console.log(splitDesc);
 
 		// I then use interpolation to make it easier to display each item individually.
 		let quantity = `${splitDesc[0]} ${splitDesc[1]} dozen - (${splitDesc[1]*12} total)`;
-		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
-		let email = `${splitDesc[4]} ${splitDesc[5]}`;
-		let total = `${splitDesc[6]} $${splitDesc[7]}`;
-		let notes = `${splitDesc[8]} ${justNotes[1]}`;
+		let jam = `${splitDesc[2]} ${splitDesc[3]}`;
+		let gravy = `${splitDesc[4]} ${splitDesc[5]}`;
+		let telephone = `${splitDesc[6]} ${splitDesc[7]}`;
+		let email = `${splitDesc[8]} ${splitDesc[9]}`;
+		let total = `${splitDesc[10]} $${splitDesc[11]}`;
+		let notes = `${splitDesc[12]} ${justNotes[1]}`;
 
 		return (
 			<div className="eventData">
 				<p>{quantity}</p>
+				<p>{jam}</p>
+				<p>{gravy}</p>
 				<p>{telephone}</p>
 				<p>{email}</p>
 				<p>{total}</p>

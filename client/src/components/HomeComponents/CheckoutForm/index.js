@@ -96,6 +96,8 @@ const CheckoutForm = (props) => {
       props.telephone, 
       props.email, 
       props.quantity,
+      props.jamSelected,
+      props.gravySelected,
       props.total,
       props.pickupDateTime,
       props.specialInstructions,
@@ -111,10 +113,13 @@ const CheckoutForm = (props) => {
           specialInstructions: response.data.specialInstructions,
           orderNumber: response.data.id,
           quantity: response.data.biscuitQuantity,
+          jam: response.data.jam,
+          gravy: response.data.gravy,
           pickupDateTime: response.data.pickupDateTime,
           total: response.data.totalCost,
           timePlaced: response.data.createdAt
         };
+        console.log(templateParams);
 
         // Emailjs send form function.
         emailjs.send(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, templateParams, process.env.REACT_APP_USER_ID)
