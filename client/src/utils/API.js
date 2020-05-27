@@ -7,6 +7,8 @@ export default {
 		telephone, 
 		email, 
 		biscuitQuantity,
+		gravy,
+		jam,
 		totalCost,
 		pickupDateTime,
 		specialInstructions) => {
@@ -15,6 +17,8 @@ export default {
 				telephone, 
 				email, 
 				biscuitQuantity, 
+				gravy,
+				jam,
 				totalCost, 
 				pickupDateTime, 
 				specialInstructions})

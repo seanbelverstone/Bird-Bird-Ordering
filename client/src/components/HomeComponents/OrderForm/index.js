@@ -354,6 +354,8 @@ class OrderForm extends React.Component {
 								specialInstructions={this.state.specialInstructions}
 								pickupDateTime={this.state.pickupDateTime}
 								quantity={this.state.quantity}
+								jamSelected={this.state.jamSelected}
+								gravySelected={this.state.gravySelected}
 								/>
 					</FormGroup>
 					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>

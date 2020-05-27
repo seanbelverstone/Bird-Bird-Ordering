@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
 	  telephone: DataTypes.STRING,
 	  email: DataTypes.STRING,
 	  biscuitQuantity: DataTypes.DECIMAL,
-	  gravy: DataTypes.TINYINT(1),
-	  jam: DataTypes.TINYINT(1),
+	  gravy: DataTypes.BOOLEAN,
+	  jam: DataTypes.BOOLEAN,
 	  totalCost: DataTypes.DECIMAL(10,2),
 	  pickupDateTime: DataTypes.STRING,
 	  specialInstructions: DataTypes.STRING
