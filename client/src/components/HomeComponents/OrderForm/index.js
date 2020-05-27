@@ -191,7 +191,7 @@ class OrderForm extends React.Component {
 
 	// End-of-form functions
 	handleSubtotal = () => {
-		subtotal = (totalPrice + parseFloat(this.state.sides) + parseFloat(this.state.tipInDollars)).toFixed(2);
+		subtotal = (totalPrice + parseFloat(this.state.tipInDollars)).toFixed(2);
 		if (isNaN(subtotal)) {
 			subtotal = totalPrice;
 		} 			
