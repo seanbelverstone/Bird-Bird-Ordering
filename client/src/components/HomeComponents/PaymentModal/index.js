@@ -13,7 +13,7 @@ const PaymentModal = (props) => {
 
   const toggle = () => {
     // Extra validation to check if there is an error with the custom tip box.
-    if (!isNaN(props.tipValidation) || props.handleSubmit) {
+    if (!isNaN(props.tipValidation)) {
       setModal(!modal);
     } else {
       setModal(modal)

@@ -202,15 +202,18 @@ class OrderForm extends React.Component {
 	handleSubmit(event, values) {
 		// event.preventDefault();
 		this.setState({values});
+		console.log(this.state.values)
 
 		if (this.state.values.length > 0) {
 			this.setState({
 				validated: false
 			});
+			return;
 		} else {
 			this.setState({
 				validated: true
-			});		
+			});	
+			return false;	
 		}
 	}
 
@@ -350,7 +353,6 @@ class OrderForm extends React.Component {
 								tipValidation={this.state.tipInDollars}
 								total={subtotal}
 								values={this.state.values}
-								handleSubmit={this.handleSubmit}
 								specialInstructions={this.state.specialInstructions}
 								pickupDateTime={this.state.pickupDateTime}
 								quantity={this.state.quantity}
