@@ -21,8 +21,8 @@ class OrderForm extends React.Component {
 		super(props);
 		this.state = {
 			quantity: 1,
-			jamSelected: false,
-			gravySelected: false,
+			jamSelected: 0,
+			gravySelected: 0,
 			jamStyle: {},
 			gravyStyle: {},
 			sides: 0,
@@ -69,9 +69,9 @@ class OrderForm extends React.Component {
 		var sides = this.state.sides;
 		var jamValue = parseInt(event.target.value);
 
-		if (!this.state.jamSelected) {
+		if (this.state.jamSelected === 0) {
 			this.setState({
-				jamSelected: true,
+				jamSelected: 1,
 				sides: sides + jamValue,
 				jamStyle: {
 					border: "goldenrod 5px solid",
@@ -80,7 +80,7 @@ class OrderForm extends React.Component {
 			});
 		} else {
 			this.setState({
-				jamSelected: false,
+				jamSelected: 0,
 				sides: sides - jamValue,
 				jamStyle: {
 					border: "none",
@@ -94,9 +94,9 @@ class OrderForm extends React.Component {
 		var sides = this.state.sides;
 		var gravyValue = parseInt(event.target.value);
 
-		if (!this.state.gravySelected) {
+		if (this.state.gravySelected === 0) {
 			this.setState({
-				gravySelected: true,
+				gravySelected: 1,
 				sides: sides + gravyValue,
 				gravyStyle: {
 					border: "goldenrod 5px solid",
@@ -105,13 +105,13 @@ class OrderForm extends React.Component {
 			});
 		} else {
 			this.setState({
-				gravySelected: false,
+				gravySelected: 0,
 				sides: sides - gravyValue,
 				gravyStyle: {
 					border: "none",
 					boxShadow: "none"
 				}
-			})
+			});
 		}
 	}
 
