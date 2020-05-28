@@ -45,7 +45,6 @@ class OrderCalendar extends React.Component {
 	// this function fires after the get request has finished
 	sortData = () => {
 		var unsortedEvents = this.state.rawData
-
 		// loops through the array, and pushes all the necessary data to a new 'list' array, giving it the
 		// titles needed to translate into the calendar. Had to push to a global const variable as pushing 
 		// directly to an array in state is bad practice.
@@ -62,6 +61,7 @@ class OrderCalendar extends React.Component {
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
 							Total: ${unsortedEvents[i].totalCost}\n
+							Completed: ${unsortedEvents[i].completed}\n
 							Notes: ${unsortedEvents[i].specialInstructions}`
 							
 			})
@@ -73,6 +73,7 @@ class OrderCalendar extends React.Component {
 				events,
 			}
 		}, () => {
+			console.log(this.state.events);
 			this.totalBiscuits();
 		});
 	}

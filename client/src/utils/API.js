@@ -26,8 +26,11 @@ export default {
 				specialInstructions})
 		},
 	
-	getAllOrders: () => {
-		return axios.get("/api/order/all")
+	getAllOrders: (id, completed) => {
+		return axios.get("/api/order/all", {
+			id,
+			completed
+		})
 	},
 
 	updateComplete: () => {

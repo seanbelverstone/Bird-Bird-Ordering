@@ -20,7 +20,7 @@ module.exports = {
   update: (request, response) => {
     db.Order
       .update({
-        complete: request.body.complete
+        completed: request.body.completed
       }, {
         where: {
           id: request.body.id
