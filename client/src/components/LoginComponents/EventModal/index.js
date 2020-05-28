@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import CompleteButton from "../CompleteButton";
 
 class EventModal extends React.Component {
 
@@ -50,6 +51,7 @@ class EventModal extends React.Component {
 					Pick Up Date and Time: {this.props.pickupDate} @ {this.props.pickupTime}
 				</ModalBody>
 				<ModalFooter>
+					<CompleteButton orderComplete={true} />
 					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
 				</ModalFooter>
 				</Modal>
