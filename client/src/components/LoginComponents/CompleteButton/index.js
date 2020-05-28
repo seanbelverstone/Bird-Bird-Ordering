@@ -26,13 +26,14 @@ class CompleteButton extends React.Component {
 		switch(completedVariable === 1) {
 			case true:
 				this.setState({
-					renderedButton: <Button color="warning" onClick={this.handleComplete(this.state.id, completedVariable)}>Mark as Incomplete</Button>
+					renderedButton: <Button color="warning" onClick={() => this.handleComplete(this.state.id, completedVariable)}>Mark as Incomplete</Button>
 				})
 				break;
 			default:
 				this.setState({
-					renderedButton: <Button color="success" onClick={this.handleComplete(this.state.id, completedVariable)}>Complete Order</Button>
-				});				
+					renderedButton: <Button color="success" onClick={() => this.handleComplete(this.state.id, completedVariable)}>Complete Order</Button>
+				});		
+				break;		
 		}
 	}
 
@@ -41,9 +42,8 @@ class CompleteButton extends React.Component {
 		.then(response => {
 
 			this.isOrderComplete(response.data[0])
-			API.getAllOrders()
-			.then(response => console.log(response));
 		});
+		return;
 	}
 
 	render() {	
