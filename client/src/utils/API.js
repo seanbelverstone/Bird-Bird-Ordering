@@ -11,6 +11,7 @@ export default {
 		gravy,
 		totalCost,
 		pickupDateTime,
+		completed,
 		specialInstructions) => {
 			return axios.post("/api/order", {
 				name, 
@@ -20,7 +21,8 @@ export default {
 				gravy,
 				jam,
 				totalCost, 
-				pickupDateTime, 
+				pickupDateTime,
+				completed,
 				specialInstructions})
 		},
 	
