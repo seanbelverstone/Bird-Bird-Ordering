@@ -1,17 +1,28 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import API from "../../../utils/API";
 
 class CompleteButton extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			orderComplete: false
+			id: ""
 		}
 		this.isOrderComplete = this.isOrderComplete.bind(this);
 	}
 
+	componentDidMount = () => {
+		let id = this.props.title.split("#");
+		id = id[1];
+		console.log(id);
+		this.setState({
+			id: id
+		});
+	}
+
 	isOrderComplete = () => {
-		switch(this.state.orderComplete) {
+
+		switch(this.props.orderComplete === 1) {
 			case true:
 				return(<Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>);
 			default:
@@ -20,10 +31,11 @@ class CompleteButton extends React.Component {
 	}
 
 	handleComplete = () => {
-		console.log("Button clicking yay")
-		this.setState({
-			orderComplete: !this.state.orderComplete
+		API.updateComplete(this.state.id, this.props.orderComplete)
+		.then(response => {
+			console.log(response);
 		})
+		
 	}
 
 	render() {	

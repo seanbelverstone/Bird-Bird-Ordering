@@ -26,15 +26,15 @@ export default {
 				specialInstructions})
 		},
 	
-	getAllOrders: (id, completed) => {
-		return axios.get("/api/order/all", {
-			id,
-			completed
-		})
+	getAllOrders: () => {
+		return axios.get("/api/order/all")
 	},
 
-	updateComplete: () => {
-		return axios.put("/api/order/")
+	updateComplete: (id, completed) => {
+		return axios.put("/api/order/", {
+			id,
+			completed
+		});
 	},
 
 	validateLogin: (username, password, secretUsername, secretPassword) => {
