@@ -5,6 +5,9 @@ export default function(app) {
 	app.route("/api/order/")
 		.post(orderController.create);
 
+	app.route("/api/order/")
+		.put(orderController.update);
+
 	app.route("/api/order/:id")
 		.get(orderController.get)
 		.delete(orderController.delete);

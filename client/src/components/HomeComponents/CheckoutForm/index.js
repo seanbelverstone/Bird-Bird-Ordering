@@ -96,7 +96,7 @@ const CheckoutForm = (props) => {
       props.name, 
       props.telephone, 
       props.email, 
-      parseFloat(props.quantity),
+      props.quantity,
       props.jamSelected,
       props.gravySelected,
       props.total,

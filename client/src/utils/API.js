@@ -30,6 +30,10 @@ export default {
 		return axios.get("/api/order/all")
 	},
 
+	updateComplete: () => {
+		return axios.put("/api/order/")
+	},
+
 	validateLogin: (username, password, secretUsername, secretPassword) => {
 		return axios.post("/api/login", {
 			username,

@@ -17,6 +17,19 @@ module.exports = {
       .catch(err => response.status(422).json(err));
   },
 
+  update: (request, response) => {
+    db.Order
+      .update({
+        complete: request.body.complete
+      }, {
+        where: {
+          id: request.body.id
+        }
+      }).then(updatedOrder => {
+        response.json(updatedOrder);
+      })
+  },
+
   delete: (request, response) => {
     const id = request.params.id
     db.Order
