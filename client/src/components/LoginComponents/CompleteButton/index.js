@@ -14,34 +14,42 @@ class CompleteButton extends React.Component {
 	componentDidMount = () => {
 		let id = this.props.title.split("#");
 		id = id[1];
-		console.log(id);
 		this.setState({
 			id: id
-		});
+		}, this.isOrderComplete(this.props.orderComplete));
 	}
 
-	isOrderComplete = () => {
-
-		switch(this.props.orderComplete === 1) {
+	isOrderComplete = (completedVariable) => {
+		parseInt(completedVariable);
+		console.log(completedVariable);
+		
+		switch(completedVariable === 1) {
 			case true:
-				return(<Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>);
+				this.setState({
+					renderedButton: <Button color="warning" onClick={this.handleComplete(this.state.id, completedVariable)}>Mark as Incomplete</Button>
+				})
+				break;
 			default:
-				return(<Button color="success" onClick={this.handleComplete}>Complete Order</Button>)
+				this.setState({
+					renderedButton: <Button color="success" onClick={this.handleComplete(this.state.id, completedVariable)}>Complete Order</Button>
+				});				
 		}
 	}
 
-	handleComplete = () => {
-		API.updateComplete(this.state.id, this.props.orderComplete)
+	handleComplete = (id, completed) => {
+		API.updateComplete(id, completed)
 		.then(response => {
-			console.log(response);
-		})
-		
+
+			this.isOrderComplete(response.data[0])
+			API.getAllOrders()
+			.then(response => console.log(response));
+		});
 	}
 
 	render() {	
 		return (
 			<div>
-				{this.isOrderComplete()}
+				{this.state.renderedButton}
 			</div>
 			);
 		}
