@@ -18,12 +18,13 @@ module.exports = {
   },
 
   update: (request, response) => {
+    console.log(request.body.completed)
     db.Order
       .update({
         completed: request.body.completed
       }, {
         where: {
-          id: request.body.id
+          id: request.params.id
         }
       }).then(updatedOrder => {
         response.json(updatedOrder);
