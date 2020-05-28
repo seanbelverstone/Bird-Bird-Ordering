@@ -30,6 +30,10 @@ export default {
 		return axios.get("/api/order/all")
 	},
 
+	getOneOrder: (id) => {
+		return axios.get(`/api/order/${id}`)
+	},
+
 	updateComplete: (id, completed) => {
 		console.log(`ID: ${id} COMPLETE?: ${completed}`)
 		return axios.put(`/api/order/${id}`, {

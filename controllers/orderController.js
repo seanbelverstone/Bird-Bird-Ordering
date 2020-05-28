@@ -2,7 +2,6 @@ const db = require("../models");
 
 module.exports = {
   get: (request, response) => {
-
     db.Order.findAll({}, 
 		).then(orders => {
       response.json(orders);

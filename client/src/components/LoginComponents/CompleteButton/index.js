@@ -14,11 +14,17 @@ class CompleteButton extends React.Component {
 	}
 
 	componentDidMount = () => {
-		let id = this.props.title.split("#");
-		id = id[1];
-		this.setState({
-			id: id
-		}, this.isOrderComplete(this.props.orderComplete));
+			let id = this.props.title.split("#");
+			this.setState({
+				id: id[1]
+			}, () => {
+				API.getOneOrder(this.state.id)
+				.then(response => {
+					console.log(response.data);
+					this.isOrderComplete(response.data);
+			})
+		});
+
 	}
 
 	isOrderComplete = (completedVariable) => {
