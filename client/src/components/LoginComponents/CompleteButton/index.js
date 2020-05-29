@@ -20,8 +20,12 @@ class CompleteButton extends React.Component {
 			}, () => {
 				API.getOneOrder(this.state.id)
 				.then(response => {
-					console.log(response.data);
-					this.isOrderComplete(response.data);
+                                        //When this returns, setState of trueOrFalse to equal response.data[1]
+					this.setState({
+                                            trueOrFalse: response.data[1]
+                                        },
+                                        console.log(response.data);
+					this.isOrderComplete(this.state.trueOrFalse));
 			})
 		});
 
@@ -35,20 +39,29 @@ class CompleteButton extends React.Component {
 			case true:
 				this.setState({
 					renderedButton: <Button color="warning" onClick={() => this.handleComplete(this.state.id, completedVariable)}>Mark as Incomplete</Button>,
-					trueOrFalse: 0
 				})
 				break;
 			default:
 				this.setState({
 					renderedButton: <Button color="success" onClick={() => this.handleComplete(this.state.id, completedVariable)}>Complete Order</Button>,
-					trueOrFalse: 1
 				});		
 				break;		
 		}
 	}
 
 	handleComplete = (id, completed) => {
-		API.updateComplete(id, completed)
+// Checks to see if the passed in variable is true or false
+// If true, we want to update the database to reflect the opposite when clicked
+                if(completed === 1) {
+                   this.setState({
+                       trueOrFalse: 0
+                   )};
+                } else {
+                   this.setState{(
+                       trueOrFalse: 1
+                   });
+                }
+		API.updateComplete(id, this.state.trueOrFalse)
 		.then(response => {
 
 			this.isOrderComplete(response.data[0]);
