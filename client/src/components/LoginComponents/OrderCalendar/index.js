@@ -73,7 +73,6 @@ class OrderCalendar extends React.Component {
 				events,
 			}
 		}, () => {
-			console.log(this.state.events);
 			this.totalBiscuits();
 		});
 	}
