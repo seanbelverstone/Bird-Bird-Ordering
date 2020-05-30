@@ -61,7 +61,7 @@ class EventModal extends React.Component {
 					Pick Up Date and Time: {this.props.pickupDate} @ {this.props.pickupTime}
 				</ModalBody>
 				<ModalFooter>
-					<CompleteButton orderComplete={splitDesc[13]} title={this.props.title} />
+					<CompleteButton orderComplete={splitDesc[13]} title={this.props.title} setState={(parameter) => {this.setState(parameter)}}/>
 					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
 				</ModalFooter>
 				</Modal>

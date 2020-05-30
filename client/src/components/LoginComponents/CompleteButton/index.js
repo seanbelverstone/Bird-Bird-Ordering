@@ -8,18 +8,17 @@ class CompleteButton extends React.Component {
 		this.state = {
 			id: "",
 			renderedButton: "",
-			trueOrFalse: ""
 		}
 		this.isOrderComplete = this.isOrderComplete.bind(this);
+		this.handleComplete = this.handleComplete.bind(this);
 	}
 
-	componentWillMount = () => {
-		this.isOrderComplete(this.props.orderComplete);
+	componentDidMount = () => {
 		let id = this.props.title.split("#");
 		this.setState({
 			id: id[1],
-			trueOrFalse: parseInt(this.props.orderComplete)
-		});
+		}, this.isOrderComplete(this.props.orderComplete));
+		;
 	}
 
 	isOrderComplete = (completedVariable) => {
@@ -28,30 +27,27 @@ class CompleteButton extends React.Component {
 
 		if (completedVariable === 1) {
 			this.setState({
-				renderedButton: <Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>,
+				renderedButton: <Button color="warning" onClick={() => this.handleComplete(this.state.id, this.props.orderComplete)}>Mark as Incomplete</Button>,
 			})
-		} else if (completedVariable === 0) {
-			this.setState({
-				renderedButton: <Button color="success" onClick={this.handleComplete}>Complete Order</Button>,
-			});		
 		} else {
 			this.setState({
-				renderedButton: <p>no button m8</p>
-			})
+				renderedButton: <Button color="success" onClick={() => this.handleComplete(this.state.id, this.props.orderComplete)}>Complete Order</Button>,
+			});		
 		}
 	}
 
-	handleComplete = () => {
+	handleComplete = (id, completed) => {
+		parseInt(completed);
 	// Checks to see if the passed in variable is true or false
 	// If true, we want to update the database to reflect the opposite when clicked
-		if(this.state.trueOrFalse === 1) {
-			this.setState({
-				trueOrFalse: 0
-			}, this.updateButton(this.state.id, this.state.trueOrFalse));
+		if(completed === 1) {
+			this.props.setState({
+				orderComplete: 0
+			}, this.updateButton(id, completed));
 		} else {
-			this.setState({
-				trueOrFalse: 1
-			}, this.updateButton(this.state.id, this.state.trueOrFalse));
+			this.props.setState({
+				orderComplete: 1
+			}, this.updateButton(id, completed));
 		}
 	}
 
