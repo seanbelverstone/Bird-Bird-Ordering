@@ -152,7 +152,7 @@ class OrderCalendar extends React.Component {
 			// if the element's timestamp is within the end and the start, add the quantity to the total quantity
 			// and add one to the orders on screen variable.
 			if (elementDateTime >= start && elementDateTime <= end) {
-				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)
+				biscuitQuantity = (biscuitQuantity + parseFloat(element.biscuitQuantity))
 				ordersOnScreen++;
 			}
 			this.setState({

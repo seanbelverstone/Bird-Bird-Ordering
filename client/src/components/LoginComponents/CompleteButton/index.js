@@ -20,11 +20,11 @@ class CompleteButton extends React.Component {
 			}, () => {
 				API.getOneOrder(this.state.id)
 				.then(response => {
-                                        //When this returns, setState of trueOrFalse to equal response.data[1]
+                    //When this returns, setState of trueOrFalse to equal response.data[1]
 					this.setState({
-                                            trueOrFalse: response.data[1]
-                                        },
-                                        console.log(response.data);
+                    	trueOrFalse: response.data[1]
+					},
+					console.log(response.data),
 					this.isOrderComplete(this.state.trueOrFalse));
 			})
 		});
@@ -55,11 +55,11 @@ class CompleteButton extends React.Component {
                 if(completed === 1) {
                    this.setState({
                        trueOrFalse: 0
-                   )};
+				   })
                 } else {
-                   this.setState{(
+            		this.setState({
                        trueOrFalse: 1
-                   });
+				   });
                 }
 		API.updateComplete(id, this.state.trueOrFalse)
 		.then(response => {
