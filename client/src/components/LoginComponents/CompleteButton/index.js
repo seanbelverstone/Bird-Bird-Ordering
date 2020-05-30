@@ -24,15 +24,20 @@ class CompleteButton extends React.Component {
 
 	isOrderComplete = (completedVariable) => {
 		console.log(completedVariable);
+		parseInt(completedVariable);
 
-		if(completedVariable === 1) {
+		if (completedVariable === 1) {
 			this.setState({
 				renderedButton: <Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>,
 			})
-		} else {
+		} else if (completedVariable === 0) {
 			this.setState({
 				renderedButton: <Button color="success" onClick={this.handleComplete}>Complete Order</Button>,
 			});		
+		} else {
+			this.setState({
+				renderedButton: <p>no button m8</p>
+			})
 		}
 	}
 
