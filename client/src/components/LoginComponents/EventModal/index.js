@@ -27,7 +27,6 @@ class EventModal extends React.Component {
 		let total = `${splitDesc[10]} $${splitDesc[11]}`;
 		// index position 12 and 13 are reserved for the Completed part
 		let notes = `${splitDesc[14]} ${justNotes[1]}`;
-		console.log(splitDesc[13]);
 
 		return (
 			<div className="eventData">

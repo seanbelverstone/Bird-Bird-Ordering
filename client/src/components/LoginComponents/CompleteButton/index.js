@@ -18,11 +18,11 @@ class CompleteButton extends React.Component {
 		this.setState({
 			id: id[1],
 		}, this.isOrderComplete(this.props.orderComplete));
-		;
+		console.log(`This is the props value: ${this.props.orderComplete}`)
 	}
 
 	isOrderComplete = (completedVariable) => {
-		console.log(completedVariable);
+		console.log(`This is the value being compared for the button: ${completedVariable}`);
 		parseInt(completedVariable);
 
 		if (completedVariable === 1) {
@@ -38,6 +38,7 @@ class CompleteButton extends React.Component {
 
 	handleComplete = (id, completed) => {
 		parseInt(completed);
+		console.log(`This is the value being sent to MYSQL ${completed}`)
 	// Checks to see if the passed in variable is true or false
 	// If true, we want to update the database to reflect the opposite when clicked
 		if(completed === 1) {
