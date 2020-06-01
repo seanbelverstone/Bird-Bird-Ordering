@@ -26,3 +26,13 @@ button.jamGravyImages:active {
 	border: rgb(150, 114, 22) 10px solid;
 	transition: 0.1s ease-in-out;
 }
+
+.lineBreak {
+	color: gray;
+	background-color: darkgray;
+	opacity: 0.2;
+	height: 5;
+	width: 150%;
+	position: relative;
+	left: -25%;
+}

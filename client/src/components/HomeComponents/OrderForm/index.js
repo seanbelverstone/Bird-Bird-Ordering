@@ -243,12 +243,12 @@ class OrderForm extends React.Component {
 							</Input>
 						</FormGroup>
 					</Col>
-					<hr />
 					<Col>
 						<Label for="price">Price</Label>
 						<div id="price" name="price">$30.00</div>
 					</Col>
 				</Row>
+				<hr className="lineBreak"/>
 				<Row>
 					<Col>
 						<div>Add Jam</div>
@@ -284,7 +284,7 @@ class OrderForm extends React.Component {
 						</button>
 					</Col>
 				</Row>
-
+				<hr className="lineBreak"/>
 				<Row>
 					<Col>
 						<div>Add a tip</div>
@@ -333,38 +333,49 @@ class OrderForm extends React.Component {
 							</AvGroup>
 						</div>
 					</Col>
-				</Row>
-				<Row>
-					<div>Select a pick-up date & time</div>
-				</Row>
-				<Row>
-					<UserCalendar pickupDateTime={this.state.pickupDateTime}
-								  handleCalendarChange={this.handleCalendarChange}/>
-				</Row>
-				<Row>
-				<FormGroup>
-					<Label for="specialInstructions">Would you like to include any special instructions?</Label>
-					<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
-				</FormGroup>
-				</Row>
-				<Row>
-					<FormGroup>
-							<PaymentModal 
-								tipValidation={this.state.tipInDollars}
-								total={subtotal}
-								values={this.state.values}
-								specialInstructions={this.state.specialInstructions}
-								pickupDateTime={this.state.pickupDateTime}
-								quantity={this.state.quantity}
-								jamSelected={this.state.jamSelected}
-								gravySelected={this.state.gravySelected}
-								/>
-					</FormGroup>
-					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
-				</Row>
-
-
-
+					</Row>
+					<hr className="lineBreak"/>
+					<Row>
+						<Col>
+							<div>Select a pick-up date & time</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<UserCalendar pickupDateTime={this.state.pickupDateTime}
+										handleCalendarChange={this.handleCalendarChange}/>
+						</Col>
+					</Row>
+					<hr className="lineBreak"/>
+					<Row>
+						<Col>
+							<FormGroup>
+								<Label for="specialInstructions">Would you like to include any special instructions?</Label>
+								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
+							</FormGroup>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<FormGroup>
+									<PaymentModal 
+										tipValidation={this.state.tipInDollars}
+										total={subtotal}
+										values={this.state.values}
+										specialInstructions={this.state.specialInstructions}
+										pickupDateTime={this.state.pickupDateTime}
+										quantity={this.state.quantity}
+										jamSelected={this.state.jamSelected}
+										gravySelected={this.state.gravySelected}
+										/>
+							</FormGroup>
+						</Col>
+					</Row>
 			</AvForm>
 		);
 	}
