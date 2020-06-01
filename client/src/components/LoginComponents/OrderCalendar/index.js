@@ -84,7 +84,6 @@ class OrderCalendar extends React.Component {
 		let newStyle = {
 			backgroundColor: "",
 		}
-		console.log(event.desc);
 		var eventStringSearch = event.desc.search("Completed: 1")
 		if (eventStringSearch !== -1) {
 				newStyle.backgroundColor = "goldenrod";
