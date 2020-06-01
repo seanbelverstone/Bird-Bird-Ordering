@@ -2,6 +2,8 @@ import React from 'react';
 import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -183,8 +185,10 @@ class OrderForm extends React.Component {
 
 	  
 	componentDidMount() {
+		var initialDate = subDays(new Date(), -2);
+		initialDate = setHours(setMinutes(initialDate, 0), 8);
 		this.setState({
-			pickupDateTime: subDays(new Date(), -2)
+			pickupDateTime: initialDate
 		});
 		customPercentageAmount = this.state.tipInDollars;
 	}
