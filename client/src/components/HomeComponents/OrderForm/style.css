@@ -53,3 +53,7 @@ button.jamGravyImages:active {
 	position: relative;
 	left: -25%;
 }
+
+.tipButtons {
+	margin: 3px;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
 import UserCalendar from "../UserCalendar";
@@ -293,23 +293,23 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} value={0.15}>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.15}>
 							15%
 							<br />
 							${fifteenPercentTip}
-						</button>
-						<button onClick={this.addTip} value={0.18}>
+						</Button>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.18}>
 							18%
 							<br />
 							${eighteenPercentTip}
-						</button>
-						<button onClick={this.addTip} value={0.20}>
+						</Button>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.20}>
 							20%
 							<br />
 							${twentyPercentTip}
-						</button>
-						<button
-							onClick={this.handleForm}>Custom Amount</button>
+						</Button>
+						<Button
+							className="tipButtons" color="secondary" onClick={this.handleForm}>Custom Amount</Button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<AvGroup className="input-group">
