@@ -11,6 +11,7 @@ export default {
 		gravy,
 		totalCost,
 		pickupDateTime,
+		completed,
 		specialInstructions) => {
 			return axios.post("/api/order", {
 				name, 
@@ -20,12 +21,21 @@ export default {
 				gravy,
 				jam,
 				totalCost, 
-				pickupDateTime, 
+				pickupDateTime,
+				completed,
 				specialInstructions})
 		},
 	
 	getAllOrders: () => {
 		return axios.get("/api/order/all")
+	},
+
+	updateComplete: (id, completed) => {
+		console.log(`ID: ${id} COMPLETE?: ${completed}`)
+		return axios.patch(`/api/order/${id}`, {
+			id,
+			completed
+		});
 	},
 
 	validateLogin: (username, password, secretUsername, secretPassword) => {

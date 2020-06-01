@@ -4,6 +4,7 @@ import API from "../../../utils/API";
 import emailjs from "emailjs-com";
 
 let templateParams = {};
+const completed = 0;
 
 const CheckoutForm = (props) => {
 
@@ -100,6 +101,7 @@ const CheckoutForm = (props) => {
       props.gravySelected,
       props.total,
       props.pickupDateTime,
+      completed,
       props.specialInstructions,
       ).then(response => {
         console.log(response)

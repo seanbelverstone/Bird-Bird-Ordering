@@ -4,6 +4,7 @@ import moment from "moment";
 import API from "../../../utils/API";
 import EventModal from "../EventModal";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./style.css"
 
 const localizer = momentLocalizer(moment);
 const list = [];
@@ -45,7 +46,6 @@ class OrderCalendar extends React.Component {
 	// this function fires after the get request has finished
 	sortData = () => {
 		var unsortedEvents = this.state.rawData
-
 		// loops through the array, and pushes all the necessary data to a new 'list' array, giving it the
 		// titles needed to translate into the calendar. Had to push to a global const variable as pushing 
 		// directly to an array in state is bad practice.
@@ -62,6 +62,7 @@ class OrderCalendar extends React.Component {
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
 							Total: ${unsortedEvents[i].totalCost}\n
+							Completed: ${unsortedEvents[i].completed}\n
 							Notes: ${unsortedEvents[i].specialInstructions}`
 							
 			})
@@ -74,7 +75,23 @@ class OrderCalendar extends React.Component {
 			}
 		}, () => {
 			this.totalBiscuits();
+
 		});
+	}
+
+	// This function changes the color of the button based on whether it is completed or not.
+	eventColorChange = (event, start, end, isSelected) => {
+		let newStyle = {
+			backgroundColor: "",
+		}
+		var eventStringSearch = event.desc.search("Completed: 1")
+		if (eventStringSearch !== -1) {
+				newStyle.backgroundColor = "goldenrod";
+			}
+		return {
+			style: newStyle
+		}
+
 	}
 	
 	// adds 30 minutes onto the finishing time, giving us a collection window
@@ -151,7 +168,7 @@ class OrderCalendar extends React.Component {
 			// if the element's timestamp is within the end and the start, add the quantity to the total quantity
 			// and add one to the orders on screen variable.
 			if (elementDateTime >= start && elementDateTime <= end) {
-				biscuitQuantity = (biscuitQuantity + element.biscuitQuantity)
+				biscuitQuantity = (biscuitQuantity + parseFloat(element.biscuitQuantity))
 				ordersOnScreen++;
 			}
 			this.setState({
@@ -195,6 +212,7 @@ class OrderCalendar extends React.Component {
 					view={this.state.currentView}
 					onNavigate={this.setCurrentDate}
 					onView={this.setCurrentView}
+					eventPropGetter={this.eventColorChange}
 					/>
 
 				<EventModal 

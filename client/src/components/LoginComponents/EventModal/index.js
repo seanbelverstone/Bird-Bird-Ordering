@@ -1,11 +1,20 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import CompleteButton from "../CompleteButton";
+
+let splitDesc;
 
 class EventModal extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			completed: ""
+		}
+	}
 
 	sortDescription = (desc) => {
 		// split the description array up by the space and enters that was jumbling it up
-		let splitDesc = desc.trim().split(/[\s ↵↵]+/);
+		splitDesc = desc.trim().split(/[\s ↵↵]+/);
 		// splits the description array by just where it says Notes, so we can access all of the text after that
 		let justNotes = desc.split("Notes: ")
 
@@ -16,7 +25,8 @@ class EventModal extends React.Component {
 		let telephone = `${splitDesc[6]} ${splitDesc[7]}`;
 		let email = `${splitDesc[8]} ${splitDesc[9]}`;
 		let total = `${splitDesc[10]} $${splitDesc[11]}`;
-		let notes = `${splitDesc[12]} ${justNotes[1]}`;
+		// index position 12 and 13 are reserved for the Completed part
+		let notes = `${splitDesc[14]} ${justNotes[1]}`;
 
 		return (
 			<div className="eventData">
@@ -29,8 +39,8 @@ class EventModal extends React.Component {
 				<p>{notes}</p>
 			</div>
 		)
-	}
 
+	}
 
 	render() {
 		if(!this.props.show) {
@@ -50,6 +60,7 @@ class EventModal extends React.Component {
 					Pick Up Date and Time: {this.props.pickupDate} @ {this.props.pickupTime}
 				</ModalBody>
 				<ModalFooter>
+					<CompleteButton orderComplete={splitDesc[13]} title={this.props.title}/>
 					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
 				</ModalFooter>
 				</Modal>
