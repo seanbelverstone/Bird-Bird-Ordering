@@ -243,6 +243,7 @@ class OrderForm extends React.Component {
 							</Input>
 						</FormGroup>
 					</Col>
+					<hr />
 					<Col>
 						<Label for="price">Price</Label>
 						<div id="price" name="price">$30.00</div>

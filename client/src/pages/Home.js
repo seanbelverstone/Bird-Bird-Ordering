@@ -32,7 +32,7 @@ class Home extends Component {
 							<img id="biscuits" src={biscuits} alt="a dozen biscuits" />
 						</div>
 					</div>
-					<div className="row">
+					<div className="row" id="orderFormContainer">
 						<OrderForm />
 					</div>
 

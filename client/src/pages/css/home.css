@@ -2,8 +2,7 @@
 	font-style: normal;
 	font-family: 'Raleway', sans-serif;
 	margin-top: 64px;
-	margin-right: 26% !important;
-	margin-left: 26% !important;
+	text-align: center;
 }
 
 #employeeButton {
@@ -15,4 +14,10 @@
 #biscuits {
 	margin-top: 50px;
 	width: 80%;
+}
+
+#orderFormContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
