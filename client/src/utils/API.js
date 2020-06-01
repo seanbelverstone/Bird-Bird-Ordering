@@ -32,7 +32,7 @@ export default {
 
 	updateComplete: (id, completed) => {
 		console.log(`ID: ${id} COMPLETE?: ${completed}`)
-		return axios.put(`/api/order/${id}`, {
+		return axios.patch(`/api/order/${id}`, {
 			id,
 			completed
 		});

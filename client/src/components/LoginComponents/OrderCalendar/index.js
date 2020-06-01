@@ -65,6 +65,7 @@ class OrderCalendar extends React.Component {
 							Notes: ${unsortedEvents[i].specialInstructions}`
 							
 			})
+			console.log(unsortedEvents[i])
 		}
 		this.setState(state => {
 			// then using concat(), update the events state object to trigger a re-render

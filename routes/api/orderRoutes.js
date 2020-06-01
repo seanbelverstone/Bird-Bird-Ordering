@@ -6,7 +6,7 @@ export default function(app) {
 		.post(orderController.create);
 
 	app.route("/api/order/:id")
-		.put(orderController.update)
+		.patch(orderController.update)
 		.delete(orderController.delete);
 
 	app.route("/api/order/all")

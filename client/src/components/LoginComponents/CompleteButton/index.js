@@ -8,47 +8,45 @@ class CompleteButton extends React.Component {
 		this.state = {
 			id: "",
 			renderedButton: "",
+			trueOrFalse: ""
 		}
 		this.isOrderComplete = this.isOrderComplete.bind(this);
-		this.handleComplete = this.handleComplete.bind(this);
 	}
 
-	componentDidMount = () => {
+	componentWillMount = () => {
+		this.isOrderComplete(this.props.orderComplete);
 		let id = this.props.title.split("#");
 		this.setState({
 			id: id[1],
-		}, this.isOrderComplete(this.props.orderComplete));
-		console.log(`This is the props value: ${this.props.orderComplete}`)
+			trueOrFalse: parseInt(this.props.orderComplete)
+		});
 	}
 
 	isOrderComplete = (completedVariable) => {
-		console.log(`This is the value being compared for the button: ${completedVariable}`);
-		parseInt(completedVariable);
+		console.log(completedVariable);
 
-		if (completedVariable === 1) {
+		if(completedVariable === 1) {
 			this.setState({
-				renderedButton: <Button color="warning" onClick={() => this.handleComplete(this.state.id, this.props.orderComplete)}>Mark as Incomplete</Button>,
+				renderedButton: <Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>,
 			})
 		} else {
 			this.setState({
-				renderedButton: <Button color="success" onClick={() => this.handleComplete(this.state.id, this.props.orderComplete)}>Complete Order</Button>,
+				renderedButton: <Button color="success" onClick={this.handleComplete}>Complete Order</Button>,
 			});		
 		}
 	}
 
-	handleComplete = (id, completed) => {
-		parseInt(completed);
-		console.log(`This is the value being sent to MYSQL ${completed}`)
+	handleComplete = () => {
 	// Checks to see if the passed in variable is true or false
 	// If true, we want to update the database to reflect the opposite when clicked
-		if(completed === 1) {
-			this.props.setState({
-				orderComplete: 0
-			}, this.updateButton(id, completed));
+		if(this.state.trueOrFalse === 1) {
+			this.setState({
+				trueOrFalse: 0
+			}, this.updateButton(this.state.id, this.state.trueOrFalse));
 		} else {
-			this.props.setState({
-				orderComplete: 1
-			}, this.updateButton(id, completed));
+			this.setState({
+				trueOrFalse: 1
+			}, this.updateButton(this.state.id, this.state.trueOrFalse));
 		}
 	}
 
