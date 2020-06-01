@@ -4,6 +4,7 @@ import moment from "moment";
 import API from "../../../utils/API";
 import EventModal from "../EventModal";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import "./style.css"
 
 const localizer = momentLocalizer(moment);
 const list = [];
@@ -65,7 +66,6 @@ class OrderCalendar extends React.Component {
 							Notes: ${unsortedEvents[i].specialInstructions}`
 							
 			})
-			console.log(unsortedEvents[i])
 		}
 		this.setState(state => {
 			// then using concat(), update the events state object to trigger a re-render
@@ -75,7 +75,24 @@ class OrderCalendar extends React.Component {
 			}
 		}, () => {
 			this.totalBiscuits();
+
 		});
+	}
+
+	// This function changes the color of the button based on whether it is completed or not.
+	eventColorChange = (event, start, end, isSelected) => {
+		let newStyle = {
+			backgroundColor: "",
+		}
+		console.log(event.desc);
+		var eventStringSearch = event.desc.search("Completed: 1")
+		if (eventStringSearch !== -1) {
+				newStyle.backgroundColor = "goldenrod";
+			}
+		return {
+			style: newStyle
+		}
+
 	}
 	
 	// adds 30 minutes onto the finishing time, giving us a collection window
@@ -196,6 +213,7 @@ class OrderCalendar extends React.Component {
 					view={this.state.currentView}
 					onNavigate={this.setCurrentDate}
 					onView={this.setCurrentView}
+					eventPropGetter={this.eventColorChange}
 					/>
 
 				<EventModal 
