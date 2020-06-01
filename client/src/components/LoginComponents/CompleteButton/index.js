@@ -15,23 +15,27 @@ class CompleteButton extends React.Component {
 	}
 
 	componentDidMount = () => {
+		this.isOrderComplete(this.props.orderComplete);
 		let id = this.props.title.split("#");
 		this.setState({
-			id: id[1],
-			trueOrFalse: this.props.orderComplete
+			id: id[1]
 		});
 	}
 
 	isOrderComplete = (completedVariable) => {
 
-		if(completedVariable === "1") {
+		if(completedVariable == 1) {
 			this.setState({
-				trueOrFalse: 0
-			})
-			return <Button color="warning" onClick={() => this.updateButton()}>Mark as Incomplete</Button>
+				trueOrFalse: 0,
+				renderedButton: <Button color="warning" onClick={() => this.updateButton()}>Mark as Incomplete</Button>
+			});
 		} else {
-			return <Button color="success" onClick={() => this.updateButton()}>Complete Order</Button>		
+			this.setState({
+				trueOrFalse: 1,
+				renderedButton: <Button color="success" onClick={() => this.updateButton()}>Complete Order</Button>		
+			});
 		}
+		return;
 	}
 
 	updateButton = () => {
@@ -41,14 +45,14 @@ class CompleteButton extends React.Component {
 			console.log(response);
 			this.setState({
 				trueOrFalse: response.data.completed
-			}/*, this.isOrderComplete(this.state.trueOrFalse)*/);
+			}, this.isOrderComplete(this.state.trueOrFalse));
 		});
 	}
 
 	render() {	
 		return (
 			<div>
-				{this.isOrderComplete(this.state.trueOrFalse)}
+				{this.state.renderedButton}
 			</div>
 			);
 		}
