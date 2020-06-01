@@ -19,7 +19,8 @@ class Home extends Component {
 				<div className="container">
 					<div className="row">
 						<div className="col-12">
-							<button id="employeeButton" onClick={this.loginPage}>Employee Login</button>
+							<button id="employeeButton" onClick={this.loginPage}></button>
+							<p id="loginText">Employee Login</p>
 						</div>
 					</div>
 					<div className="row">
