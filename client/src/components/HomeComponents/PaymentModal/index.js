@@ -22,7 +22,7 @@ const PaymentModal = (props) => {
 
   return (
     <div>
-      <Button type="submit" onClick={toggle}>{buttonLabel}NEXT</Button>
+      <Button type="submit" onClick={toggle}>{buttonLabel}Continue</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop="static" keyboard={false}>
         <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>

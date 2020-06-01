@@ -1,5 +1,5 @@
-#orderForm, #quantity, button, #datePicker, #specialInstructions, .form-control {
-	font-weight: 600;
+#orderForm, #quantity, button, #datePicker, #specialInstructions, .form-control, .tipButtons, .input-group-text {
+	font-weight: 600 !important;
 }
 
 #quantityAndPrice {
@@ -56,4 +56,19 @@ button.jamGravyImages:active {
 
 .tipButtons {
 	margin: 3px;
+}
+
+.input-group-text {
+	background-color: #6c757d !important;
+	color: white !important;
+	border: none !important;
+}
+
+.form-control:focus {
+	border-color: #6c757d !important;
+}
+
+option {
+	background-color: #6c757d;
+	color: white;
 }
