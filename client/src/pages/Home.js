@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import OrderForm from "../components/HomeComponents/OrderForm";
 import BottomNav from "../components/HomeComponents/BottomNav";
-import biscuits from "../images/dozenbiscuitsflip.jpg";
-import logo from "../images/birdbirdlogo.png";
+import biscuits from "../images/minisResized.jpg";
 import "./css/home.css";
 
 
