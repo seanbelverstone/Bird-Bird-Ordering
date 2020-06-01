@@ -269,6 +269,7 @@ class OrderForm extends React.Component {
 							value={15}
 							disabled
 							>
+						<p id="jamText">COMING SOON</p>
 						</button>
 					</Col>
 					<Col>

@@ -3,14 +3,26 @@
 }
 
 #jam {
-	background-image: url("https://via.placeholder.com/250");
+	background-image: url("../../../images/jamResized.jpg");
+	background-size: cover;
 	width: 250px;
 	height: 250px;
-	opacity: 0.2;
+	opacity: 0.4;
+}
+
+#jamText {
+	color: black;
+	font-size: 25px;
+	width: 110;
+	opacity: 1 !important;
+	font-weight: bolder !important;
+	background-color: white;
+	transform: rotate(330deg);
 }
 
 #gravy {
-	background-image: url("https://via.placeholder.com/250");
+	background-image: url("../../../images/gravyResized.jpg");
+	background-size: cover;
 	width: 250px;
 	height: 250px;
 }
