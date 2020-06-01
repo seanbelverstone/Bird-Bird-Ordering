@@ -1,5 +1,9 @@
-#orderForm, #quantity, button, #datePicker, #specialInstructions {
+#orderForm, #quantity, button, #datePicker, #specialInstructions, .form-control {
 	font-weight: 600;
+}
+
+#quantityAndPrice {
+	margin-top: 20px;
 }
 
 #jam {
@@ -30,6 +34,7 @@
 
 button.jamGravyImages:hover {
 	width: 250px;
+	height: 253px !important;
 	border: goldenrod 5px solid !important;
 	transition: 0.2s ease-in-out;
 }

@@ -99,7 +99,7 @@ class OrderForm extends React.Component {
 				gravySelected: 1,
 				sides: sides + gravyValue,
 				gravyStyle: {
-					border: "goldenrod 5px solid",
+					border: "goldenrod 6px solid",
 					boxShadow: "rgb(150, 114, 22) 4px 4px"
 				}
 			});
@@ -219,9 +219,9 @@ class OrderForm extends React.Component {
 	render() {
 		return (
 			<AvForm onSubmit={this.handleSubmit} id="orderForm">
-				<Row form>
+				<Row form id="quantityAndPrice">
 					<Col>
-						<FormGroup style={{width: "150px"}}>
+						<FormGroup style={{width: "97%"}}>
 							<Label for="quantity">Quantity</Label>
 							<Input 
 								type="select" 
