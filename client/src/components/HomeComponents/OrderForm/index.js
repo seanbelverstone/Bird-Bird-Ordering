@@ -185,7 +185,9 @@ class OrderForm extends React.Component {
 
 	  
 	componentDidMount() {
+		// set the date 2 days in the future
 		var initialDate = subDays(new Date(), -2);
+		// set the time to 8am
 		initialDate = setHours(setMinutes(initialDate, 0), 8);
 		this.setState({
 			pickupDateTime: initialDate
