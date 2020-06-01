@@ -11,58 +11,44 @@ class CompleteButton extends React.Component {
 			trueOrFalse: ""
 		}
 		this.isOrderComplete = this.isOrderComplete.bind(this);
+		this.updateButton = this.updateButton.bind(this);
 	}
 
-	componentWillMount = () => {
-		this.isOrderComplete(this.props.orderComplete);
+	componentDidMount = () => {
 		let id = this.props.title.split("#");
 		this.setState({
 			id: id[1],
-			trueOrFalse: parseInt(this.props.orderComplete)
+			trueOrFalse: this.props.orderComplete
 		});
 	}
 
 	isOrderComplete = (completedVariable) => {
-		console.log(completedVariable);
 
-		if(completedVariable === 1) {
-			this.setState({
-				renderedButton: <Button color="warning" onClick={this.handleComplete}>Mark as Incomplete</Button>,
-			})
-		} else {
-			this.setState({
-				renderedButton: <Button color="success" onClick={this.handleComplete}>Complete Order</Button>,
-			});		
-		}
-	}
-
-	handleComplete = () => {
-	// Checks to see if the passed in variable is true or false
-	// If true, we want to update the database to reflect the opposite when clicked
-		if(this.state.trueOrFalse === 1) {
+		if(completedVariable === "1") {
 			this.setState({
 				trueOrFalse: 0
-			}, this.updateButton(this.state.id, this.state.trueOrFalse));
+			})
+			return <Button color="warning" onClick={() => this.updateButton()}>Mark as Incomplete</Button>
 		} else {
-			this.setState({
-				trueOrFalse: 1
-			}, this.updateButton(this.state.id, this.state.trueOrFalse));
+			return <Button color="success" onClick={() => this.updateButton()}>Complete Order</Button>		
 		}
 	}
 
+	updateButton = () => {
 
-	updateButton = (id, completed) => {
-		API.updateComplete(id, completed)
+		API.updateComplete(this.state.id, this.state.trueOrFalse)
 		.then(response => {
 			console.log(response);
-			this.isOrderComplete(parseInt(response.data[0]));
+			this.setState({
+				trueOrFalse: response.data.completed
+			}/*, this.isOrderComplete(this.state.trueOrFalse)*/);
 		});
 	}
 
 	render() {	
 		return (
 			<div>
-				{this.state.renderedButton}
+				{this.isOrderComplete(this.state.trueOrFalse)}
 			</div>
 			);
 		}

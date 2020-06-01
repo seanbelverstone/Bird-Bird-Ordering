@@ -17,15 +17,16 @@ module.exports = {
   },
 
   update: (request, response) => {
-    console.log(request.body.completed)
+    console.log(`Completed variable: ${request.body.completed} at ID: ${request.body.id}`)
     db.Order
-      .update({
+      .findOne({where: {id: request.body.id}})
+      .then(
+        db.Order.update({
         completed: request.body.completed
-      }, {
-        where: {
-          id: request.params.id
-        }
-      }).then(updatedOrder => {
+      }, { where: {
+        id: request.body.id
+      }}))
+      .then(updatedOrder => {
         response.json(updatedOrder);
       })
   },
