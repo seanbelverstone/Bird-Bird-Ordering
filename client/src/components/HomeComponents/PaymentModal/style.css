@@ -5,6 +5,11 @@ div, button {
 	font-weight: bold;
 }
 
+#continueButton {
+	left: 41%;
+	position: relative;
+}
+
 .modal-title {
 	margin-top: 10px;
 	position: relative;
