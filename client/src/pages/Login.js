@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
 import OrderCalendar from "../components/LoginComponents/OrderCalendar";
+import "./css/home.css";
 import "./css/login.css";
 
 
@@ -38,7 +39,6 @@ class Login extends Component {
 					<div className="col-12">
 						<button id="backToHome" onClick={this.homePage}></button>
 						<p id="homeText">Back to Home</p>
-
 					</div>
 				</div>
 				<div className="loginArea">

@@ -1,3 +1,7 @@
+body {
+	background-image: none;
+}
+
 .container {
 	font-style: normal;
 	font-family: 'Raleway', sans-serif;
