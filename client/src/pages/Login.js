@@ -36,7 +36,9 @@ class Login extends Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-12">
-						<button id="backToHome" onClick={this.homePage}>Back to Home</button>
+						<button id="backToHome" onClick={this.homePage}></button>
+						<p id="homeText">Back to Home</p>
+
 					</div>
 				</div>
 				<div className="loginArea">
