@@ -6,7 +6,8 @@ div, button {
 }
 
 #continueButton {
-	left: 30%;
+	left: 41%;
+	position: relative;
 }
 
 .modal-title {
