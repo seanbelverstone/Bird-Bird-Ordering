@@ -2,6 +2,10 @@
 	font-weight: 600 !important;
 }
 
+#datePicker {
+	margin-bottom: 0 !important;
+}
+
 #quantityAndPrice {
 	margin-top: 20px;
 }
