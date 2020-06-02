@@ -1,6 +1,5 @@
 client/node_modules/
 client/package-lock.json
-client/src/registerServiceWorker.js
 node_modules/
 package-lock.json
 .gitignore
