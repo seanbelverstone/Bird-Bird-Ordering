@@ -4,3 +4,13 @@ div, button {
 	color: black;
 	font-weight: bold;
 }
+
+.modal-title {
+	position: relative;
+	left: 30%;
+	font-weight: 600;
+}
+
+#subtotal {
+	text-align: center;
+}
