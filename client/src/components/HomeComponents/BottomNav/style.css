@@ -13,6 +13,10 @@ nav {
 	margin: 0;
 }
 
+#home {
+	margin-left: 55px;
+}
+
 a {
 	color: #a8a8a8 !important;
 	font-family: Raleway;
@@ -43,4 +47,9 @@ a:hover {
 #facebook {
 	width: 25px;
 	margin-right: 23px;
+}
+
+#insta:hover, #facebook:hover {
+	opacity: 0.5;
+	transition: ease-in-out .2s;
 }
