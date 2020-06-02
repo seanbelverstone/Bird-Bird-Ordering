@@ -1,5 +1,8 @@
 body {
-	background-image: none;
+	background-image: url("../../images/birdBirdBackgroundFadedResized.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: top;
 }
 
 .container {

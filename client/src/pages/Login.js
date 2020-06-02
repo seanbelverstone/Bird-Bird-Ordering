@@ -30,7 +30,7 @@ class Login extends Component {
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
 			displayedComponent = 
-			<div>
+			<div id="loginBackground">
 				<div className="row">
 					<div className="col-12">
 						<h1 id="title">EMPLOYEE LOGIN</h1>
