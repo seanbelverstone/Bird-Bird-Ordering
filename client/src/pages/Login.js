@@ -29,7 +29,19 @@ class Login extends Component {
 
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
-			displayedComponent = <EmployeeLogin setState={(parameter) => {this.setState(parameter)}}/>
+			displayedComponent = 
+			<div>
+				<div className="row">
+					<div className="col-12">
+						<h1 id="title">EMPLOYEE LOGIN</h1>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12">
+						<EmployeeLogin setState={(parameter) => {this.setState(parameter)}} />
+					</div>
+				</div>
+			</div>
 		}
 
 
@@ -42,16 +54,7 @@ class Login extends Component {
 					</div>
 				</div>
 				<div className="loginArea">
-					<div className="row">
-						<div className="col-12">
-							<h1 id="title">EMPLOYEE LOGIN</h1>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-12">
-							{displayedComponent}
-						</div>
-					</div>
+					{displayedComponent}
 				</div>
 			</div>
 		)
