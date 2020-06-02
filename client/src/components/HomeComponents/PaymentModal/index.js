@@ -40,8 +40,6 @@ const PaymentModal = (props) => {
           <br />
 
         </ModalBody>
-        <ModalFooter>
-        </ModalFooter>
       </Modal>
     </div>
   );

@@ -6,6 +6,7 @@ div, button {
 }
 
 .modal-title {
+	margin-top: 10px;
 	position: relative;
 	left: 30%;
 	font-weight: 600;
@@ -13,4 +14,8 @@ div, button {
 
 #subtotal {
 	text-align: center;
+}
+
+span {
+	font-size: 40px !important;
 }
