@@ -119,7 +119,7 @@ const CheckoutForm = (props) => {
           quantity: response.data.biscuitQuantity,
           jam: response.data.jam,
           gravy: response.data.gravy,
-          pickupDateTime: response.data.pickupDateTime,
+          pickupDateTime: new Date(response.data.pickupDateTime),
           total: response.data.totalCost,
           timePlaced: response.data.createdAt
         };
