@@ -11,7 +11,7 @@ const UserCalendar = (props) => {
 	return (
 		<DatePicker
 		id="datePicker"
-		selected={setHours(setMinutes(props.pickupDateTime, 0), 8)}
+		selected={props.pickupDateTime}
 		onChange={props.handleCalendarChange}
 		dateFormat="MMMM d, h:mm aa"
 		// min date makes sure users can't select a date sooner than 2 days from the current day

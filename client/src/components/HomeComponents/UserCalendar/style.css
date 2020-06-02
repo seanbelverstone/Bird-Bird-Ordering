@@ -2,6 +2,25 @@
 	display: none;
 }
 
-.react-datepicker {
-	font-size: 15px
+.react-datepicker, .react-datepicker-popper {
+	font-size: 15px;
+	border-radius: 5px !important;
+}
+
+.react-datepicker__header, .react-datepicker__current-month, .react-datepicker__day-name, .react-datepicker-time__header {
+	background-color: #6c757d;
+	color: white !important;
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range {
+	background-color: goldenrod !important;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+	background-color: goldenrod !important;
+}
+
+.react-datepicker__input-container {
+	border: #6c757d 2px solid;
+	border-radius: 5px;
 }

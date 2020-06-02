@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
 import OrderCalendar from "../components/LoginComponents/OrderCalendar";
+import "./css/home.css";
 import "./css/login.css";
 
 
@@ -28,7 +29,19 @@ class Login extends Component {
 
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
-			displayedComponent = <EmployeeLogin setState={(parameter) => {this.setState(parameter)}}/>
+			displayedComponent = 
+			<div id="loginBackground">
+				<div className="row">
+					<div className="col-12">
+						<h1 id="title">EMPLOYEE LOGIN</h1>
+					</div>
+				</div>
+				<div className="row">
+					<div className="col-12">
+						<EmployeeLogin setState={(parameter) => {this.setState(parameter)}} />
+					</div>
+				</div>
+			</div>
 		}
 
 
@@ -36,20 +49,12 @@ class Login extends Component {
 			<div className="container">
 				<div className="row">
 					<div className="col-12">
-						<button id="backToHome" onClick={this.homePage}>Back to Home</button>
+						<button id="backToHome" onClick={this.homePage}></button>
+						<p id="homeText">Back to Home</p>
 					</div>
 				</div>
 				<div className="loginArea">
-					<div className="row">
-						<div className="col-12">
-							<h1 id="title">EMPLOYEE LOGIN</h1>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-12">
-							{displayedComponent}
-						</div>
-					</div>
+					{displayedComponent}
 				</div>
 			</div>
 		)

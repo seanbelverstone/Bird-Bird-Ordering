@@ -1,18 +1,51 @@
+body {
+	background-image: url("../../images/birdBirdBackgroundFadedResized.jpg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+
 .container {
 	font-style: normal;
 	font-family: 'Raleway', sans-serif;
 	margin-top: 64px;
-	margin-right: 26% !important;
-	margin-left: 26% !important;
+	text-align: center;
 }
 
 #employeeButton {
 	font-weight: bold;
 	position: relative;
 	float: left;
+	background-image: url("../../images/birdbirdlogo.png");
+	background-size: cover;
+	width: 120px;
+	height: 120px;
+	border: none;
+}
+
+#loginText {
+	display: none;
+	position: relative;
+	left: -50%;
+	bottom: 20%;
+}
+
+#employeeButton:hover {
+	opacity: 0.4;
+}
+
+button#employeeButton:hover + p {
+	display: block;
 }
 
 #biscuits {
 	margin-top: 50px;
 	width: 80%;
+	border-radius: 20px;
+}
+
+#orderFormContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

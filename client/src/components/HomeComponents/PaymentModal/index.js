@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import UserForm from "../UserForm";
 import "./style.css";
 
@@ -22,11 +22,11 @@ const PaymentModal = (props) => {
 
   return (
     <div>
-      <Button type="submit" onClick={toggle}>{buttonLabel}NEXT</Button>
+      <Button type="submit" onClick={toggle}>{buttonLabel}Continue</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop="static" keyboard={false}>
         <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>
-          Your subtotal is ${props.total}
+          <div id="subtotal">Your subtotal is ${props.total}</div>
 
           <UserForm toggleClose={toggle}
                     total={props.total}
@@ -40,8 +40,6 @@ const PaymentModal = (props) => {
           <br />
 
         </ModalBody>
-        <ModalFooter>
-        </ModalFooter>
       </Modal>
     </div>
   );

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Alert } from 'reactstrap';
+import biscuit from "../../../images/solobiscuit.png";
 import "../IncorrectCardAlert/style.css";
+import "./style.css";
 
 const CorrectCardAlert = (props) => {
 
@@ -20,7 +22,9 @@ const CorrectCardAlert = (props) => {
         </p>
         <hr />
         <p className="mb-0">
-			We can't wait to see you!
+          <img src={biscuit} alt="a single biscuit" className="leftBiscuit"/>
+		  	    We can't wait to see you!
+          <img src={biscuit} alt="a single biscuit" className="rightBiscuit"/>
         </p>
       </Alert>
     </div>

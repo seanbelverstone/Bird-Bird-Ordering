@@ -1,7 +1,9 @@
 import React from 'react';
-import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import subDays from "date-fns/subDays";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -99,7 +101,7 @@ class OrderForm extends React.Component {
 				gravySelected: 1,
 				sides: sides + gravyValue,
 				gravyStyle: {
-					border: "goldenrod 5px solid",
+					border: "goldenrod 6px solid",
 					boxShadow: "rgb(150, 114, 22) 4px 4px"
 				}
 			});
@@ -183,8 +185,12 @@ class OrderForm extends React.Component {
 
 	  
 	componentDidMount() {
+		// set the date 2 days in the future
+		var initialDate = subDays(new Date(), -2);
+		// set the time to 8am
+		initialDate = setHours(setMinutes(initialDate, 0), 8);
 		this.setState({
-			pickupDateTime: subDays(new Date(), -2)
+			pickupDateTime: initialDate
 		});
 		customPercentageAmount = this.state.tipInDollars;
 	}
@@ -219,9 +225,9 @@ class OrderForm extends React.Component {
 	render() {
 		return (
 			<AvForm onSubmit={this.handleSubmit} id="orderForm">
-				<Row form>
+				<Row form id="quantityAndPrice">
 					<Col>
-						<FormGroup style={{width: "150px"}}>
+						<FormGroup style={{width: "97%"}}>
 							<Label for="quantity">Quantity</Label>
 							<Input 
 								type="select" 
@@ -248,6 +254,7 @@ class OrderForm extends React.Component {
 						<div id="price" name="price">$30.00</div>
 					</Col>
 				</Row>
+				<hr className="lineBreak"/>
 				<Row>
 					<Col>
 						<div>Add Jam</div>
@@ -268,6 +275,7 @@ class OrderForm extends React.Component {
 							value={15}
 							disabled
 							>
+						<p id="jamText">COMING SOON</p>
 						</button>
 					</Col>
 					<Col>
@@ -283,7 +291,7 @@ class OrderForm extends React.Component {
 						</button>
 					</Col>
 				</Row>
-
+				<hr className="lineBreak"/>
 				<Row>
 					<Col>
 						<div>Add a tip</div>
@@ -291,23 +299,23 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<button onClick={this.addTip} value={0.15}>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.15}>
 							15%
 							<br />
 							${fifteenPercentTip}
-						</button>
-						<button onClick={this.addTip} value={0.18}>
+						</Button>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.18}>
 							18%
 							<br />
 							${eighteenPercentTip}
-						</button>
-						<button onClick={this.addTip} value={0.20}>
+						</Button>
+						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.20}>
 							20%
 							<br />
 							${twentyPercentTip}
-						</button>
-						<button
-							onClick={this.handleForm}>Custom Amount</button>
+						</Button>
+						<Button
+							className="tipButtons" color="secondary" onClick={this.handleForm}>Custom Amount</Button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<AvGroup className="input-group">
@@ -332,38 +340,49 @@ class OrderForm extends React.Component {
 							</AvGroup>
 						</div>
 					</Col>
-				</Row>
-				<Row>
-					<div>Select a pick-up date & time</div>
-				</Row>
-				<Row>
-					<UserCalendar pickupDateTime={this.state.pickupDateTime}
-								  handleCalendarChange={this.handleCalendarChange}/>
-				</Row>
-				<Row>
-				<FormGroup>
-					<Label for="specialInstructions">Would you like to include any special instructions?</Label>
-					<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
-				</FormGroup>
-				</Row>
-				<Row>
-					<FormGroup>
-							<PaymentModal 
-								tipValidation={this.state.tipInDollars}
-								total={subtotal}
-								values={this.state.values}
-								specialInstructions={this.state.specialInstructions}
-								pickupDateTime={this.state.pickupDateTime}
-								quantity={this.state.quantity}
-								jamSelected={this.state.jamSelected}
-								gravySelected={this.state.gravySelected}
-								/>
-					</FormGroup>
-					<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
-				</Row>
-
-
-
+					</Row>
+					<hr className="lineBreak"/>
+					<Row>
+						<Col>
+							<div>Select a pick-up date & time</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<UserCalendar pickupDateTime={this.state.pickupDateTime}
+										handleCalendarChange={this.handleCalendarChange}/>
+						</Col>
+					</Row>
+					<hr className="lineBreak"/>
+					<Row>
+						<Col>
+							<FormGroup>
+								<Label for="specialInstructions">Would you like to include any special instructions?</Label>
+								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
+							</FormGroup>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<FormGroup>
+									<PaymentModal 
+										tipValidation={this.state.tipInDollars}
+										total={subtotal}
+										values={this.state.values}
+										specialInstructions={this.state.specialInstructions}
+										pickupDateTime={this.state.pickupDateTime}
+										quantity={this.state.quantity}
+										jamSelected={this.state.jamSelected}
+										gravySelected={this.state.gravySelected}
+										/>
+							</FormGroup>
+						</Col>
+					</Row>
 			</AvForm>
 		);
 	}

@@ -1,7 +1,9 @@
 import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
+import {Button} from "reactstrap";
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
+import "./style.css"
 
 let templateParams = {};
 const completed = 0;
@@ -155,9 +157,9 @@ const CheckoutForm = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <CardElement onChange={handleCardChange} />
-        <button type="submit" disabled={!stripe}>
+        <Button type="submit" color="secondary" id="stripeButton" disabled={!stripe}>
           Submit Order
-        </button>
+        </Button>
       </form>
     </div>
 

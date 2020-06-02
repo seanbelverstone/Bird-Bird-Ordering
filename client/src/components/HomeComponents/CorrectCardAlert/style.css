@@ -1,0 +1,9 @@
+.leftBiscuit, .rightBiscuit {
+	width: 70px;
+	margin: 15px;
+	opacity: 0.9;
+}
+
+.rightBiscuit {
+	transform: scaleX(-1);
+}

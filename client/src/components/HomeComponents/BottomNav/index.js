@@ -16,7 +16,7 @@ const BottomNav = () => {
       <Navbar fixed="bottom" light expand="md">
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
+              <NavLink id="home" href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://www.toasttab.com/bird-bird-biscuit/v3">ONLINE ORDER</NavLink>
@@ -47,8 +47,12 @@ const BottomNav = () => {
               <NavLink href="https://www.birdbirdbiscuit.com/now-hiring">NOW HIRING</NavLink>
             </NavItem>
           </Nav>
-          <img src={instaLogo} alt="Instagram logo" id="insta" href="http://instagram.com/birdbirdbiscuit"/>
-          <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
+          <a href="http://instagram.com/birdbirdbiscuit" target="_blank">
+            <img src={instaLogo} alt="Instagram logo" id="insta" />
+          </a>
+          <a href="https://www.facebook.com/birdbirdbiscuit" target="_blank">
+            <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
+          </a>
         </Navbar>
       </div>
   );

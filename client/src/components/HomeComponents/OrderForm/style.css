@@ -1,16 +1,32 @@
-#orderForm, #quantity, button, #datePicker, #specialInstructions {
-	font-weight: 600;
+#orderForm, #quantity, button, #datePicker, #specialInstructions, .form-control, .tipButtons, .input-group-text {
+	font-weight: 600 !important;
+}
+
+#quantityAndPrice {
+	margin-top: 20px;
 }
 
 #jam {
-	background-image: url("https://via.placeholder.com/250");
+	background-image: url("../../../images/jamResized.jpg");
+	background-size: cover;
 	width: 250px;
 	height: 250px;
-	opacity: 0.2;
+	opacity: 0.4;
+}
+
+#jamText {
+	color: black;
+	font-size: 25px;
+	width: 110;
+	opacity: 1 !important;
+	font-weight: bolder !important;
+	background-color: white;
+	transform: rotate(330deg);
 }
 
 #gravy {
-	background-image: url("https://via.placeholder.com/250");
+	background-image: url("../../../images/gravyResized.jpg");
+	background-size: cover;
 	width: 250px;
 	height: 250px;
 }
@@ -18,6 +34,7 @@
 
 button.jamGravyImages:hover {
 	width: 250px;
+	height: 253px !important;
 	border: goldenrod 5px solid !important;
 	transition: 0.2s ease-in-out;
 }
@@ -25,4 +42,33 @@ button.jamGravyImages:hover {
 button.jamGravyImages:active {
 	border: rgb(150, 114, 22) 10px solid;
 	transition: 0.1s ease-in-out;
+}
+
+.lineBreak {
+	color: gray;
+	background-color: darkgray;
+	opacity: 0.2;
+	height: 5;
+	width: 150%;
+	position: relative;
+	left: -25%;
+}
+
+.tipButtons {
+	margin: 3px;
+}
+
+.input-group-text {
+	background-color: goldenrod !important;
+	color: white !important;
+	border: none !important;
+}
+
+.form-control:focus {
+	border-color: #6c757d !important;
+}
+
+option {
+	background-color: #6c757d;
+	color: white;
 }
