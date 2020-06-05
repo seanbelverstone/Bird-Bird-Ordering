@@ -67,8 +67,6 @@ class OrderForm extends React.Component {
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
-		tax = parseFloat(subtotal * 0.0625).toFixed(2);
-		finalTotal = parseFloat(subtotal) + parseFloat(tax);
 	};
 
 	// Selecting jam or gravy. This updates the state called sides, to calculate how much this extra addition
@@ -208,7 +206,16 @@ class OrderForm extends React.Component {
 			subtotal = totalPrice;
 		} 			
 		return subtotal;
+	}
 
+	handleTax = () => {
+		tax = parseFloat(subtotal * 0.0625).toFixed(2);
+		return tax;
+		}
+
+	handleFinalTotal = () => {
+		finalTotal = parseFloat(subtotal) + parseFloat(tax);
+		return finalTotal;
 	}
 
 	handleSubmit(event, values) {
@@ -377,13 +384,13 @@ class OrderForm extends React.Component {
 						<hr />
 						<Row>
 							<Col>
-								<div id="tax">Tax: <p className="totalsText">${tax}</p></div>
+								<div id="tax">Tax: <p className="totalsText">${this.handleTax()}</p></div>
 							</Col>
 						</Row>
 						<hr />
 						<Row>
 							<Col>
-								<div id="finalTotal">Total: <p className="totalsText">${finalTotal}</p></div>
+								<div id="finalTotal">Total: <p className="totalsText">${this.handleFinalTotal()}</p></div>
 							</Col>
 						</Row>
 					</div>
