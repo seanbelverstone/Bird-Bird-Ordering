@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import format from "date-fns/format";
 import CompleteButton from "../CompleteButton";
 
 let splitDesc;
+const regex = /:\d\d([ ap]|$)/
 
 class EventModal extends React.Component {
 	constructor(props) {
@@ -10,6 +12,12 @@ class EventModal extends React.Component {
 		this.state = {
 			completed: ""
 		}
+	}
+
+	sortedTime = () => {
+		const removedEnd = this.props.pickupTime.replace(`GMT-0500 (Central Daylight Time)`, " ");
+		const finalTime = removedEnd.replace(regex, " ");
+		return finalTime;
 	}
 
 	sortDescription = (desc) => {
@@ -57,7 +65,7 @@ class EventModal extends React.Component {
 					<br />
 					<br />
 
-					Pick Up Date and Time: {this.props.pickupDate} @ {this.props.pickupTime}
+					Pick Up Date and Time: {format(new Date(this.props.pickupDate), "PPPP")} @ {this.sortedTime()}
 				</ModalBody>
 				<ModalFooter>
 					<CompleteButton orderComplete={splitDesc[13]} title={this.props.title}/>

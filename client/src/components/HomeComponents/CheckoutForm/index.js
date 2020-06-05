@@ -3,6 +3,7 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import {Button} from "reactstrap";
 import API from "../../../utils/API";
 import emailjs from "emailjs-com";
+import format from "date-fns/format";
 import "./style.css"
 
 let templateParams = {};
@@ -119,7 +120,8 @@ const CheckoutForm = (props) => {
           quantity: response.data.biscuitQuantity,
           jam: response.data.jam,
           gravy: response.data.gravy,
-          pickupDateTime: new Date(response.data.pickupDateTime),
+          // Formatting it here for easier readability for the user upon receiving their email
+          pickupDateTime: format(new Date(response.data.pickupDateTime), "PPPPp"),
           total: response.data.totalCost,
           timePlaced: response.data.createdAt
         };
