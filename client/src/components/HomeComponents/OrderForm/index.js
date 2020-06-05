@@ -10,13 +10,16 @@ import "./style.css";
 
 
 var totalPrice = 30;
+var quantityPrice = 30;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
 // Using this disabler because I am using the customPercentage amount later
 // eslint-disable-next-line
 var customPercentageAmount;
+var tax;
 var subtotal;
+var finalTotal;
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -58,7 +61,8 @@ class OrderForm extends React.Component {
 	};
 
 	handleTotals = () => {
-		totalPrice = (parseFloat(this.state.quantity)*30) + this.state.sides;
+		quantityPrice = parseFloat(this.state.quantity)*30;
+		totalPrice = quantityPrice + this.state.sides;
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
@@ -202,7 +206,16 @@ class OrderForm extends React.Component {
 			subtotal = totalPrice;
 		} 			
 		return subtotal;
+	}
 
+	handleTax = () => {
+		tax = parseFloat(subtotal * 0.0625).toFixed(2);
+		return tax;
+		}
+
+	handleFinalTotal = () => {
+		finalTotal = (parseFloat(subtotal) + parseFloat(tax)).toFixed(2);
+		return finalTotal;
 	}
 
 	handleSubmit(event, values) {
@@ -251,7 +264,7 @@ class OrderForm extends React.Component {
 					</Col>
 					<Col>
 						<Label for="price">Price</Label>
-						<div id="price" name="price">$30.00</div>
+						<div id="price" name="price">${quantityPrice}</div>
 					</Col>
 				</Row>
 				<hr className="lineBreak"/>
@@ -357,22 +370,36 @@ class OrderForm extends React.Component {
 					<Row>
 						<Col>
 							<FormGroup>
-								<Label for="specialInstructions">Would you like to include any special instructions?</Label>
+								<Label for="specialInstructions" className="specialInstructions">Would you like to include any special instructions?</Label>
 								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
 							</FormGroup>
 						</Col>
 					</Row>
-					<Row>
-						<Col>
-							<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
-						</Col>
-					</Row>
+					<div className="totalArea">
+						<Row>
+							<Col>
+								<div id="subtotal">Subtotal: <p className="totalsText">${this.handleSubtotal()}</p></div>
+							</Col>
+						</Row>
+						<hr />
+						<Row>
+							<Col>
+								<div id="tax">Tax: <p className="totalsText">${this.handleTax()}</p></div>
+							</Col>
+						</Row>
+						<hr />
+						<Row>
+							<Col>
+								<div id="finalTotal">Total: <p className="totalsText">${this.handleFinalTotal()}</p></div>
+							</Col>
+						</Row>
+					</div>
 					<Row>
 						<Col>
 							<FormGroup>
 									<PaymentModal 
 										tipValidation={this.state.tipInDollars}
-										total={subtotal}
+										total={finalTotal}
 										values={this.state.values}
 										specialInstructions={this.state.specialInstructions}
 										pickupDateTime={this.state.pickupDateTime}
