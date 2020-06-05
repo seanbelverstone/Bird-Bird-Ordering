@@ -70,6 +70,7 @@ class OrderCalendar extends React.Component {
 		this.setState(state => {
 			// then using concat(), update the events state object to trigger a re-render
 			const events = state.events.concat(list);
+			console.log(events);
 			return {
 				events,
 			}
