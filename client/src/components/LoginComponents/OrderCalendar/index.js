@@ -112,6 +112,7 @@ class OrderCalendar extends React.Component {
 	}
 
 	toggleModal = () => {
+		console.log(this.state.clickedTime);
 		this.setState({
 			clicked: !this.state.clicked
 		})
