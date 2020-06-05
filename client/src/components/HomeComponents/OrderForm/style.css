@@ -76,3 +76,14 @@ option {
 	background-color: #6c757d;
 	color: white;
 }
+
+.totalArea {
+	padding: 20px;
+	border: 2px lightslategray solid;
+	width: auto;
+	line-height: 30px;
+	margin-bottom: 20px;
+	margin-top: 15px;
+	border-radius: 10px;
+	font-size: 25px;
+}

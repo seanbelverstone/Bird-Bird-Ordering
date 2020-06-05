@@ -368,21 +368,25 @@ class OrderForm extends React.Component {
 							</FormGroup>
 						</Col>
 					</Row>
-					<Row>
-						<Col>
-							<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<div id="tax">Tax: ${tax}</div>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<div id="finalTotal">Total: ${finalTotal}</div>
-						</Col>
-					</Row>
+					<div className="totalArea">
+						<Row>
+							<Col>
+								<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
+							</Col>
+						</Row>
+						<hr />
+						<Row>
+							<Col>
+								<div id="tax">Tax: ${tax}</div>
+							</Col>
+						</Row>
+						<hr />
+						<Row>
+							<Col>
+								<div id="finalTotal">Total: ${finalTotal}</div>
+							</Col>
+						</Row>
+					</div>
 					<Row>
 						<Col>
 							<FormGroup>
