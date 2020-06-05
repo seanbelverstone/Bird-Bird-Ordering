@@ -4,6 +4,7 @@ import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validat
 import subDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import format from "date-fns/format";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -375,7 +376,7 @@ class OrderForm extends React.Component {
 										total={subtotal}
 										values={this.state.values}
 										specialInstructions={this.state.specialInstructions}
-										pickupDateTime={this.state.pickupDateTime}
+										pickupDateTime={format(new Date(this.state.pickupDateTime), "PPPPp")}
 										quantity={this.state.quantity}
 										jamSelected={this.state.jamSelected}
 										gravySelected={this.state.gravySelected}
