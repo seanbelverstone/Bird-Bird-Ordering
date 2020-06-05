@@ -17,7 +17,9 @@ var twentyPercentTip;
 // Using this disabler because I am using the customPercentage amount later
 // eslint-disable-next-line
 var customPercentageAmount;
+var tax;
 var subtotal;
+var finalTotal;
 
 class OrderForm extends React.Component {
 	constructor(props) {
@@ -65,6 +67,8 @@ class OrderForm extends React.Component {
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
+		tax = parseFloat(subtotal * 0.0625).toFixed(2);
+		finalTotal = parseFloat(subtotal) + parseFloat(tax);
 	};
 
 	// Selecting jam or gravy. This updates the state called sides, to calculate how much this extra addition
@@ -371,10 +375,20 @@ class OrderForm extends React.Component {
 					</Row>
 					<Row>
 						<Col>
+							<div id="tax">Tax: ${tax}</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<div id="finalTotal">Total: ${finalTotal}</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
 							<FormGroup>
 									<PaymentModal 
 										tipValidation={this.state.tipInDollars}
-										total={subtotal}
+										total={finalTotal}
 										values={this.state.values}
 										specialInstructions={this.state.specialInstructions}
 										pickupDateTime={this.state.pickupDateTime}
