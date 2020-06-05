@@ -26,7 +26,7 @@ const PaymentModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop="static" keyboard={false}>
         <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>
-          <div id="subtotal">Your total is ${props.total}</div>
+          <div id="modalTotal">Your total is ${props.total}</div>
 
           <UserForm toggleClose={toggle}
                     total={props.total}

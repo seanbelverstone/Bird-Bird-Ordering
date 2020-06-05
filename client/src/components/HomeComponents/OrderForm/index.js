@@ -371,19 +371,19 @@ class OrderForm extends React.Component {
 					<div className="totalArea">
 						<Row>
 							<Col>
-								<div id="subtotal">Subtotal: ${this.handleSubtotal()}</div>
+								<div id="subtotal">Subtotal: <p className="totalsText">${this.handleSubtotal()}</p></div>
 							</Col>
 						</Row>
 						<hr />
 						<Row>
 							<Col>
-								<div id="tax">Tax: ${tax}</div>
+								<div id="tax">Tax: <p className="totalsText">${tax}</p></div>
 							</Col>
 						</Row>
 						<hr />
 						<Row>
 							<Col>
-								<div id="finalTotal">Total: ${finalTotal}</div>
+								<div id="finalTotal">Total: <p className="totalsText">${finalTotal}</p></div>
 							</Col>
 						</Row>
 					</div>

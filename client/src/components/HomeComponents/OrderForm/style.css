@@ -82,7 +82,7 @@ option {
 	padding: 20px;
 	border: 2px #6c757d solid;
 	width: 400px;
-	line-height: 30px;
+	line-height: 20px;
 	margin-bottom: 20px;
 	margin-top: 15px;
 	border-radius: 10px;
@@ -98,4 +98,12 @@ option {
 	font-weight: 1000 !important;
 	font-size: 20px;
 	color: goldenrod;
+}
+
+#subtotal, #tax, #finalTotal {
+	text-align: left;
+}
+
+.totalsText {
+	float: right;
 }
