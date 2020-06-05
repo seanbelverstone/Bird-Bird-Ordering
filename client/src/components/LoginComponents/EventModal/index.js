@@ -16,9 +16,7 @@ class EventModal extends React.Component {
 
 	sortedTime = () => {
 		const removedEnd = this.props.pickupTime.replace(`GMT-0500 (Central Daylight Time)`, " ");
-		console.log(removedEnd);
 		const finalTime = removedEnd.replace(regex, " ");
-		console.log(finalTime);
 		return finalTime;
 	}
 
