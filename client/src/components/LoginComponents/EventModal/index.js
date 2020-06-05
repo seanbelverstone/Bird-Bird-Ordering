@@ -4,7 +4,7 @@ import format from "date-fns/format";
 import CompleteButton from "../CompleteButton";
 
 let splitDesc;
-const regex = /^:[0-9][0-9]$/gm
+const regex = /:\d\d([ ap]|$)/
 
 class EventModal extends React.Component {
 	constructor(props) {
@@ -16,6 +16,7 @@ class EventModal extends React.Component {
 
 	sortedTime = () => {
 		const removedEnd = this.props.pickupTime.replace(`GMT-0500 (Central Daylight Time)`, " ");
+		console.log(removedEnd);
 		const finalTime = removedEnd.replace(regex, " ");
 		console.log(finalTime);
 		return finalTime;
