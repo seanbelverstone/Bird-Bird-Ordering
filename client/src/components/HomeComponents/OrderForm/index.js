@@ -363,7 +363,7 @@ class OrderForm extends React.Component {
 					<Row>
 						<Col>
 							<FormGroup>
-								<Label for="specialInstructions">Would you like to include any special instructions?</Label>
+								<Label for="specialInstructions" className="specialInstructions">Would you like to include any special instructions?</Label>
 								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
 							</FormGroup>
 						</Col>

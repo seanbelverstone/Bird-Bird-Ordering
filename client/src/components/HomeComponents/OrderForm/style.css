@@ -80,12 +80,22 @@ option {
 .totalArea {
 	position: relative;
 	padding: 20px;
-	border: 2px lightslategray solid;
+	border: 2px #6c757d solid;
 	width: 400px;
 	line-height: 30px;
 	margin-bottom: 20px;
 	margin-top: 15px;
 	border-radius: 10px;
-	font-size: 20px;
 	left: 13%;
+}
+
+.specialInstructions {
+	text-align: center !important;
+	width: 100%;
+}
+
+#finalTotal {
+	font-weight: 1000 !important;
+	font-size: 20px;
+	color: goldenrod;
 }
