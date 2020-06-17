@@ -52,8 +52,7 @@ The ordering form contains two pages.
 
 ![Step 10](./client/src/images/stepTen.png)
 
-
-# Technologies
+### Technologies Used
 * React
 * Express
 * MySQL
@@ -63,3 +62,5 @@ The ordering form contains two pages.
 * React-date-picker
 * Stripejs
 * Emailjs
+
+Live Heroku Link: [https://birdbirdbiscuit.herokuapp.com/]
