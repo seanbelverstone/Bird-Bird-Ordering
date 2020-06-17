@@ -13,6 +13,7 @@ The ordering form contains two pages.
 ![Employee View](./client/src/images/employeeView.png)
 
 ### User Interaction Logic
+#### Customer View
 1. Select quantity, add gravy or jam, then the user has the option to add a tip. If they'd like to choose a custom tip, they can click the button and a hidden text box appears, which contains validation to make sure only the correct input is recieved.
 
 ![Step 1](./client/src/images/stepOne.png)
@@ -32,6 +33,25 @@ The ordering form contains two pages.
 5. Finally, once all of the user's details have been entered and there aren't any issues with their card, the order is placed and a notice pops up informing them that their order has been successful and an email will be on its way to their inbox shortly. If there are any problems with the card, a similar notice displays telling them of an issue.
 
 ![Step 5](./client/src/images/stepFive.png)
+
+#### Employee View
+1. If the user hovers over the little Bird Bird Biscuit logo on the top left, they'll discover that it is actually a button, and the words "Employee View" appear above the button. I decided to make it a bit more of a subtle button, rather than a clear one, to display a more professional setting.
+
+![Step 6](./client/src/images/stepSix.png)
+
+2. Once the employee has clicked this button, they will be promoted to login. There will only ever be a single login, which has been passed directly to the owners of Bird Bird. Also, if the user mistakenly visited this page, they can return back to the main one by the same way they came in.
+
+![Step 7](./client/src/images/stepSeven.png)
+
+3. The order calendar that the employee is shown is designed in a way to be simple, aesthetically pleasing, and to be easy enough for the user to locate orders quickly. Orders are retrieved from the MySQL database and stored in "events". These events are clickable, and display all of the data provided by the customer. On the top right hand-side of the calendar, there is a totals area, displaying the orders and biscuits relating to the view that you're currently in. If you change the view to week, or day, these numbers update accordingly.
+
+![Step 8](./client/src/images/stepEight.png)
+![Step 9](./client/src/images/stepNine.png)
+
+4. When the order has been fufilled, the employee can click the "Complete Order" button and the event turns golden, making it easy to determine if it has been finished or not. 
+
+![Step 10](./client/src/images/stepTen.png)
+
 
 # Technologies
 * React
