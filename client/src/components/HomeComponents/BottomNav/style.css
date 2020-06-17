@@ -55,6 +55,12 @@ a:hover {
 	transition: ease-in-out .2s;
 }
 
+.navbar-toggler {
+	border: none !important;
+	padding: 5px;
+	font-size: 15px !important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	nav {
@@ -69,7 +75,10 @@ a:hover {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (max-width: 768px) {
-
+	.nav-item {
+		border-bottom: 1px solid #dedede;
+		padding-left: 3px !important;
+	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
