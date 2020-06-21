@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import format from "date-fns/format";
 import CompleteButton from "../CompleteButton";
+import "./style.css";
 
 let splitDesc;
 const regex = /:\d\d([ ap]|$)/
