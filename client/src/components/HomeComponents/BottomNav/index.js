@@ -19,7 +19,7 @@ const BottomNav = () => {
 
   return (
     <div id="navContainer">
-      <Navbar sticky="bottom" fixed="bottom" light expand="md">
+      <Navbar fixed="bottom" light expand="md">
       <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>

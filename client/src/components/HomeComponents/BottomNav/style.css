@@ -55,17 +55,9 @@ a:hover {
 	transition: ease-in-out .2s;
 }
 
-.navbar-toggler {
-	border: none !important;
-	padding: 5px;
-	font-size: 15px !important;
-}
-
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-	nav {
-		color: red !important;
-	}
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -74,21 +66,16 @@ a:hover {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (max-width: 768px) {
-	.nav-item {
-		border-bottom: 1px solid #dedede;
-		padding-left: 3px !important;
+@media only screen and (min-width: 768px) {
+	nav { 
+		font-size: 10px !important;
 	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (max-width: 992px) {
+@media only screen and (min-width: 992px) {
 	nav { 
-		font-size: 10px !important;
-		
+		font-size: 14px !important;
 	}
 
-	.navbar-expand-md .navbar-nav .nav-link {
-		padding-right: 0 !important;
-	}
 }
