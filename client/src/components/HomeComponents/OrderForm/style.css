@@ -12,15 +12,21 @@
 
 #jam {
 	background-image: url("../../../images/jamResized.jpg");
+	opacity: 0.4;
+}
+
+#gravy {
+	background-image: url("../../../images/gravyResized.jpg");
+}
+
+#jam, #gravy {
 	background-size: cover;
 	width: 250px;
 	height: 250px;
-	opacity: 0.4;
 }
 
 #jamText {
 	color: black;
-	font-size: 25px;
 	width: 110;
 	opacity: 1 !important;
 	font-weight: bolder !important;
@@ -28,12 +34,6 @@
 	transform: rotate(330deg);
 }
 
-#gravy {
-	background-image: url("../../../images/gravyResized.jpg");
-	background-size: cover;
-	width: 250px;
-	height: 250px;
-}
 
 
 button.jamGravyImages:hover {
@@ -106,4 +106,44 @@ option {
 
 .totalsText {
 	float: right;
+}
+
+@media only screen and (max-width: 600px) {
+	#jam, #gravy {
+		width: 150px !important;
+		height: 150px !important;
+	}
+	#jamText {
+		font-size: 15px !important;
+	}
+	.totalArea {
+		left: 0% !important;
+	}
+	#continueButton {
+		left: 38%;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+	#jam, #gravy {
+		width: 250px;
+		height: 250px;
+	}
+	#jamText {
+		font-size: 25px;
+	}
+	.totalArea {
+		left: 13%;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
 }
