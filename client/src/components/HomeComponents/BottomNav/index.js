@@ -53,17 +53,15 @@ const BottomNav = () => {
             </NavItem>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/now-hiring">NOW HIRING</NavLink>
-            </NavItem>
+            </NavItem>            
           </Nav>
-
-
+          </Collapse>
           <a href="http://instagram.com/birdbirdbiscuit" target="_blank" rel="noopener noreferrer">
             <img src={instaLogo} alt="Instagram logo" id="insta" />
           </a>
           <a href="https://www.facebook.com/birdbirdbiscuit" target="_blank" rel="noopener noreferrer">
             <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
           </a>
-          </Collapse>
         </Navbar>
       </div>
   );
