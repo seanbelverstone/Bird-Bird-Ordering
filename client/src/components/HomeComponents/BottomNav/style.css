@@ -50,7 +50,7 @@ a:hover {
 	margin-right: 23px;
 }
 
-#insta:hover, #facebook:hover {
+#insta:hover, #facebook:hover, .nav-link:hover {
 	opacity: 0.5;
 	transition: ease-in-out .2s;
 }
@@ -62,21 +62,25 @@ a:hover {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 768px) {
-
+	nav {
+		font-size: 8px !important;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-	nav { 
-		font-size: 10px !important;
+	.nav-link { 
+		font-size: 12px !important;
+		padding: 3px !important;
 	}
 
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-	nav { 
+	.nav-link { 
 		font-size: 14px !important;
+		padding: 8px !important;
 	}
 
 }
