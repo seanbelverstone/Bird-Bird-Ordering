@@ -56,7 +56,15 @@ button#employeeButton:hover + p {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 768px) {
-
+	body {
+		width: 100% !important;
+		margin: 0 !important;
+		align-content: center;
+	}
+	.container {
+		width: 100% !important;
+		margin-left: 50px !important;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
