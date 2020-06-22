@@ -18,7 +18,6 @@ const BottomNav = () => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
-    <div id="navContainer">
       <Navbar fixed="bottom" light expand="md">
       <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
@@ -63,7 +62,6 @@ const BottomNav = () => {
             <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
           </a>
         </Navbar>
-      </div>
   );
 }
 

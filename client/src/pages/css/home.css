@@ -15,7 +15,6 @@ body {
 #employeeButton {
 	font-weight: bold;
 	position: relative;
-	float: left;
 	background-image: url("../../images/birdbirdlogo.png");
 	background-size: cover;
 	width: 120px;
@@ -62,11 +61,14 @@ button#employeeButton:hover + p {
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-
+	#employeeButton {
+		float: none;
+	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
-
+	#employeeButton {
+		float: left;
+	}
 }
