@@ -32,9 +32,17 @@
 	#backToHome {
 		float: none;
 	}
+	#homeText {
+		left: 0%;
+    	bottom: 90%;
+	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
+	#homeText {
+		left: -50%;
+		bottom: 20%;
+		
+	}
 }
