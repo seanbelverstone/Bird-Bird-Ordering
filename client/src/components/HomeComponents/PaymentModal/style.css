@@ -11,7 +11,7 @@ div, button {
 }
 
 .modal-title {
-	margin-top: 10px;
+	margin-top: 20px;
 	position: relative;
 	left: 27%;
 	font-weight: bolder !important;
@@ -22,4 +22,28 @@ div, button {
 	text-align: center;
 	font-size: 20px;
 	color: goldenrod;
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+	.close>span {
+		font-size: 50pt !important;
+	}
+	.modal-title {
+		margin-top: 20px;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	.close>span {
+		font-size: 40pt !important;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.modal-title {
+		margin-top: 15px;
+	}
 }

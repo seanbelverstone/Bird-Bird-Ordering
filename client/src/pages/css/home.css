@@ -65,6 +65,10 @@ button#employeeButton:hover + p {
 		width: 100% !important;
 		margin-left: 50px !important;
 	}
+	#loginText {
+		left: 0%;
+    	bottom: 90%;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -72,11 +76,19 @@ button#employeeButton:hover + p {
 	#employeeButton {
 		float: none;
 	}
+	#loginText {
+		left: 0%;
+    	bottom: 90%;
+	}
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
 	#employeeButton {
 		float: left;
+	}
+	#loginText {
+		left: -50%;
+		bottom: 20%;
 	}
 }
