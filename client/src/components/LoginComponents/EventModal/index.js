@@ -58,7 +58,7 @@ class EventModal extends React.Component {
 
 		return (
 			
-			<div>
+			<div className="eventModal">
 				<Modal isOpen={this.props.show}>
 				<ModalHeader className="eventTitle">{this.props.title}</ModalHeader>
 				<ModalBody>
