@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Navbar,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Collapse,
+  NavbarToggler
 } from 'reactstrap';
 import instaLogo from "../../../images/insta-logo.svg";
 import fbLogo from "../../../images/facebook.png";
@@ -11,10 +13,15 @@ import "./style.css";
 
 const BottomNav = () => {
 
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleNavbar = () => setCollapsed(!collapsed);
+
   return (
-    <div>
       <Navbar fixed="bottom" light expand="md">
-          <Nav className="mr-auto" navbar>
+      <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+        <Collapse isOpen={!collapsed} navbar>
+          <Nav navbar>
             <NavItem>
               <NavLink id="home" href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
             </NavItem>
@@ -45,8 +52,9 @@ const BottomNav = () => {
             </NavItem>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/now-hiring">NOW HIRING</NavLink>
-            </NavItem>
+            </NavItem>            
           </Nav>
+          </Collapse>
           <a href="http://instagram.com/birdbirdbiscuit" target="_blank" rel="noopener noreferrer">
             <img src={instaLogo} alt="Instagram logo" id="insta" />
           </a>
@@ -54,7 +62,6 @@ const BottomNav = () => {
             <img src={fbLogo} alt="Facebook logo" id="facebook" href="https://www.facebook.com/birdbirdbiscuit"/>
           </a>
         </Navbar>
-      </div>
   );
 }
 

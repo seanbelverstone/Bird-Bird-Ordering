@@ -1,3 +1,36 @@
 .rbc-btn-group, .rbc-header, .rbc-toolbar-label {
 	font-size: 20px !important;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	#calendarTitle {
+		font-size: 24pt;
+	}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+
+}
+
+/* Medium devices (landscape tablets, 992px and down) */
+@media only screen and (max-width: 992px) {
+	.rbc-header, .rbc-toolbar-label {
+		font-size: 16px !important;
+	}
+	.rbc-toolbar button {
+		padding: 4px;
+		font-size: 10pt;
+	}
+	.rbc-toolbar {
+		flex-wrap: nowrap;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	.rbc-btn-group, .rbc-header, .rbc-toolbar-label {
+		font-size: 20px !important;
+	}
+}

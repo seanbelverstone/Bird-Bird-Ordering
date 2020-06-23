@@ -15,7 +15,6 @@ body {
 #employeeButton {
 	font-weight: bold;
 	position: relative;
-	float: left;
 	background-image: url("../../images/birdbirdlogo.png");
 	background-size: cover;
 	width: 120px;
@@ -48,4 +47,48 @@ button#employeeButton:hover + p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+	body {
+		width: 100% !important;
+		margin: 0 !important;
+		align-content: center;
+	}
+	.container {
+		width: 100% !important;
+		margin-left: 50px !important;
+	}
+	#loginText {
+		left: 0%;
+    	bottom: 90%;
+	}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+	#employeeButton {
+		float: none;
+	}
+	#loginText {
+		left: 0%;
+    	bottom: 90%;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+	#employeeButton {
+		float: left;
+	}
+	#loginText {
+		left: -50%;
+		bottom: 20%;
+	}
 }

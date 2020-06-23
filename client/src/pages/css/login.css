@@ -17,3 +17,24 @@
 	margin: 50px 150px 0px 0;
 	background-color: white;
 }
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 768px) {
+	#title {
+		font-size: 30px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.loginArea {
+		margin: 50px 25px 0 0;
+	}
+	#backToHome {
+		float: none;
+	}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
