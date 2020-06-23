@@ -187,7 +187,7 @@ class OrderCalendar extends React.Component {
 			<div>
 				<div className="row">
 					<div className="col 11">
-						<h1>ORDER CALENDAR</h1>
+						<h1 id="calendarTitle">ORDER CALENDAR</h1>
 					</div>
 					<div className="col 1">
 						<div className="orderTotals">
