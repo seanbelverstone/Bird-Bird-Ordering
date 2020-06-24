@@ -9,11 +9,6 @@ nav {
 	background-color: white !important;
 }
 
-.extendedContainer {
-	width: 100%;
-	margin: 0;
-}
-
 #home {
 	margin-left: 55px;
 }
@@ -60,6 +55,10 @@ a:hover {
 	nav {
 		font-size: 8px !important;
 		padding: 10px 0 !important;
+	}
+	#home {
+		margin-left: 0px;
+		text-align: left;
 	}
 }
 

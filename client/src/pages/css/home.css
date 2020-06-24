@@ -50,11 +50,6 @@ button#employeeButton:hover + p {
 	justify-content: center;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
-}
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 768px) {
 	body {
@@ -64,7 +59,8 @@ button#employeeButton:hover + p {
 	}
 	.container {
 		width: 100% !important;
-		margin-left: 50px !important;
+		margin-left: 20% !important;
+		margin-right: 0% !important;
 	}
 	#loginText {
 		left: 0%;
