@@ -64,7 +64,8 @@ button#employeeButton:hover + p {
 	}
 	.container {
 		width: 100% !important;
-		margin-left: 50px !important;
+		margin-left: 20% !important;
+		margin-right: 0% !important;
 	}
 	#loginText {
 		left: 0%;
