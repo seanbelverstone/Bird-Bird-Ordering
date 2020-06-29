@@ -1,5 +1,6 @@
 body {
-	margin: 0 0 100px 0 !important;
+	width: 100%;
+	margin-bottom: 200px !important;
 	padding: 0 !important;
 	display: flex;
 	justify-content: center;
