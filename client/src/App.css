@@ -1,4 +1,7 @@
 body {
-	margin: 0 0 250px 0 !important;
+	margin: 0 0 100px 0 !important;
 	padding: 0 !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
