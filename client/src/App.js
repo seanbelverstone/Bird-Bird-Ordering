@@ -9,6 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Home from "../src/pages/Home";
 import Login from "../src/pages/Login";
 import "dotenv/config";
+import "./pages/css/reset.css";
 import "./App.css";
 
 const App = () => {
