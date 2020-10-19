@@ -50,6 +50,10 @@ button#employeeButton:hover + p {
 	justify-content: center;
 }
 
+#pageTitle {
+	font-size: 2.5rem;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 460px) {
 	.container {

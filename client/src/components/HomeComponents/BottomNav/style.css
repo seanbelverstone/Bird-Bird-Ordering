@@ -15,10 +15,10 @@ nav {
 
 a {
 	color: #a8a8a8 !important;
-	font-family: Raleway;
-    font-size: 14px;
-    font-weight: bolder;
-    font-style: normal;
+	font-family: Raleway !important;
+    font-size: 14px !important;
+    font-weight: bolder !important;
+    font-style: normal !important;
     text-transform: uppercase;
     letter-spacing: .6px;
     display: block;
