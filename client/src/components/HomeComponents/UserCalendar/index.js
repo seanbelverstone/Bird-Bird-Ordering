@@ -14,8 +14,10 @@ const UserCalendar = (props) => {
 		selected={props.pickupDateTime}
 		onChange={props.handleCalendarChange}
 		dateFormat="MMMM d, h:mm aa"
-		// min date makes sure users can't select a date sooner than 2 days from the current day
-		minDate={subDays(new Date(), -2)}
+		// min date makes sure users can't select a date sooner than the Monday before Thanksgiving
+		minDate={new Date(2020, 10, 23)}
+		// max date does the same, but for orders after the week of thanksgiving
+		maxDate={new Date(2020, 10, 27)}
 		showTimeSelect
 		timeFormat="HH:mm"
 		timeIntervals={15}
