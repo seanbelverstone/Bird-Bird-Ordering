@@ -1,6 +1,7 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import subDays from "date-fns/subDays";
+// Commented out until returning to full scope of orders.
+// import subDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +17,7 @@ const UserCalendar = (props) => {
 		dateFormat="MMMM d, h:mm aa"
 		// min date makes sure users can't select a date sooner than the Monday before Thanksgiving
 		minDate={new Date(2020, 10, 23)}
+		// when going back to full range, use subDays(new Date(), -2) as this will prevent users from selecting a day earlier than 2 days from now. Also get rid of maxDate below
 		// max date does the same, but for orders after the week of thanksgiving
 		maxDate={new Date(2020, 10, 27)}
 		showTimeSelect
