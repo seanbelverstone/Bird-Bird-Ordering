@@ -50,8 +50,8 @@ button#employeeButton:hover + p {
 	justify-content: center;
 }
 
-h1 #pageTitle {
-	font-size: 2.5rem !important;
+#pageTitle {
+	font-size: 50px;
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -66,6 +66,9 @@ h1 #pageTitle {
 		background-position-y: top;
 		background-position-x: center;
 		margin-left: 25%;
+	}
+	#pageTitle {
+		font-size: 30px
 	}
 	.container {
 		width: 100% !important;
