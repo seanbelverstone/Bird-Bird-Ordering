@@ -2,8 +2,9 @@ import React from 'react';
 import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
 import addDays from "date-fns/subDays";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+// Commented out the two below as they're not currently being used
+// import setHours from "date-fns/setHours";
+// import setMinutes from "date-fns/setMinutes";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -40,8 +41,9 @@ class OrderForm extends React.Component {
 			validated: true,
 			specialInstructions: "",
 			// Adding in this ternary operator here. Normally it would be just new Date() but for the thanksgiving event, it's changing.
-			// if today's date is later than the 23rd, set the new date to be today's date + 2 - otherwise set the initial date to Oct 23rd @ 8am
-			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) ? addDays(new Date(), 2) : new Date(2020, 10, 23, 8),
+			// if today's date is later than the 23rd and earlier than the 27th, set the new date to be today's date + 2. This will prevent
+			// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am
+			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) && new Date() < new Date(2020, 10, 27) ? addDays(new Date(), 2) : new Date(2020, 10, 23, 8),
 			orderCompleted: false
 			}
 
