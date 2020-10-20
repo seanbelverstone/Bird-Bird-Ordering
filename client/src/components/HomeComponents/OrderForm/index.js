@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
-import subDays from "date-fns/subDays";
+import addDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import UserCalendar from "../UserCalendar";
@@ -39,7 +39,9 @@ class OrderForm extends React.Component {
 			values: [],
 			validated: true,
 			specialInstructions: "",
-			pickupDateTime: new Date(2020, 10, 23),
+			// Adding in this ternary operator here. Normally it would be just new Date() but for the thanksgiving event, it's changing.
+			// if today's date is later than the 23rd, set the new date to be today's date + 2 - otherwise set the initial date to Oct 23rd @ 8am
+			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) ? addDays(new Date(), +2) : new Date(2020, 10, 23, 8),
 			orderCompleted: false
 			}
 
@@ -190,12 +192,14 @@ class OrderForm extends React.Component {
 	  
 	componentDidMount() {
 		// set the date 2 days in the future
-		var initialDate = subDays(new Date(), -2);
-		// set the time to 8am
-		initialDate = setHours(setMinutes(initialDate, 0), 8);
-		this.setState({
-			pickupDateTime: initialDate
-		});
+		// Commenting this out as is not required for thanksgiving event
+
+		// var initialDate = subDays(new Date(), -2);
+		// // set the time to 8am
+		// initialDate = setHours(setMinutes(initialDate, 0), 8);
+		// this.setState({
+		// 	pickupDateTime: initialDate
+		// });
 		customPercentageAmount = this.state.tipInDollars;
 	}
 
