@@ -41,7 +41,7 @@ class OrderForm extends React.Component {
 			specialInstructions: "",
 			// Adding in this ternary operator here. Normally it would be just new Date() but for the thanksgiving event, it's changing.
 			// if today's date is later than the 23rd, set the new date to be today's date + 2 - otherwise set the initial date to Oct 23rd @ 8am
-			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) ? addDays(new Date(), +2) : new Date(2020, 10, 23, 8),
+			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) ? addDays(new Date(), 2) : new Date(2020, 10, 23, 8),
 			orderCompleted: false
 			}
 
@@ -194,7 +194,7 @@ class OrderForm extends React.Component {
 		// set the date 2 days in the future
 		// Commenting this out as is not required for thanksgiving event
 
-		// var initialDate = subDays(new Date(), -2);
+		// var initialDate = addDays(new Date(), 2);
 		// // set the time to 8am
 		// initialDate = setHours(setMinutes(initialDate, 0), 8);
 		// this.setState({
