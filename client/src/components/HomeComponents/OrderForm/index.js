@@ -40,10 +40,7 @@ class OrderForm extends React.Component {
 			values: [],
 			validated: true,
 			specialInstructions: "",
-			// Adding in this ternary operator here. Normally it would be just new Date() but for the thanksgiving event, it's changing.
-			// if today's date is later than the 23rd and earlier than the 27th, set the new date to be today's date + 2. This will prevent
-			// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am
-			pickupDateTime: new Date() > new Date(2020, 10, 23, 8) && new Date() < new Date(2020, 10, 27) ? addDays(new Date(), 2) : new Date(2020, 10, 23, 8),
+			pickupDateTime: new Date(),
 			orderCompleted: false
 			}
 
@@ -190,9 +187,22 @@ class OrderForm extends React.Component {
 			pickupDateTime: date
 		});
 	  };
+	// if today's date is later than the 23rd November and earlier than the 27th November, set the new date to be today's date + 2. This will prevent
+	// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am	
+	checkTodaysDate = () => {
+		if (new Date(2020, 10, 25, 11) > new Date(2020, 10, 23, 8) && new Date(2020, 10, 25, 11) < new Date(2020, 10, 27, 14)) {
+			this.setState({
+				pickupDateTime: addDays(new Date(), 2)
+			})
+		}
+		this.setState({
+			pickupDateTime: new Date(2020, 10, 23, 8)
+		})
+	}
 
 	  
 	componentDidMount() {
+		this.checkTodaysDate();
 		// set the date 2 days in the future
 		// Commenting this out as is not required for thanksgiving event
 
@@ -403,7 +413,8 @@ class OrderForm extends React.Component {
 					<Row>
 						<Col>
 							<FormGroup>
-									<PaymentModal 
+									<PaymentModal
+										disabledSubmit={this.state.disabledSubmit} 
 										tipValidation={this.state.tipInDollars}
 										total={finalTotal}
 										values={this.state.values}

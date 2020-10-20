@@ -22,7 +22,7 @@ const PaymentModal = (props) => {
 
   return (
     <div>
-      <Button type="submit" onClick={toggle} id="continueButton">{buttonLabel}Continue</Button>
+      <Button type="submit" onClick={toggle} id="continueButton" disabled={props.disabledSubmit}>{buttonLabel}Continue</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop="static" keyboard={false}>
         <ModalHeader toggle={toggle}>Contact & Payment</ModalHeader>
         <ModalBody>
