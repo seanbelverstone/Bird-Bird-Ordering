@@ -1,9 +1,10 @@
 import React from 'react';
 import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
-import subDays from "date-fns/subDays";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+import addDays from "date-fns/subDays";
+// Commented out the two below as they're not currently being used
+// import setHours from "date-fns/setHours";
+// import setMinutes from "date-fns/setMinutes";
 import UserCalendar from "../UserCalendar";
 import PaymentModal from "../PaymentModal";
 import "./style.css";
@@ -181,21 +182,38 @@ class OrderForm extends React.Component {
 	}
 
 	// Calendar based functions
+	// Changes the state based on user input
 	handleCalendarChange = date => {
 		this.setState({
 			pickupDateTime: date
 		});
 	  };
+	  
+	// if today's date is later than the 23rd November and earlier than the 27th November, set the new date to be today's date + 2. This will prevent
+	// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am	
+	checkTodaysDate = () => {
+		if (new Date(2020, 10, 25, 11) > new Date(2020, 10, 23, 8) && new Date(2020, 10, 25, 11) < new Date(2020, 10, 27, 14)) {
+			this.setState({
+				pickupDateTime: addDays(new Date(), 2)
+			})
+		}
+		this.setState({
+			pickupDateTime: new Date(2020, 10, 23, 8)
+		})
+	}
 
 	  
 	componentDidMount() {
+		this.checkTodaysDate();
 		// set the date 2 days in the future
-		var initialDate = subDays(new Date(), -2);
-		// set the time to 8am
-		initialDate = setHours(setMinutes(initialDate, 0), 8);
-		this.setState({
-			pickupDateTime: initialDate
-		});
+		// Commenting this out as is not required for thanksgiving event
+
+		// var initialDate = addDays(new Date(), 2);
+		// // set the time to 8am
+		// initialDate = setHours(setMinutes(initialDate, 0), 8);
+		// this.setState({
+		// 	pickupDateTime: initialDate
+		// });
 		customPercentageAmount = this.state.tipInDollars;
 	}
 
@@ -397,7 +415,7 @@ class OrderForm extends React.Component {
 					<Row>
 						<Col>
 							<FormGroup>
-									<PaymentModal 
+									<PaymentModal
 										tipValidation={this.state.tipInDollars}
 										total={finalTotal}
 										values={this.state.values}
