@@ -182,11 +182,13 @@ class OrderForm extends React.Component {
 	}
 
 	// Calendar based functions
+	// Changes the state based on user input
 	handleCalendarChange = date => {
 		this.setState({
 			pickupDateTime: date
 		});
 	  };
+	  
 	// if today's date is later than the 23rd November and earlier than the 27th November, set the new date to be today's date + 2. This will prevent
 	// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am	
 	checkTodaysDate = () => {
@@ -414,7 +416,6 @@ class OrderForm extends React.Component {
 						<Col>
 							<FormGroup>
 									<PaymentModal
-										disabledSubmit={this.state.disabledSubmit} 
 										tipValidation={this.state.tipInDollars}
 										total={finalTotal}
 										values={this.state.values}
