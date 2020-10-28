@@ -10,8 +10,8 @@ import PaymentModal from "../PaymentModal";
 import "./style.css";
 
 
-var totalPrice = 30;
-var quantityPrice = 30;
+var totalPrice = 16;
+var quantityPrice = 16;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
@@ -32,7 +32,7 @@ class OrderForm extends React.Component {
 			jamStyle: {},
 			gravyStyle: {},
 			sides: 0,
-			hiddenForm: {display: "none"},
+			hiddenForm: {visibility: "hidden"},
 			hidden: true,
 			tipInDollars: "",
 			tipInPercentage: 0,
@@ -45,8 +45,6 @@ class OrderForm extends React.Component {
 			}
 
 		this.handleChange = this.handleChange.bind(this);
-		this.selectJam = this.selectJam.bind(this);
-		this.selectGravy = this.selectGravy.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
@@ -62,65 +60,13 @@ class OrderForm extends React.Component {
 	};
 
 	handleTotals = () => {
-		quantityPrice = parseFloat(this.state.quantity)*30;
+		quantityPrice = parseFloat(this.state.quantity)*16;
 		totalPrice = quantityPrice + this.state.sides;
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
-
-	// Selecting jam or gravy. This updates the state called sides, to calculate how much this extra addition
-	// will cost, and it also changes the style of the button to indicate it has been selected.
-	selectJam = (event) => {
-		var sides = this.state.sides;
-		var jamValue = parseInt(event.target.value);
-
-		if (this.state.jamSelected === 0) {
-			this.setState({
-				jamSelected: 1,
-				sides: sides + jamValue,
-				jamStyle: {
-					border: "goldenrod 5px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				}				
-			});
-		} else {
-			this.setState({
-				jamSelected: 0,
-				sides: sides - jamValue,
-				jamStyle: {
-					border: "none",
-					boxShadow: "none"
-				}				
-			});
-		}
-	}
-
-	selectGravy = (event) => {
-		var sides = this.state.sides;
-		var gravyValue = parseInt(event.target.value);
-
-		if (this.state.gravySelected === 0) {
-			this.setState({
-				gravySelected: 1,
-				sides: sides + gravyValue,
-				gravyStyle: {
-					border: "goldenrod 6px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				}
-			});
-		} else {
-			this.setState({
-				gravySelected: 0,
-				sides: sides - gravyValue,
-				gravyStyle: {
-					border: "none",
-					boxShadow: "none"
-				}
-			});
-		}
-	}
 
 	// Handling tip function
 
@@ -169,14 +115,23 @@ class OrderForm extends React.Component {
 
 	showForm = () => {
 		this.setState({
-				hiddenForm: {display: "block"},
+				hiddenForm: {  
+					visibility: "visible",
+					opacity: 1,
+					transition: "visibility 0.5s, opacity 0.5s ease"
+				},
 				hidden: false
 			})
 	}
 
 	hideForm = () => {
 		this.setState({
-			hiddenForm: {display: "none"},
+
+			hiddenForm: {  
+				visibility: "hidden",
+				opacity: 0,
+				transition: "visibility 0.5s, opacity 0.5s ease"
+			},
 			hidden: true
 		})
 	}
@@ -205,15 +160,6 @@ class OrderForm extends React.Component {
 	  
 	componentDidMount() {
 		this.checkTodaysDate();
-		// set the date 2 days in the future
-		// Commenting this out as is not required for thanksgiving event
-
-		// var initialDate = addDays(new Date(), 2);
-		// // set the time to 8am
-		// initialDate = setHours(setMinutes(initialDate, 0), 8);
-		// this.setState({
-		// 	pickupDateTime: initialDate
-		// });
 		customPercentageAmount = this.state.tipInDollars;
 	}
 
@@ -259,7 +205,7 @@ class OrderForm extends React.Component {
 				<Row form id="quantityAndPrice">
 					<Col>
 						<FormGroup style={{width: "97%"}}>
-							<Label for="quantity">Quantity</Label>
+							<Label for="quantity">Number of 6-Packs</Label>
 							<Input 
 								type="select" 
 								name="quantity" 
@@ -268,14 +214,13 @@ class OrderForm extends React.Component {
 								onChange={this.handleChange}
 								onClick={this.handleTotals()}>
 
-								<option value="0.5">half dozen</option>
-								<option value="1">1 dozen</option>
-								<option value="1.5">1 and a half dozens</option>
-								<option value="2">2 dozens</option>
-								<option value="2.5">2 and a half dozens</option>
-								<option value="3">3 dozens</option>
-								<option value="3.5">3 and a half dozens</option>
-								<option value="4">4 dozens</option>
+								<option value="1">1 (6 biscuits)</option>
+								<option value="2">2 (12 biscuits)</option>
+								<option value="3">3 (18 biscuits)</option>
+								<option value="4">4 (24 biscuits)</option>
+								<option value="5">5 (30 biscuits)</option>
+								<option value="6">6 (36 biscuits)</option>
+
 
 							</Input>
 						</FormGroup>
@@ -288,44 +233,7 @@ class OrderForm extends React.Component {
 				<hr className="lineBreak"/>
 				<Row>
 					<Col>
-						<div>Add Jam</div>
-					</Col>
-					<Col>
-						<div>Add Gravy</div>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<button 
-							alt="Jam"  
-							className="jamGravyImages"
-							id="jam"
-							onClick={this.selectJam} 
-							selected={this.state.jamSelected}
-							style={this.state.jamStyle}
-							value={15}
-							disabled
-							>
-						<p id="jamText">COMING SOON</p>
-						</button>
-					</Col>
-					<Col>
-						<button 
-							alt="Gravy"  
-							className="jamGravyImages"
-							id="gravy" 
-							onClick={this.selectGravy} 
-							selected={this.state.gravySelected}
-							style={this.state.gravyStyle}
-							value={15}
-						>
-						</button>
-					</Col>
-				</Row>
-				<hr className="lineBreak"/>
-				<Row>
-					<Col>
-						<div>Add a tip</div>
+						<div id="tipTitle">Add a tip</div>
 					</Col>
 				</Row>
 				<Row>

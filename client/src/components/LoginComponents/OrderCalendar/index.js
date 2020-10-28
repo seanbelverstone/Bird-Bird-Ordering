@@ -57,8 +57,6 @@ class OrderCalendar extends React.Component {
 				// added 30 minutes onto the end time
 				"end": this.addMinutes(new Date(unsortedEvents[i].pickupDateTime), 30),
 				"desc": `\nQuantity: ${unsortedEvents[i].biscuitQuantity}\n
-							Jam: ${unsortedEvents[i].jam ? "Yes" : "No"}
-							Gravy: ${unsortedEvents[i].gravy ? "Yes" : "No"}\n
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
 							Total: ${unsortedEvents[i].totalCost}\n
