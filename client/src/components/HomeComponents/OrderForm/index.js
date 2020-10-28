@@ -196,7 +196,7 @@ class OrderForm extends React.Component {
 				<Row form id="quantityAndPrice">
 					<Col>
 						<FormGroup style={{width: "97%"}}>
-							<Label for="quantity">Quantity</Label>
+							<Label for="quantity">Number of 6-Packs</Label>
 							<Input 
 								type="select" 
 								name="quantity" 
@@ -205,14 +205,10 @@ class OrderForm extends React.Component {
 								onChange={this.handleChange}
 								onClick={this.handleTotals()}>
 
-								<option value="0.5">half dozen</option>
-								<option value="1">1 dozen</option>
-								<option value="1.5">1 and a half dozens</option>
-								<option value="2">2 dozens</option>
-								<option value="2.5">2 and a half dozens</option>
-								<option value="3">3 dozens</option>
-								<option value="3.5">3 and a half dozens</option>
-								<option value="4">4 dozens</option>
+								<option value="1">1x 6-pack</option>
+								<option value="2">2x 6-packs</option>
+								<option value="3">3x 6-packs</option>
+								<option value="4">4x 6-packs</option>
 
 							</Input>
 						</FormGroup>
