@@ -214,10 +214,13 @@ class OrderForm extends React.Component {
 								onChange={this.handleChange}
 								onClick={this.handleTotals()}>
 
-								<option value="1">1x 6-pack</option>
-								<option value="2">2x 6-packs</option>
-								<option value="3">3x 6-packs</option>
-								<option value="4">4x 6-packs</option>
+								<option value="1">1 (6 biscuits)</option>
+								<option value="2">2 (12 biscuits)</option>
+								<option value="3">3 (18 biscuits)</option>
+								<option value="4">4 (24 biscuits)</option>
+								<option value="5">5 (30 biscuits)</option>
+								<option value="6">6 (36 biscuits)</option>
+
 
 							</Input>
 						</FormGroup>
