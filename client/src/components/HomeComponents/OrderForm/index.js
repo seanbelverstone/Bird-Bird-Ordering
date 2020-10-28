@@ -118,7 +118,7 @@ class OrderForm extends React.Component {
 				hiddenForm: {  
 					visibility: "visible",
 					opacity: 1,
-					transition: "visibility 0.5s, opacity 0.2s linear"
+					transition: "visibility 0.5s, opacity 0.5s ease"
 				},
 				hidden: false
 			})
@@ -130,7 +130,7 @@ class OrderForm extends React.Component {
 			hiddenForm: {  
 				visibility: "hidden",
 				opacity: 0,
-				transition: "visibility 0.5s, opacity 0.2s linear"
+				transition: "visibility 0.5s, opacity 0.5s ease"
 			},
 			hidden: true
 		})
@@ -230,7 +230,7 @@ class OrderForm extends React.Component {
 				<hr className="lineBreak"/>
 				<Row>
 					<Col>
-						<div>Add a tip</div>
+						<div id="tipTitle">Add a tip</div>
 					</Col>
 				</Row>
 				<Row>
