@@ -1,5 +1,10 @@
 #orderForm, #quantity, button, #datePicker, #specialInstructions, .form-control, .tipButtons, .input-group-text {
-	font-weight: 600 !important;
+	font-weight: 900 !important;
+	font-size: 18px;
+}
+
+#orderForm {
+	margin-top: 30px;
 }
 
 #datePicker {
@@ -78,15 +83,13 @@ option {
 }
 
 .totalArea {
-	position: relative;
 	padding: 20px;
 	border: 2px #6c757d solid;
-	width: 400px;
+	width: 405px;
 	line-height: 20px;
 	margin-bottom: 20px;
 	margin-top: 15px;
 	border-radius: 10px;
-	left: 13%;
 }
 
 .specialInstructions {
