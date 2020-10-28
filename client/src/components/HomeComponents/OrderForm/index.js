@@ -32,7 +32,7 @@ class OrderForm extends React.Component {
 			jamStyle: {},
 			gravyStyle: {},
 			sides: 0,
-			hiddenForm: {display: "none"},
+			hiddenForm: {visibility: "hidden"},
 			hidden: true,
 			tipInDollars: "",
 			tipInPercentage: 0,
@@ -115,14 +115,23 @@ class OrderForm extends React.Component {
 
 	showForm = () => {
 		this.setState({
-				hiddenForm: {display: "block"},
+				hiddenForm: {  
+					visibility: "visible",
+					opacity: 1,
+					transition: "visibility 0.5s, opacity 0.2s linear"
+				},
 				hidden: false
 			})
 	}
 
 	hideForm = () => {
 		this.setState({
-			hiddenForm: {display: "none"},
+
+			hiddenForm: {  
+				visibility: "hidden",
+				opacity: 0,
+				transition: "visibility 0.5s, opacity 0.2s linear"
+			},
 			hidden: true
 		})
 	}
