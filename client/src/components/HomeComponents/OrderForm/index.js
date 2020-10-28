@@ -151,15 +151,6 @@ class OrderForm extends React.Component {
 	  
 	componentDidMount() {
 		this.checkTodaysDate();
-		// set the date 2 days in the future
-		// Commenting this out as is not required for thanksgiving event
-
-		// var initialDate = addDays(new Date(), 2);
-		// // set the time to 8am
-		// initialDate = setHours(setMinutes(initialDate, 0), 8);
-		// this.setState({
-		// 	pickupDateTime: initialDate
-		// });
 		customPercentageAmount = this.state.tipInDollars;
 	}
 
