@@ -45,8 +45,6 @@ class OrderForm extends React.Component {
 			}
 
 		this.handleChange = this.handleChange.bind(this);
-		this.selectJam = this.selectJam.bind(this);
-		this.selectGravy = this.selectGravy.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
@@ -69,58 +67,6 @@ class OrderForm extends React.Component {
 		eighteenPercentTip = (totalPrice * 0.18).toFixed(2);
 		twentyPercentTip = (totalPrice * 0.2).toFixed(2);
 	};
-
-	// Selecting jam or gravy. This updates the state called sides, to calculate how much this extra addition
-	// will cost, and it also changes the style of the button to indicate it has been selected.
-	selectJam = (event) => {
-		var sides = this.state.sides;
-		var jamValue = parseInt(event.target.value);
-
-		if (this.state.jamSelected === 0) {
-			this.setState({
-				jamSelected: 1,
-				sides: sides + jamValue,
-				jamStyle: {
-					border: "goldenrod 5px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				}				
-			});
-		} else {
-			this.setState({
-				jamSelected: 0,
-				sides: sides - jamValue,
-				jamStyle: {
-					border: "none",
-					boxShadow: "none"
-				}				
-			});
-		}
-	}
-
-	selectGravy = (event) => {
-		var sides = this.state.sides;
-		var gravyValue = parseInt(event.target.value);
-
-		if (this.state.gravySelected === 0) {
-			this.setState({
-				gravySelected: 1,
-				sides: sides + gravyValue,
-				gravyStyle: {
-					border: "goldenrod 6px solid",
-					boxShadow: "rgb(150, 114, 22) 4px 4px"
-				}
-			});
-		} else {
-			this.setState({
-				gravySelected: 0,
-				sides: sides - gravyValue,
-				gravyStyle: {
-					border: "none",
-					boxShadow: "none"
-				}
-			});
-		}
-	}
 
 	// Handling tip function
 
@@ -283,43 +229,6 @@ class OrderForm extends React.Component {
 					<Col>
 						<Label for="price">Price</Label>
 						<div id="price" name="price">${quantityPrice}</div>
-					</Col>
-				</Row>
-				<hr className="lineBreak"/>
-				<Row>
-					<Col>
-						<div>Add Jam</div>
-					</Col>
-					<Col>
-						<div>Add Gravy</div>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<button 
-							alt="Jam"  
-							className="jamGravyImages"
-							id="jam"
-							onClick={this.selectJam} 
-							selected={this.state.jamSelected}
-							style={this.state.jamStyle}
-							value={15}
-							disabled
-							>
-						<p id="jamText">COMING SOON</p>
-						</button>
-					</Col>
-					<Col>
-						<button 
-							alt="Gravy"  
-							className="jamGravyImages"
-							id="gravy" 
-							onClick={this.selectGravy} 
-							selected={this.state.gravySelected}
-							style={this.state.gravyStyle}
-							value={15}
-						>
-						</button>
 					</Col>
 				</Row>
 				<hr className="lineBreak"/>
