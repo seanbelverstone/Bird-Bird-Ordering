@@ -49,6 +49,7 @@ const CheckoutForm = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           payment_method_id: result.paymentMethod.id,
+          amount: parseInt((props.total) *100)
         }),
       });
 

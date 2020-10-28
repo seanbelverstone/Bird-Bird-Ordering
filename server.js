@@ -25,12 +25,13 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Endpoint for when `/stripe/charge` is called from client
 app.post('/stripe/charge', async (request, response) => {
+  console.log(request.body)
   try {
     // Create the PaymentIntent
     let intent;
     if (request.body.payment_method_id) {
     intent = await stripe.paymentIntents.create({
-      amount: "1099",
+      amount: request.body.amount,
       currency: 'usd',
       payment_method: request.body.payment_method_id,
 
