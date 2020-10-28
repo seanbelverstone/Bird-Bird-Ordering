@@ -118,8 +118,6 @@ const CheckoutForm = (props) => {
           specialInstructions: response.data.specialInstructions,
           orderNumber: response.data.id,
           quantity: response.data.biscuitQuantity,
-          jam: response.data.jam,
-          gravy: response.data.gravy,
           // Formatting it here for easier readability for the user upon receiving their email
           pickupDateTime: format(new Date(response.data.pickupDateTime), "PPPPp"),
           total: response.data.totalCost,
