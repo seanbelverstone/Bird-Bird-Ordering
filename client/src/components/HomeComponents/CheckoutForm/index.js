@@ -49,6 +49,7 @@ const CheckoutForm = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           payment_method_id: result.paymentMethod.id,
+          // multiplying the amount below by 100 as stripe doesnt use decimals. 1099 is 10.99
           amount: parseInt((props.total) *100)
         }),
       });
