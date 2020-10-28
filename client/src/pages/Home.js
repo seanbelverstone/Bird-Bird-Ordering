@@ -24,7 +24,7 @@ class Home extends Component {
 					</div>
 					<div className="row">
 						<div className="col-12">
-							<h1 id="pageTitle">BISCUITS BY THE DOZEN</h1>
+							<h1 id="pageTitle">THANKSGIVING BISCUITS</h1>
 						</div>
 					</div>
 					<div className="row">
