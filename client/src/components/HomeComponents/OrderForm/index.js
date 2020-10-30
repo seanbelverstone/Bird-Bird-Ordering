@@ -201,7 +201,7 @@ class OrderForm extends React.Component {
 
 	render() {
 		return (
-			<AvForm onSubmit={this.handleSubmit} id="orderForm">
+			<AvForm style={this.props.displayNone} onSubmit={this.handleSubmit} id="orderForm">
 				<Row form id="quantityAndPrice">
 					<Col>
 						<FormGroup style={{width: "97%"}}>

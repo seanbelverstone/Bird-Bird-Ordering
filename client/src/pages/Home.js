@@ -14,7 +14,9 @@ class Home extends Component {
 		Firebase.initializeApp(config);
 
 		this.state = {
-			biscuitCount: 160
+			biscuitCount: 160,
+			formDisplay: {display: "block"},
+			soldOutDisplay: {display: "none"}
 		};
 	}
 	
@@ -41,7 +43,24 @@ class Home extends Component {
 		const state = snapshot.val();
 		this.setState(state);
 		});
+		this.checkBiscuitCount();
 	};
+
+	// checks to see if there are any biscuits left. If they're all gone, show the soldOutArea
+	checkBiscuitCount = () => {
+		if (this.state.biscuitCount <= 0) {
+			this.setState({
+				formDisplay: {display: "none"},
+				soldOutDisplay: {display: "block"}
+			})
+		} else {
+			this.setState({
+				formDisplay: {display: "block"},
+				soldOutDisplay: {display: "none"}
+			})
+		}
+	};
+
 
 	loginPage(event) {
 		event.preventDefault();
@@ -69,9 +88,17 @@ class Home extends Component {
 						</div>
 					</div>
 					<div className="row" id="orderFormContainer">
-						<OrderForm 
+						<OrderForm
+							displayNone={this.state.formDisplay}
 							biscuitCount={this.state.biscuitCount}
 							setState={(parameter) => {this.setState(parameter)}}/>
+						<div className="soldOutArea" style={this.state.soldOutDisplay}>
+							<h1>That's all folks! We are sold out!</h1>
+							<h2>Watch this space for more 6-pack events.</h2>
+							<h3>Happy thanksgiving!</h3>
+							<h3>-The Bird Bird Team</h3>
+						</div>
+
 					</div>
 
 					</div>
