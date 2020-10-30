@@ -107,7 +107,6 @@ const CheckoutForm = (props) => {
       props.total,
       props.pickupDateTime,
       completed,
-      props.specialInstructions,
       ).then(response => {
         console.log(response)
 
@@ -117,7 +116,6 @@ const CheckoutForm = (props) => {
           name: response.data.name,
           email: response.data.email,
           telephone: response.data.telephone,
-          specialInstructions: response.data.specialInstructions,
           orderNumber: response.data.id,
           quantity: response.data.biscuitQuantity,
           // Formatting it here for easier readability for the user upon receiving their email

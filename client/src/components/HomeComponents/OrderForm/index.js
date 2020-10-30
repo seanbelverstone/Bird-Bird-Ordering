@@ -39,7 +39,6 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
-			specialInstructions: "",
 			pickupDateTime: new Date(),
 			orderCompleted: false,
 			remainingBiscuits: this.props.biscuitCount
@@ -294,14 +293,6 @@ class OrderForm extends React.Component {
 						</Col>
 					</Row>
 					<hr className="lineBreak"/>
-					<Row>
-						<Col>
-							<FormGroup>
-								<Label for="specialInstructions" className="specialInstructions">Would you like to include any special instructions?</Label>
-								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
-							</FormGroup>
-						</Col>
-					</Row>
 					<div className="totalArea">
 						<Row>
 							<Col>
@@ -328,7 +319,6 @@ class OrderForm extends React.Component {
 										tipValidation={this.state.tipInDollars}
 										total={finalTotal}
 										values={this.state.values}
-										specialInstructions={this.state.specialInstructions}
 										pickupDateTime={this.state.pickupDateTime}
 										quantity={this.state.quantity}
 										jamSelected={this.state.jamSelected}

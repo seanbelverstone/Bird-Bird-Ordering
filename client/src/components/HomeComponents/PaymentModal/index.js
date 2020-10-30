@@ -30,7 +30,6 @@ const PaymentModal = (props) => {
 
           <UserForm toggleClose={toggle}
                     total={props.total}
-                    specialInstructions={props.specialInstructions}
                     pickupDateTime={props.pickupDateTime}
                     quantity={props.quantity}
                     jamSelected={props.jamSelected}
