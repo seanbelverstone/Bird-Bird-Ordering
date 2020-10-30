@@ -60,8 +60,7 @@ class OrderCalendar extends React.Component {
 							Telephone: ${unsortedEvents[i].telephone}\n
 							Email: ${unsortedEvents[i].email}\n
 							Total: ${unsortedEvents[i].totalCost}\n
-							Completed: ${unsortedEvents[i].completed}\n
-							Notes: ${unsortedEvents[i].specialInstructions}`
+							Completed: ${unsortedEvents[i].completed}\n`
 							
 			})
 		}
