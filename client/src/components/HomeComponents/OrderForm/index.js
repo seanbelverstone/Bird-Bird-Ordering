@@ -153,7 +153,7 @@ class OrderForm extends React.Component {
 			})
 		}
 		this.setState({
-			pickupDateTime: new Date(2020, 10, 25, 8)
+			pickupDateTime: new Date(2020, 10, 25, 9)
 		})
 	}
 
