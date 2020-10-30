@@ -41,7 +41,10 @@ class OrderForm extends React.Component {
 			validated: true,
 			specialInstructions: "",
 			pickupDateTime: new Date(),
-			orderCompleted: false
+			orderCompleted: false,
+			remainingBiscuits: this.props.biscuitCount,
+			displayForm: {display: "block"},
+			displaySoldOut: {display: "none"}
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -199,146 +202,169 @@ class OrderForm extends React.Component {
 		}
 	}
 
+		// checks to see if there are any biscuits left. If they're all gone, show the soldOutArea
+		checkBiscuitCount = () => {
+			if (this.state.biscuitCount <= 0) {
+				this.setState({
+					formDisplay: {display: "none"},
+					soldOutDisplay: {display: "block"}
+				})
+			} else {
+				this.setState({
+					formDisplay: {display: "block"},
+					soldOutDisplay: {display: "none"}
+				})
+			}
+		};
+
 	render() {
 		return (
-			<AvForm style={this.props.displayNone} onSubmit={this.handleSubmit} id="orderForm">
-				<Row form id="quantityAndPrice">
-					<Col>
-						<FormGroup style={{width: "97%"}}>
-							<Label for="quantity">Number of 6-Packs</Label>
-							<Input 
-								type="select" 
-								name="quantity" 
-								id="quantity" 
-								value={this.state.quantity}
-								onChange={this.handleChange}
-								onClick={this.handleTotals()}>
-
-								<option value="1">1 (6 biscuits)</option>
-								<option value="2">2 (12 biscuits)</option>
-								<option value="3">3 (18 biscuits)</option>
-								<option value="4">4 (24 biscuits)</option>
-								<option value="5">5 (30 biscuits)</option>
-								<option value="6">6 (36 biscuits)</option>
-
-
-							</Input>
-						</FormGroup>
-					</Col>
-					<Col>
-						<Label for="price">Price</Label>
-						<div id="price" name="price">${quantityPrice}</div>
-					</Col>
-				</Row>
-				<hr className="lineBreak"/>
-				<Row>
-					<Col>
-						<div id="tipTitle">Add a tip</div>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.15}>
-							15%
-							<br />
-							${fifteenPercentTip}
-						</Button>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.18}>
-							18%
-							<br />
-							${eighteenPercentTip}
-						</Button>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.20}>
-							20%
-							<br />
-							${twentyPercentTip}
-						</Button>
-						<Button
-							className="tipButtons" color="secondary" onClick={this.handleForm}>Custom Amount</Button>
-
-						<div id="hiddenForm" style={this.state.hiddenForm}>
-							<AvGroup className="input-group">
-									<AvInput 
-										type="text" 
-										name="tipInDollars" 
-										id="tipInDollars"
-										min="0.01"
-										step="0.01"
-										validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
-										onChange={this.handleChange}
-										value={this.state.tipInDollars}
-									/>
-								<InputGroupAddon addonType="prepend">
-									<InputGroupText>
-										{customPercentageAmount = (this.state.tipInDollars / (totalPrice / 100)).toFixed(2)}%
-									</InputGroupText>
-								</InputGroupAddon>
-								<AvFeedback>
-								Please enter a valid tip amount in dollars
-								</AvFeedback>
-							</AvGroup>
-						</div>
-					</Col>
-					</Row>
-					<hr className="lineBreak"/>
-					<Row>
+			<div>
+				<AvForm style={this.state.displayForm} onSubmit={this.handleSubmit} id="orderForm">
+					<Row form id="quantityAndPrice">
 						<Col>
-							<div>Select a pick-up date & time</div>
-						</Col>
-					</Row>
-					<Row>
-						<Col>
-							<UserCalendar pickupDateTime={this.state.pickupDateTime}
-										handleCalendarChange={this.handleCalendarChange}/>
-						</Col>
-					</Row>
-					<hr className="lineBreak"/>
-					<Row>
-						<Col>
-							<FormGroup>
-								<Label for="specialInstructions" className="specialInstructions">Would you like to include any special instructions?</Label>
-								<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
+							<FormGroup style={{width: "97%"}}>
+								<Label for="quantity">Number of 6-Packs</Label>
+								<Input 
+									type="select" 
+									name="quantity" 
+									id="quantity" 
+									value={this.state.quantity}
+									onChange={this.handleChange}
+									onClick={this.handleTotals()}>
+
+									<option value="1">1 (6 biscuits)</option>
+									<option value="2">2 (12 biscuits)</option>
+									<option value="3">3 (18 biscuits)</option>
+									<option value="4">4 (24 biscuits)</option>
+									<option value="5">5 (30 biscuits)</option>
+									<option value="6">6 (36 biscuits)</option>
+
+
+								</Input>
 							</FormGroup>
 						</Col>
+						<Col>
+							<Label for="price">Price</Label>
+							<div id="price" name="price">${quantityPrice}</div>
+						</Col>
 					</Row>
-					<div className="totalArea">
-						<Row>
-							<Col>
-								<div id="subtotal">Subtotal: <p className="totalsText">${this.handleSubtotal()}</p></div>
-							</Col>
-						</Row>
-						<hr />
-						<Row>
-							<Col>
-								<div id="tax">Tax: <p className="totalsText">${this.handleTax()}</p></div>
-							</Col>
-						</Row>
-						<hr />
-						<Row>
-							<Col>
-								<div id="finalTotal">Total: <p className="totalsText">${this.handleFinalTotal()}</p></div>
-							</Col>
-						</Row>
-					</div>
+					<hr className="lineBreak"/>
 					<Row>
 						<Col>
-							<FormGroup>
-									<PaymentModal
-										tipValidation={this.state.tipInDollars}
-										total={finalTotal}
-										values={this.state.values}
-										specialInstructions={this.state.specialInstructions}
-										pickupDateTime={this.state.pickupDateTime}
-										quantity={this.state.quantity}
-										jamSelected={this.state.jamSelected}
-										gravySelected={this.state.gravySelected}
-										biscuitCount={this.props.biscuitCount}
-										setState={this.props.setState}
+							<div id="tipTitle">Add a tip</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.15}>
+								15%
+								<br />
+								${fifteenPercentTip}
+							</Button>
+							<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.18}>
+								18%
+								<br />
+								${eighteenPercentTip}
+							</Button>
+							<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.20}>
+								20%
+								<br />
+								${twentyPercentTip}
+							</Button>
+							<Button
+								className="tipButtons" color="secondary" onClick={this.handleForm}>Custom Amount</Button>
+
+							<div id="hiddenForm" style={this.state.hiddenForm}>
+								<AvGroup className="input-group">
+										<AvInput 
+											type="text" 
+											name="tipInDollars" 
+											id="tipInDollars"
+											min="0.01"
+											step="0.01"
+											validate={{pattern: {value: /^\$?[0-9]+\.?[0-9]?[0-9]?$/}}}
+											onChange={this.handleChange}
+											value={this.state.tipInDollars}
 										/>
-							</FormGroup>
+									<InputGroupAddon addonType="prepend">
+										<InputGroupText>
+											{customPercentageAmount = (this.state.tipInDollars / (totalPrice / 100)).toFixed(2)}%
+										</InputGroupText>
+									</InputGroupAddon>
+									<AvFeedback>
+									Please enter a valid tip amount in dollars
+									</AvFeedback>
+								</AvGroup>
+							</div>
 						</Col>
-					</Row>
-			</AvForm>
+						</Row>
+						<hr className="lineBreak"/>
+						<Row>
+							<Col>
+								<div>Select a pick-up date & time</div>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<UserCalendar pickupDateTime={this.state.pickupDateTime}
+											handleCalendarChange={this.handleCalendarChange}/>
+							</Col>
+						</Row>
+						<hr className="lineBreak"/>
+						<Row>
+							<Col>
+								<FormGroup>
+									<Label for="specialInstructions" className="specialInstructions">Would you like to include any special instructions?</Label>
+									<Input type="textarea" name="specialInstructions" id="specialInstructions" onChange={this.handleChange} />
+								</FormGroup>
+							</Col>
+						</Row>
+						<div className="totalArea">
+							<Row>
+								<Col>
+									<div id="subtotal">Subtotal: <p className="totalsText">${this.handleSubtotal()}</p></div>
+								</Col>
+							</Row>
+							<hr />
+							<Row>
+								<Col>
+									<div id="tax">Tax: <p className="totalsText">${this.handleTax()}</p></div>
+								</Col>
+							</Row>
+							<hr />
+							<Row>
+								<Col>
+									<div id="finalTotal">Total: <p className="totalsText">${this.handleFinalTotal()}</p></div>
+								</Col>
+							</Row>
+						</div>
+						<Row>
+							<Col>
+								<FormGroup>
+										<PaymentModal
+											tipValidation={this.state.tipInDollars}
+											total={finalTotal}
+											values={this.state.values}
+											specialInstructions={this.state.specialInstructions}
+											pickupDateTime={this.state.pickupDateTime}
+											quantity={this.state.quantity}
+											jamSelected={this.state.jamSelected}
+											gravySelected={this.state.gravySelected}
+											biscuitCount={this.props.biscuitCount}
+											setState={this.props.setState}
+											/>
+								</FormGroup>
+							</Col>
+						</Row>
+				</AvForm>
+				<div className="soldOutArea" style={this.state.displaySoldOut}>
+					<h1>That's all folks! We are sold out!</h1>
+					<h2>Watch this space for more 6-pack events.</h2>
+					<h3>Happy thanksgiving!</h3>
+					<h3>-The Bird Bird Team</h3>
+				</div>
+			</div>
 		);
 	}
 }
