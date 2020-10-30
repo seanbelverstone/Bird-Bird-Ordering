@@ -147,13 +147,13 @@ class OrderForm extends React.Component {
 	// if today's date is later than the 23rd November and earlier than the 27th November, set the new date to be today's date + 2. This will prevent
 	// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am	
 	checkTodaysDate = () => {
-		if (new Date(2020, 10, 25, 11) > new Date(2020, 10, 23, 8) && new Date(2020, 10, 25, 11) < new Date(2020, 10, 27, 14)) {
+		if (new Date() > new Date(2020, 10, 25, 8) && new Date() < new Date(2020, 10, 27, 11)) {
 			this.setState({
-				pickupDateTime: addDays(new Date(), 2)
+				pickupDateTime: addDays(new Date(), 1)
 			})
 		}
 		this.setState({
-			pickupDateTime: new Date(2020, 10, 23, 8)
+			pickupDateTime: new Date(2020, 10, 25, 8)
 		})
 	}
 
