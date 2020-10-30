@@ -27,7 +27,7 @@ const UserCalendar = (props) => {
 		timeIntervals={15}
 		timeCaption="Time"
 		minTime={setHours(setMinutes(new Date(), 0), 9)}
-		maxTime={setHours(setMinutes(new Date(), 0), 11)}
+		maxTime={setHours(setMinutes(new Date(), 0), 12)}
 		/>
 	);
 }
