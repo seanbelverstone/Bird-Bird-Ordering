@@ -66,6 +66,8 @@ class UserForm extends React.Component {
                         loading={this.state.loading}
                         showSuccess={this.state.showSuccess}
                         setState={(parameter) => {this.setState(parameter)}}
+                        biscuitCount={this.props.biscuitCount}
+										    setStateOfBiscuits={this.props.setState}
                         />}
           <IncorrectCardAlert errors={this.state.errors} 
                               setState={(parameter) => {this.setState(parameter)}}/>

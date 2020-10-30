@@ -135,6 +135,10 @@ const CheckoutForm = (props) => {
             props.setState({
               loading: false,
             });
+            // Updating the biscuit count AFTER the email has been sent
+            props.setStateOfBiscuits({
+              biscuitCount: props.biscuitCount - props.quantity
+            })
           }, (err) => {
             console.log("Email sending failed", err)
           });

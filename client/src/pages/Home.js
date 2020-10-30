@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Firebase from "firebase";
+import config from "../components/Firebase/config";
 import OrderForm from "../components/HomeComponents/OrderForm";
 import BottomNav from "../components/HomeComponents/BottomNav";
 import biscuits from "../images/minisResized.jpg";
@@ -6,6 +8,40 @@ import "./css/home.css";
 
 
 class Home extends Component {
+	// initalizing Firebase in the Homepage
+	constructor(props) {
+		super(props);
+		Firebase.initializeApp(config);
+
+		this.state = {
+			biscuitCount: 160
+		};
+	}
+	
+	componentDidMount() {
+		this.getBiscuitCount();
+	}
+	
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState !== this.state) {
+		this.writeBiscuitCount();
+		}
+	}
+	
+	writeBiscuitCount = () => {
+		Firebase.database()
+		.ref("/")
+		.set(this.state);
+		console.log("DATA SAVED");
+	};
+	
+	getBiscuitCount = () => {
+		let ref = Firebase.database().ref("/");
+		ref.on("value", snapshot => {
+		const state = snapshot.val();
+		this.setState(state);
+		});
+	};
 
 	loginPage(event) {
 		event.preventDefault();
@@ -33,7 +69,9 @@ class Home extends Component {
 						</div>
 					</div>
 					<div className="row" id="orderFormContainer">
-						<OrderForm />
+						<OrderForm 
+							biscuitCount={this.state.biscuitCount}
+							setState={(parameter) => {this.setState(parameter)}}/>
 					</div>
 
 					</div>

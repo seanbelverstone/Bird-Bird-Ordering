@@ -332,6 +332,8 @@ class OrderForm extends React.Component {
 										quantity={this.state.quantity}
 										jamSelected={this.state.jamSelected}
 										gravySelected={this.state.gravySelected}
+										biscuitCount={this.props.biscuitCount}
+										setState={this.props.setState}
 										/>
 							</FormGroup>
 						</Col>
