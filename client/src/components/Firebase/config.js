@@ -1,5 +1,3 @@
-import app from "firebase/app"
-
 const prodConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -23,10 +21,5 @@ const devConfig = {
 // Saving 2 different configs so I dont alter the one in production when testing
 const config = process.env.NODE_ENV === "production" ? prodConfig : devConfig;
 
-class Firebase {
-	constructor() {
-		app.initializeApp(config)
-	}
-}
 
-export default Firebase;
+export default config;
