@@ -14,7 +14,7 @@ class Home extends Component {
 		Firebase.initializeApp(config);
 
 		this.state = {
-			biscuitCount: 1
+			biscuitCount: 160
 		};
 	}
 	
@@ -25,6 +25,7 @@ class Home extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState !== this.state) {
 		this.writeBiscuitCount();
+		this.checkBiscuitCount();
 		}
 	}
 	
@@ -40,9 +41,22 @@ class Home extends Component {
 		ref.on("value", snapshot => {
 		const state = snapshot.val();
 		this.setState(state);
-		});
-		this.checkBiscuitCount();
+		}, this.checkBiscuitCount());
 	};
+
+	// checks to see if there are any biscuits left. If they're all gone, show the soldOutArea
+	checkBiscuitCount = () => {
+		let orderFormContainer = document.getElementById("orderFormContainer");
+		let soldOutArea = document.getElementById("soldOutArea");
+
+		if (this.state.biscuitCount === 0) {
+			orderFormContainer.style.visibility = "hidden";
+			soldOutArea.style.visibility = "visible";
+		} else {
+			orderFormContainer.style.visibility = "visible";
+			soldOutArea.style.visibility = "hidden";
+			}
+	}
 
 
 	loginPage(event) {
@@ -75,7 +89,12 @@ class Home extends Component {
 							biscuitCount={this.state.biscuitCount}
 							setState={(parameter) => {this.setState(parameter)}}/>
 					</div>
-
+						<div id="soldOutArea">
+							<h1>That's all folks! We are sold out!</h1>
+							<h2>Watch this space for more 6-pack events.</h2>
+							<h3>Happy thanksgiving!</h3>
+							<h3>-The Bird Bird Team</h3>
+						</div>
 					</div>
 				<BottomNav />
 
