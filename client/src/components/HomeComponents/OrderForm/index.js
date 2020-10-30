@@ -200,21 +200,6 @@ class OrderForm extends React.Component {
 		}
 	}
 
-		// checks to see if there are any biscuits left. If they're all gone, show the soldOutArea
-		checkBiscuitCount = () => {
-			if (this.state.biscuitCount <= 0) {
-				this.setState({
-					formDisplay: {display: "none"},
-					soldOutDisplay: {display: "block"}
-				})
-			} else {
-				this.setState({
-					formDisplay: {display: "block"},
-					soldOutDisplay: {display: "none"}
-				})
-			}
-		};
-
 	render() {
 		return (
 			<AvForm style={this.props.displayNone} onSubmit={this.handleSubmit} id="orderForm">
