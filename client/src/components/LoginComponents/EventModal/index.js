@@ -26,7 +26,7 @@ class EventModal extends React.Component {
 		splitDesc = desc.trim().split(/[\s ↵↵]+/);
 
 		// I then use interpolation to make it easier to display each item individually.
-		let quantity = `${splitDesc[0]} ${splitDesc[1]} dozen - (${splitDesc[1]*12} total)`;
+		let quantity = `${splitDesc[0]} ${splitDesc[1]} 6 pack(s) - (${splitDesc[1]*6} total)`;
 		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
 		let email = `${splitDesc[4]} ${splitDesc[5]}`;
 		let total = `${splitDesc[6]} $${splitDesc[7]}`;
