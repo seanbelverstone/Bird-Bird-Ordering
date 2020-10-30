@@ -54,10 +54,19 @@ button#employeeButton:hover + p {
 	font-size: 50px;
 }
 
+#soldOutArea {
+	width: 100%;
+	margin-top: 40px;
+	height: 0px;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 460px) {
 	.container {
 		margin-left: 25% !important;
+	}
+	.soldOutMessage {
+		font-size: 18px;
 	}
 }
 @media only screen and (max-width: 768px) {
@@ -79,6 +88,9 @@ button#employeeButton:hover + p {
 		left: 0%;
     	bottom: 90%;
 	}
+	.soldOutMessage {
+		font-size: 25px;
+	}
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
@@ -89,6 +101,9 @@ button#employeeButton:hover + p {
 	#loginText {
 		left: 0%;
     	bottom: 90%;
+	}
+	.soldOutMessage {
+		font-size: 30px;
 	}
 }
 

@@ -41,7 +41,8 @@ class OrderForm extends React.Component {
 			validated: true,
 			specialInstructions: "",
 			pickupDateTime: new Date(),
-			orderCompleted: false
+			orderCompleted: false,
+			remainingBiscuits: this.props.biscuitCount
 			}
 
 		this.handleChange = this.handleChange.bind(this);
@@ -199,9 +200,24 @@ class OrderForm extends React.Component {
 		}
 	}
 
+		// checks to see if there are any biscuits left. If they're all gone, show the soldOutArea
+		checkBiscuitCount = () => {
+			if (this.state.biscuitCount <= 0) {
+				this.setState({
+					formDisplay: {display: "none"},
+					soldOutDisplay: {display: "block"}
+				})
+			} else {
+				this.setState({
+					formDisplay: {display: "block"},
+					soldOutDisplay: {display: "none"}
+				})
+			}
+		};
+
 	render() {
 		return (
-			<AvForm onSubmit={this.handleSubmit} id="orderForm">
+			<AvForm style={this.props.displayNone} onSubmit={this.handleSubmit} id="orderForm">
 				<Row form id="quantityAndPrice">
 					<Col>
 						<FormGroup style={{width: "97%"}}>
@@ -332,6 +348,8 @@ class OrderForm extends React.Component {
 										quantity={this.state.quantity}
 										jamSelected={this.state.jamSelected}
 										gravySelected={this.state.gravySelected}
+										biscuitCount={this.props.biscuitCount}
+										setState={this.props.setState}
 										/>
 							</FormGroup>
 						</Col>
