@@ -30,7 +30,7 @@ const BottomNav = () => {
             </NavItem>
             <NavItem>
               {/* this will be the live website when done */}
-              <NavLink href="#" id="dozens">DOZENS</NavLink>
+              <NavLink href="#" id="dozens">6-PACKS</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/">OUR STORY</NavLink>
