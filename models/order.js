@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 	  gravy: DataTypes.TINYINT(1),
 	  totalCost: DataTypes.DECIMAL(10,2),
 	  pickupDateTime: DataTypes.STRING,
-	  completed: DataTypes.TINYINT(1),
-	  specialInstructions: DataTypes.STRING
+	  completed: DataTypes.TINYINT(1)
 	}, {});
   
 	Order.sync();
