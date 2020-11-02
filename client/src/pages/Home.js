@@ -87,7 +87,6 @@ class Home extends Component {
 					<div className="row">
 						<div id="soldOutArea">
 							<h1 className="soldOutMessage">That's all folks! We are sold out!</h1>
-							<h2 className="soldOutMessage">Watch this space for more 6-pack events.</h2>
 							<h3 className="soldOutMessage">Happy thanksgiving!</h3>
 							<h3 className="soldOutMessage">-The Bird Bird Team</h3>
 						</div>
