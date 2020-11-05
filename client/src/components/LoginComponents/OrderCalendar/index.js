@@ -170,7 +170,7 @@ class OrderCalendar extends React.Component {
 				ordersOnScreen++;
 			}
 			this.setState({
-				totalBiscuits: biscuitQuantity * 12,
+				totalBiscuits: biscuitQuantity * 6,
 				totalOrders: ordersOnScreen
 			})
 		})

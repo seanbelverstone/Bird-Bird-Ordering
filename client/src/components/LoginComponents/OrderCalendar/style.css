@@ -2,6 +2,10 @@
 	font-size: 20px !important;
 }
 
+.modal-body, div {
+	font-weight: 700 !important;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	#calendarTitle {
