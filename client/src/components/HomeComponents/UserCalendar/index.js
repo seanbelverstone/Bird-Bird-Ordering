@@ -4,8 +4,8 @@ import DatePicker from "react-datepicker";
 // import addDays from "date-fns/subDays";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
-import setDate from "date-fns/setDate";
-import setDay from "date-fns/setDay";
+// import setDate from "date-fns/setDate";
+// import setDay from "date-fns/setDay";
 import "react-datepicker/dist/react-datepicker.css";
 import "./style.css"; 
 
