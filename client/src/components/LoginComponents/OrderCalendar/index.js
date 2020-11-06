@@ -21,6 +21,7 @@ class OrderCalendar extends React.Component {
 			clickedTime: "",
 			clickedDate: "",
 			totalBiscuits: "",
+			totalPacks: "",
 			totalOrders: "",
 			currentDate: new Date(),
 			currentView: "month",
@@ -175,6 +176,7 @@ class OrderCalendar extends React.Component {
 			}
 			this.setState({
 				totalBiscuits: biscuitQuantity * 6,
+				totalPacks: biscuitQuantity,
 				totalOrders: ordersOnScreen
 			})
 		})
@@ -221,6 +223,7 @@ class OrderCalendar extends React.Component {
 					<div className="col 1">
 						<div className="orderTotals">
 							<div>Orders: {this.state.totalOrders}</div>
+							<div>Total Packs: {this.state.totalPacks}</div>
 							<div>Total Biscuits: {this.state.totalBiscuits}</div>
 						</div>
 					</div>
