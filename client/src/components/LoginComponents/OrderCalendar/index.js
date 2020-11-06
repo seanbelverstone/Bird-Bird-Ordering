@@ -193,7 +193,7 @@ class OrderCalendar extends React.Component {
 		let email = `${sortedEvent[4]} ${sortedEvent[5]}`;
 		let total = `${sortedEvent[6]} $${sortedEvent[7]}`;
 		// index position 8 and 9 are reserved for the Completed part
-	
+
 		return (
 			<div className="sortedEvent">
 				<p>{quantity}</p>
@@ -203,7 +203,6 @@ class OrderCalendar extends React.Component {
 			</div>
 		)
 	}
-
 
 	render() {
 
