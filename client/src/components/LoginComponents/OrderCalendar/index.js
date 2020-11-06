@@ -21,6 +21,7 @@ class OrderCalendar extends React.Component {
 			clickedTime: "",
 			clickedDate: "",
 			totalBiscuits: "",
+			totalPacks: "",
 			totalOrders: "",
 			currentDate: new Date(),
 			currentView: "month",
@@ -137,7 +138,11 @@ class OrderCalendar extends React.Component {
 		if (this.state.currentView === "month") {
 			start = start.startOf("week");
 			end = end.endOf("week");
+		} else if (this.state.currentView === "agenda") {
+			start = start.startOf("day")
+			end = end.endOf("month")
 		}
+
 		this.setState({
 			currentDateRange: {
 				start: start.toString(),
@@ -170,10 +175,39 @@ class OrderCalendar extends React.Component {
 				ordersOnScreen++;
 			}
 			this.setState({
-				totalBiscuits: biscuitQuantity * 12,
+				totalBiscuits: biscuitQuantity * 6,
+				totalPacks: biscuitQuantity,
 				totalOrders: ordersOnScreen
 			})
 		})
+	}
+
+	EventAgenda = ({ event }) => {
+		return(
+			<span>
+				<p className="guestName">{event.title}</p>
+				{this.trimEvent(event)}
+			</span>
+		)
+	}
+
+	// took this from EventModal to save time
+	trimEvent = (event) => {
+		let sortedEvent = event.desc.trim().split(/[\s ↵↵]+/)
+		let quantity = `${sortedEvent[0]} ${sortedEvent[1]} 6 pack(s) - (${sortedEvent[1]*6} total)`;
+		let telephone = `${sortedEvent[2]} ${sortedEvent[3]}`;
+		let email = `${sortedEvent[4]} ${sortedEvent[5]}`;
+		let total = `${sortedEvent[6]} $${sortedEvent[7]}`;
+		// index position 8 and 9 are reserved for the Completed part
+		
+		return (
+			<div className="sortedEvent">
+				<p>{quantity}</p>
+				<p>{telephone}</p>
+				<p>{email}</p>
+				<p>{total}</p>
+			</div>
+		)
 	}
 
 	render() {
@@ -189,6 +223,7 @@ class OrderCalendar extends React.Component {
 					<div className="col 1">
 						<div className="orderTotals">
 							<div>Orders: {this.state.totalOrders}</div>
+							<div>Total Packs: {this.state.totalPacks}</div>
 							<div>Total Biscuits: {this.state.totalBiscuits}</div>
 						</div>
 					</div>
@@ -197,7 +232,7 @@ class OrderCalendar extends React.Component {
 				<Calendar
 					localizer={localizer}
 					events={events}
-					views={[Views.DAY, Views.WEEK, Views.MONTH]}
+					views={[Views.DAY, Views.WEEK, Views.MONTH, Views.AGENDA]}
 					showMultiDayTimes
 					min={new Date(0, 0, 0, 7, 0, 0)}
 					max={new Date(0, 0, 0, 16, 0, 0)}
@@ -211,6 +246,11 @@ class OrderCalendar extends React.Component {
 					onNavigate={this.setCurrentDate}
 					onView={this.setCurrentView}
 					eventPropGetter={this.eventColorChange}
+					components={{
+						agenda: {
+							event: this.EventAgenda
+						}
+					}}
 					/>
 
 				<EventModal 

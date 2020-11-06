@@ -5,7 +5,7 @@ nav {
 	padding: 25px 0 !important;
 	left: 0;
 	right: 0;
-	border-top: 1px solid #dedede;
+	border-top: 1px solid #dedede !important;
 	background-color: white !important;
 }
 

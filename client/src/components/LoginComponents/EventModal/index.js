@@ -16,8 +16,9 @@ class EventModal extends React.Component {
 	}
 
 	sortedTime = () => {
-		const removedEnd = this.props.pickupTime.replace(`GMT-0500 (Central Daylight Time)`, " ");
-		const finalTime = removedEnd.replace(regex, " ");
+		// quick if statement to replace the unnecessary extra bit at the end of the time.
+		let removedEnd = this.props.pickupTime.split(`GMT`);
+		const finalTime = removedEnd[0].replace(regex, " ");
 		return finalTime;
 	}
 
@@ -30,7 +31,7 @@ class EventModal extends React.Component {
 		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
 		let email = `${splitDesc[4]} ${splitDesc[5]}`;
 		let total = `${splitDesc[6]} $${splitDesc[7]}`;
-		// index position 12 and 13 are reserved for the Completed part
+		// index position 8 and 9 are reserved for the Completed part
 
 		return (
 			<div className="eventData">
