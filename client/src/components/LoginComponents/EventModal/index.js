@@ -31,7 +31,7 @@ class EventModal extends React.Component {
 		let telephone = `${splitDesc[2]} ${splitDesc[3]}`;
 		let email = `${splitDesc[4]} ${splitDesc[5]}`;
 		let total = `${splitDesc[6]} $${splitDesc[7]}`;
-		// index position 12 and 13 are reserved for the Completed part
+		// index position 8 and 9 are reserved for the Completed part
 
 		return (
 			<div className="eventData">

@@ -176,6 +176,35 @@ class OrderCalendar extends React.Component {
 		})
 	}
 
+	EventAgenda = ({ event }) => {
+		return(
+			<span>
+				<p>{event.title}</p>
+				<p>{this.trimEvent(event)}</p>
+			</span>
+		)
+	}
+
+	// took this from EventModal to save time
+	trimEvent = (event) => {
+		let sortedEvent = event.desc.trim().split(/[\s ↵↵]+/)
+		let quantity = `${sortedEvent[0]} ${sortedEvent[1]} 6 pack(s) - (${sortedEvent[1]*6} total)`;
+		let telephone = `${sortedEvent[2]} ${sortedEvent[3]}`;
+		let email = `${sortedEvent[4]} ${sortedEvent[5]}`;
+		let total = `${sortedEvent[6]} $${sortedEvent[7]}`;
+		// index position 8 and 9 are reserved for the Completed part
+	
+		return (
+			<div className="sortedEvent">
+				<p>{quantity}</p>
+				<p>{telephone}</p>
+				<p>{email}</p>
+				<p>{total}</p>
+			</div>
+		)
+	}
+
+
 	render() {
 
 		const events = this.state.events;
@@ -197,7 +226,7 @@ class OrderCalendar extends React.Component {
 				<Calendar
 					localizer={localizer}
 					events={events}
-					views={[Views.DAY, Views.WEEK, Views.MONTH]}
+					views={[Views.DAY, Views.WEEK, Views.MONTH, Views.AGENDA]}
 					showMultiDayTimes
 					min={new Date(0, 0, 0, 7, 0, 0)}
 					max={new Date(0, 0, 0, 16, 0, 0)}
@@ -211,6 +240,11 @@ class OrderCalendar extends React.Component {
 					onNavigate={this.setCurrentDate}
 					onView={this.setCurrentView}
 					eventPropGetter={this.eventColorChange}
+					components={{
+						agenda: {
+							event: this.EventAgenda
+						}
+					}}
 					/>
 
 				<EventModal 
