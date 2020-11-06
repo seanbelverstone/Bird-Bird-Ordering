@@ -179,7 +179,7 @@ class OrderCalendar extends React.Component {
 	EventAgenda = ({ event }) => {
 		return(
 			<span>
-				<p>{event.title}</p>
+				<p className="guestName">{event.title}</p>
 				<p>{this.trimEvent(event)}</p>
 			</span>
 		)

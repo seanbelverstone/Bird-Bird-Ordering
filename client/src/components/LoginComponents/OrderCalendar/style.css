@@ -14,6 +14,15 @@
 	color: white;
 }
 
+.guestName {
+	color: goldenrod;
+	font-size: 18px;
+}
+
+.sortedEvent p {
+	margin: 0px;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	#calendarTitle {
