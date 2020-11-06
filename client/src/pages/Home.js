@@ -77,6 +77,10 @@ class Home extends Component {
 					<div className="row">
 						<div className="col-12">
 							<h1 id="pageTitle">THANKSGIVING BISCUITS</h1>
+							<h5 class="italic">Dinner-sized.</h5>
+							<h5 class="italic">Slightly smaller than our sandwich biscuits.</h5>
+							<h5 class="italic">Made for sharing.</h5>
+
 						</div>
 					</div>
 					<div className="row">
