@@ -173,7 +173,7 @@ class OrderForm extends React.Component {
 	}
 
 	handleTax = () => {
-		tax = parseFloat(subtotal * 0.0625).toFixed(2);
+		tax = parseFloat(subtotal * 0.0825).toFixed(2);
 		return tax;
 		}
 
