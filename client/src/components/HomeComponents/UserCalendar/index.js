@@ -10,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./style.css"; 
 
 const UserCalendar = (props) => {
-
 	return (
 		<DatePicker
 		id="datePicker"
@@ -18,10 +17,11 @@ const UserCalendar = (props) => {
 		onChange={props.handleCalendarChange}
 		dateFormat="MMMM d, h:mm aa"
 		// min date makes sure users can't select a date sooner than the day before Thanksgiving
-		minDate={new Date(2022, 10, 23)}
+		// also the cutoff for ordering is Friday 18th - so if this is true, remove the ordering times
+		minDate={new Date() < new Date(2022, 10, 18, 0) ? new Date(2022, 10, 23) : new Date(2022, 10, 24)}
 		// when going back to full range, use addDays(new Date(), 2) as this will prevent users from selecting a day earlier than 2 days from now.
 		// max date does the same, but for orders after thanksgiving day
-		maxDate={new Date(2022, 10, 24)}
+		maxDate={new Date() >= new Date(2022, 10, 18, 0) ? new Date(2022, 10, 22) : new Date(2022, 10, 24)}
 		showTimeSelect
 		timeFormat="HH:mm"
 		timeIntervals={15}

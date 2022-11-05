@@ -39,7 +39,7 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
-			pickupDateTime: new Date(),
+			pickupDateTime: new Date(2022, 10, 23, 9),
 			orderCompleted: false,
 			remainingBiscuits: this.props.biscuitCount
 			}
@@ -49,6 +49,10 @@ class OrderForm extends React.Component {
 		this.addTip = this.addTip.bind(this);
 		this.handleCalendarChange = this.handleCalendarChange.bind(this);
 
+	}
+
+	componentDidMount() {
+		customPercentageAmount = this.state.tipInDollars;
 	}
 	
 	// A function for when the quantity changes
@@ -143,25 +147,6 @@ class OrderForm extends React.Component {
 			pickupDateTime: date
 		});
 	  };
-	  
-	// if today's date is later than the 23rd November and earlier than the 27th November, set the new date to be today's date + 2. This will prevent
-	// users for placing orders on the same day, giving the team a 2 day headstart. If it returns false, set the initial date to Nov 23rd @ 8am	
-	checkTodaysDate = () => {
-		if (new Date() > new Date(2020, 10, 25, 8) && new Date() < new Date(2020, 10, 27, 11)) {
-			this.setState({
-				pickupDateTime: addDays(new Date(), 1)
-			})
-		}
-		this.setState({
-			pickupDateTime: new Date(2022, 10, 23, 9)
-		})
-	}
-
-	  
-	componentDidMount() {
-		this.checkTodaysDate();
-		customPercentageAmount = this.state.tipInDollars;
-	}
 
 	// End-of-form functions
 	handleSubtotal = () => {
