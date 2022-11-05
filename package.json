@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is an online ordering form for biscuits by the dozen for Bird Bird Biscuit in Austin, TX.",
   "engines": {
-    "node": "v13.12.0"
+    "node": "v16.13.2"
   },
   "main": "server.js",
   "scripts": {
@@ -39,7 +39,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.25.3",
     "mysql2": "^2.1.0",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.3",
     "react": "^16.12.0",
     "react-big-calendar": "^0.24.6",
     "react-datepicker": "^2.13.0",
