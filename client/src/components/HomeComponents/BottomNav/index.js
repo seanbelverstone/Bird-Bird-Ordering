@@ -23,35 +23,26 @@ const BottomNav = () => {
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink id="home" href="https://www.birdbirdbiscuit.com/birdbirdbiscuit">HOME</NavLink>
+              <NavLink id="home" href="https://www.birdbirdbiscuit.com/">HOME</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.toasttab.com/bird-bird-biscuit/v3">ONLINE ORDER</NavLink>
+              <NavLink href="https://www.toasttab.com/bird-bird-biscuit-koenig/v3">KOENIG ONLINE ORDER</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://www.toasttab.com/bird-bird-biscuit/v3">MANOR ONLINE ORDER</NavLink>
             </NavItem>
             <NavItem>
               {/* this will be the live website when done */}
               <NavLink href="#" id="dozens">6-PACKS</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/">OUR STORY</NavLink>
+              <NavLink href="https://www.birdbirdbiscuit.com/story">OUR STORY</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="https://www.birdbirdbiscuit.com/menu">MENU</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/location">LOCATION</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/parking">PARKING</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/contact">CONTACT</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/press">PRESS</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://www.birdbirdbiscuit.com/now-hiring">NOW HIRING</NavLink>
+              <NavLink href="https://www.birdbirdbiscuit.com/visit-1">VISIT</NavLink>
             </NavItem>            
           </Nav>
           </Collapse>
