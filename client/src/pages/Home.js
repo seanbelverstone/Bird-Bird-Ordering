@@ -14,7 +14,7 @@ class Home extends Component {
 		Firebase.initializeApp(config);
 
 		this.state = {
-			biscuitCount: 160
+			biscuitCount: 1200
 		};
 	}
 	
@@ -77,9 +77,9 @@ class Home extends Component {
 					<div className="row">
 						<div className="col-12">
 							<h1 id="pageTitle">THANKSGIVING BISCUITS</h1>
-							<h5 class="italic">Dinner-sized.</h5>
-							<h5 class="italic">Slightly smaller than our sandwich biscuits.</h5>
-							<h5 class="italic">Made for sharing.</h5>
+							<h5 className="italic">Dinner-sized.</h5>
+							<h5 className="italic">Slightly smaller than our sandwich biscuits.</h5>
+							<h5 className="italic">Made for sharing.</h5>
 
 						</div>
 					</div>
