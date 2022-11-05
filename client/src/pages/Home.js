@@ -49,7 +49,7 @@ class Home extends Component {
 		let orderFormContainer = document.getElementById("orderFormContainer");
 		let soldOutArea = document.getElementById("soldOutArea");
 
-		if (this.state.biscuitCount === 0) {
+		if (this.state.biscuitCount === 0 || new Date() >= new Date(2022, 10, 18)) {
 			orderFormContainer.style.visibility = "hidden";
 			soldOutArea.style.visibility = "visible";
 		} else {
