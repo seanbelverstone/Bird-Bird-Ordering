@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import DownloadButton from "../components/LoginComponents/DownloadButton";
 import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
 import OrderCalendar from "../components/LoginComponents/OrderCalendar";
+import API from "../utils/API";
 import "./css/home.css";
 import "./css/login.css";
 
@@ -10,8 +12,19 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loggedIn: false
+			loggedIn: false,
+			rawData: []
 		}
+	}
+	
+	componentDidMount () {
+	// performs an API call to pull all the orders from the database.
+	API.getAllOrders().then(response => {
+		this.setState({
+			rawData: response.data
+		})
+		console.log(response.data, 'data')
+	})
 	}
 	
 	homePage(event) {
@@ -19,13 +32,18 @@ class Login extends Component {
 		window.location.pathname = "/"
 	}
 	
+	
 	render() {
-
-		const loggedIn = this.state.loggedIn;
+		const { rawData, loggedIn } = this.state;
 		let displayedComponent;
 
 		if (loggedIn === true || sessionStorage.getItem("birdBirdWebToken")) {
-			displayedComponent = <OrderCalendar />
+			displayedComponent = (
+				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+					<DownloadButton rawData={rawData}/>
+					<OrderCalendar rawData={rawData}/>
+				</div>
+			)
 
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
