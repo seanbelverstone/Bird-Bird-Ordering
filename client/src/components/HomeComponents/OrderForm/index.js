@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormGroup, Label, Row, Col, Input, InputGroupAddon, InputGroupText, Button } from 'reactstrap';
 import { AvForm, AvGroup, AvInput, AvFeedback} from 'availity-reactstrap-validation';
-import addDays from "date-fns/subDays";
 // Commented out the two below as they're not currently being used
 // import setHours from "date-fns/setHours";
 // import setMinutes from "date-fns/setMinutes";

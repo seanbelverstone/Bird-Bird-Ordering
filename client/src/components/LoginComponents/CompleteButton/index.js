@@ -23,8 +23,7 @@ class CompleteButton extends React.Component {
 	}
 
 	isOrderComplete = (completedVariable) => {
-
-		if(completedVariable == 1) {
+		if(parseInt(completedVariable) === 1) {
 			this.setState({
 				trueOrFalse: 0,
 				renderedButton: <Button color="warning" onClick={() => this.updateButton()}>Mark as Incomplete</Button>
