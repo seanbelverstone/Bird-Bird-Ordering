@@ -1,7 +1,6 @@
 import React from "react";
 import { Calendar, momentLocalizer, Views } from "react-big-calendar"
 import moment from "moment";
-import API from "../../../utils/API";
 import EventModal from "../EventModal";
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import "./style.css"
@@ -13,7 +12,6 @@ class OrderCalendar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			rawData: [],
 			events: [],
 			clicked: false,
 			clickedTitle: "",
@@ -30,23 +28,24 @@ class OrderCalendar extends React.Component {
 		this.handleSelect = this.handleSelect.bind(this);
 	}
 
-	componentDidMount = () => {
+	componentDidMount () {
+		const { rawData = [] } = this.props;
 		// sets the date range right from the get-go
 		this.setDateRange();
-		// performs an API call to pull all the orders from the database.
-		API.getAllOrders().then(response => {
+		rawData.length > 0 && this.sortData();
+	}
 
-			this.setState({
-				rawData: response.data
-			}, () => {
-				this.sortData();
-			})
-		})
+	componentDidUpdate (prevProps) {
+		const { rawData } = this.props;
+		if (prevProps.rawData !== rawData) {
+			this.sortData();
+		}
 	}
 
 	// this function fires after the get request has finished
 	sortData = () => {
-		var unsortedEvents = this.state.rawData
+		const { rawData = [] } = this.props;
+		var unsortedEvents = rawData
 		// loops through the array, and pushes all the necessary data to a new 'list' array, giving it the
 		// titles needed to translate into the calendar. Had to push to a global const variable as pushing 
 		// directly to an array in state is bad practice.
@@ -156,6 +155,7 @@ class OrderCalendar extends React.Component {
 	// This function gets called after the state has been set for the calendar, and API call has finished. It
 	// will display the total number biscuits that are visible on the screen at the top right for easy reading
 	totalBiscuits = () => {
+		const { rawData = [] } = this.props;
 		let biscuitQuantity = 0;
 		let ordersOnScreen = 0;
 		let start = this.state.currentDateRange.start;
@@ -164,7 +164,7 @@ class OrderCalendar extends React.Component {
 		start = new Date(start).getTime()
 		end = new Date(end).getTime();
 
-		this.state.rawData.forEach((element, index) => {
+		rawData.forEach((element, index) => {
 			// converting this to unix as well
 			let elementDateTime = new Date(element.pickupDateTime).getTime();
 
