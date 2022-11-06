@@ -77,6 +77,7 @@ class Home extends Component {
 					<div className="row">
 						<div className="col-12">
 							<h1 id="pageTitle">THANKSGIVING BISCUITS</h1>
+							<h3 id="disclaimer">PLEASE NOTE ALL PICK UPS WILL BE AT OUR 1401 W KEONIG LANE LOCATION</h3>
 							<h5 className="italic">Dinner-sized.</h5>
 							<h5 className="italic">Slightly smaller than our sandwich biscuits.</h5>
 							<h5 className="italic">Made for sharing.</h5>
