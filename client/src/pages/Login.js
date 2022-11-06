@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import DownloadButton from "../components/LoginComponents/DownloadButton";
 import EmployeeLogin from "../components/LoginComponents/EmployeeLogin";
 import OrderCalendar from "../components/LoginComponents/OrderCalendar";
 import "./css/home.css";
@@ -25,7 +26,12 @@ class Login extends Component {
 		let displayedComponent;
 
 		if (loggedIn === true || sessionStorage.getItem("birdBirdWebToken")) {
-			displayedComponent = <OrderCalendar />
+			displayedComponent = (
+				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+					<DownloadButton />
+					<OrderCalendar />
+				</div>
+			)
 
 		} else {
 			// Passing setState down into the child so the child can update the parent's state
