@@ -38,6 +38,12 @@ button#employeeButton:hover + p {
 	display: block;
 }
 
+#disclaimer {
+	font-weight: 900;
+	text-decoration: underline;
+	padding-bottom: 1em;
+}
+
 #biscuits {
 	margin-top: 50px;
 	width: 80%;
