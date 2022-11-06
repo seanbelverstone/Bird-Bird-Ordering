@@ -8,8 +8,6 @@ class DownloadButton extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-		}
 	}
 
 	downloadData = () => {
@@ -36,7 +34,7 @@ class DownloadButton extends Component {
 	
 	render() {
 		return (
-			<Button id="download" color="primary" onClick={this.downloadData}>Download</Button>
+			<Button id="download" color="primary" onClick={this.downloadData} disabled={this.props.rawData.length === 0}>Download</Button>
 		);
 	}
 }
