@@ -18,14 +18,13 @@ class DownloadButton extends Component {
 				'Order Number': rawData[i].id,
 				'Name': rawData[i].name,
 				'Email': rawData[i].email,
-				'Telephone': rawData[i].email,
+				'Telephone': rawData[i].telephone,
 				'Quantity': parseInt(rawData[i].biscuitQuantity),
 				'Total Cost': `$${rawData[i].totalCost}`,
 				'Pick Up Date': format(parseISO(rawData[i].pickupDateTime), 'MM/dd/yyyy'),
 				'Pick Up Time': format(parseISO(rawData[i].pickupDateTime), 'h:mm a'),
 			})
 		}
-		console.log(list);
 		const workbook = XLSX.utils.book_new();
 		const worksheet = XLSX.utils.json_to_sheet(list);
 		XLSX.utils.book_append_sheet(workbook, worksheet, 'Thanksgiving Sheet');
