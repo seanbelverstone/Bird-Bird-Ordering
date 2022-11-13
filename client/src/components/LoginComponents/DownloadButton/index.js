@@ -13,12 +13,13 @@ class DownloadButton extends Component {
 	downloadData = () => {
 		const { rawData = [] } = this.props;
 		const list = [];
+		console.log(rawData);
 		for (var i = 0; i < rawData.length; i++) {
 			list.push({
 				'Order Number': rawData[i].id,
 				'Name': rawData[i].name,
 				'Email': rawData[i].email,
-				'Telephone': rawData[i].email,
+				'Telephone': rawData[i].telephone,
 				'Quantity': parseInt(rawData[i].biscuitQuantity),
 				'Total Cost': `$${rawData[i].totalCost}`,
 				'Pick Up Date': format(parseISO(rawData[i].pickupDateTime), 'MM/dd/yyyy'),
