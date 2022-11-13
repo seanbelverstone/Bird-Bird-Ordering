@@ -13,7 +13,6 @@ class DownloadButton extends Component {
 	downloadData = () => {
 		const { rawData = [] } = this.props;
 		const list = [];
-		console.log(rawData);
 		for (var i = 0; i < rawData.length; i++) {
 			list.push({
 				'Order Number': rawData[i].id,
@@ -26,7 +25,6 @@ class DownloadButton extends Component {
 				'Pick Up Time': format(parseISO(rawData[i].pickupDateTime), 'h:mm a'),
 			})
 		}
-		console.log(list);
 		const workbook = XLSX.utils.book_new();
 		const worksheet = XLSX.utils.json_to_sheet(list);
 		XLSX.utils.book_append_sheet(workbook, worksheet, 'Thanksgiving Sheet');
