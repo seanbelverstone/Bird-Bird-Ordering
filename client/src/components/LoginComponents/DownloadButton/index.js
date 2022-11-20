@@ -5,11 +5,6 @@ import * as XLSX from 'xlsx';
 import './style.css';
 
 class DownloadButton extends Component {
-
-	constructor(props) {
-		super(props);
-	}
-
 	downloadData = () => {
 		const { rawData = [] } = this.props;
 		const list = [];
