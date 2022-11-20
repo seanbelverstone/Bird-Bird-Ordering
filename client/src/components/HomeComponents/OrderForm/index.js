@@ -38,7 +38,7 @@ class OrderForm extends React.Component {
 			buttonTip: "",
 			values: [],
 			validated: true,
-			pickupDateTime: new Date(2022, 10, 23, 9),
+			pickupDateTime: new Date(2022, 10, 24, 9),
 			orderCompleted: false,
 			remainingBiscuits: this.props.biscuitCount
 			}
