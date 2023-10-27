@@ -35,7 +35,7 @@ const PaymentModal = (props) => {
                     jamSelected={props.jamSelected}
                     gravySelected={props.gravySelected}
                     biscuitCount={props.biscuitCount}
-										setState={props.setState}
+					setState={props.setState}
                     />
           
           <br />
