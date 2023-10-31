@@ -10,7 +10,6 @@ let templateParams = {};
 const completed = 0;
 
 const CheckoutForm = (props) => {
-
   const stripe = useStripe();
   const elements = useElements();
 
@@ -133,14 +132,14 @@ const CheckoutForm = (props) => {
             props.setState({
               loading: false,
             });
-            // Updating the biscuit count AFTER the email has been sent
-            props.setStateOfBiscuits({
-              biscuitCount: props.biscuitCount - props.quantity
-            })
           }, (err) => {
             console.log("Email sending failed", err)
           });
         })
+		// Updating the biscuit count AFTER the email has been sent
+		props.setStateOfBiscuits({
+			biscuitCount: props.biscuitCount - (props.quantity * 6)
+		})
   }
 
   // sets the parent's state of errors to true, so the alert appears

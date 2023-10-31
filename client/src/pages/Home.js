@@ -48,7 +48,7 @@ class Home extends Component {
 	checkBiscuitCount = () => {
 		let orderFormContainer = document.getElementById("orderFormContainer");
 		let soldOutArea = document.getElementById("soldOutArea");
-		if (this.state.biscuitCount === 0 || new Date() >= new Date(2022, 10, 21, 17)) {
+		if (this.state.biscuitCount === 0 || new Date() >= new Date(2023, 10, 17, 17)) {
 			orderFormContainer.style.visibility = "hidden";
 			soldOutArea.style.visibility = "visible";
 		} else {
