@@ -16,14 +16,14 @@ const UserCalendar = (props) => {
 		selected={props.pickupDateTime}
 		onChange={props.handleCalendarChange}
 		dateFormat="MMMM d, h:mm aa"
-		minDate={new Date(2022, 10, 24)}
-		maxDate={new Date(2022, 10, 24)}
+		minDate={new Date(2023, 10, 22)}
+		maxDate={new Date(2023, 10, 23)}
 		showTimeSelect
 		timeFormat="HH:mm"
 		timeIntervals={15}
 		timeCaption="Time"
 		minTime={setHours(setMinutes(new Date(), 0), 9)}
-		maxTime={setHours(setMinutes(new Date(), 0), 12)}
+		maxTime={setHours(setMinutes(new Date(), 0), props.pickupDateTime < new Date(2023, 10, 23) ? 12 : 11)}
 		/>
 	);
 }
