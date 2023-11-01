@@ -9,8 +9,8 @@ import PaymentModal from "../PaymentModal";
 import "./style.css";
 
 
-var totalPrice = 18;
-var quantityPrice = 18;
+var totalPrice = 20;
+var quantityPrice = 20;
 var fifteenPercentTip;
 var eighteenPercentTip;
 var twentyPercentTip;
@@ -63,7 +63,7 @@ class OrderForm extends React.Component {
 	};
 
 	handleTotals = () => {
-		quantityPrice = parseFloat(this.state.quantity)*18;
+		quantityPrice = parseFloat(this.state.quantity)*20;
 		totalPrice = quantityPrice + this.state.sides;
 		// The code below works out the percentage of tip into actual dollars, rounded to 2 decimal places.
 		fifteenPercentTip = (totalPrice * 0.15).toFixed(2);
