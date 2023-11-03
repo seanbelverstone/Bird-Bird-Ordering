@@ -178,7 +178,6 @@ class OrderForm extends React.Component {
 
 	handleFinalTotal = () => {
 		finalTotal = (parseFloat(this.handleSubtotal()) + parseFloat(tax)).toFixed(2);
-		console.log(parseFloat(this.handleSubtotal()) + parseFloat(tax));
 		return finalTotal;
 	}
 
