@@ -57,7 +57,6 @@ class OrderForm extends React.Component {
 	// A function for when the quantity changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
-		console.log(name);
 		this.setState(
 		  {
 			[name]: value,
