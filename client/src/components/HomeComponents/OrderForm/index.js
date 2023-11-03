@@ -57,8 +57,20 @@ class OrderForm extends React.Component {
 	// A function for when the quantity changes
 	handleChange = (event) => {
 		const {name, value} = event.target;
+		console.log(name);
 		this.setState(
-		  {[name]: value}
+		  {
+			[name]: value,
+			// clear the value of the tip when the quantity changes
+			...(name === 'quantity' ? {
+				buttonTip: '',
+				tipInDollars: ''
+			}: {}),
+			// clear the button that's been selected if we use a custom tip
+			...(name === 'tipInDollars' ? {
+				buttonTip: ''
+			} : {})
+		}
 		)
 	};
 
@@ -111,6 +123,10 @@ class OrderForm extends React.Component {
 		event.preventDefault()
 		if (this.state.hidden) {
 			this.showForm()
+			this.setState({
+				buttonTip: '',
+				tipInDollars: ''
+			})
 		} else {
 			this.hideForm()
 		}
@@ -223,23 +239,23 @@ class OrderForm extends React.Component {
 				</Row>
 				<Row>
 					<Col>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.15}>
+						<Button className="tipButtons" color={this.state.buttonTip === '0.15' ? "primary" : "secondary"} onClick={this.addTip} value={0.15}>
 							15%
 							<br />
 							${fifteenPercentTip}
 						</Button>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.18}>
+						<Button className="tipButtons" color={this.state.buttonTip === '0.18' ? "primary" : "secondary"} onClick={this.addTip} value={0.18}>
 							18%
 							<br />
 							${eighteenPercentTip}
 						</Button>
-						<Button className="tipButtons" color="secondary" onClick={this.addTip} value={0.20}>
+						<Button className="tipButtons" color={this.state.buttonTip === '0.2' ? "primary" : "secondary"} onClick={this.addTip} value={0.20}>
 							20%
 							<br />
 							${twentyPercentTip}
 						</Button>
 						<Button
-							className="tipButtons" color="secondary" onClick={this.handleForm}>Custom Amount</Button>
+							className="tipButtons" color={this.state.hiddenForm.visibility === 'visible' ? "primary" : "secondary"} onClick={this.handleForm}>Custom Amount</Button>
 
 						<div id="hiddenForm" style={this.state.hiddenForm}>
 							<AvGroup className="input-group">
