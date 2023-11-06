@@ -4,6 +4,8 @@ import format from "date-fns/format";
 import CompleteButton from "../CompleteButton";
 import "./style.css";
 import UserCalendar from '../../HomeComponents/UserCalendar';
+import API from '../../../utils/API';
+import PaymentLoader from '../../HomeComponents/PaymentLoader';
 
 let splitDesc;
 const regex = /:\d\d([ ap]|$)/
@@ -14,7 +16,8 @@ class EventModal extends React.Component {
 		this.state = {
 			completed: "",
 			editDateTime: false,
-			pickupDateTime: ''
+			pickupDateTime: '',
+			loading: false
 		}
 	}
 
@@ -58,8 +61,6 @@ class EventModal extends React.Component {
 
 	displayEditModal = () => {
 		const { editDateTime } = this.state;
-		const { pickupDate } = this.props;
-		console.log(pickupDate);
 		this.setState({
 			editDateTime: !editDateTime
 		})
@@ -70,6 +71,21 @@ class EventModal extends React.Component {
 			pickupDateTime: date
 		});
 	  };
+
+	submitDateTimeUpdate = () => {
+		const { pickupDateTime } = this.state;
+		const id = this.props.title.split('#')[1];
+		this.setState({
+			loading: true
+		});
+		API.updateComplete(id, 'pickupDateTime', pickupDateTime)
+		.then(response => {
+			console.log(response);
+			if (response.status === 200) {
+				this.setState({ loading: false })
+			}
+		});
+	}
 
 	render() {
 		if(!this.props.show) {
@@ -88,7 +104,7 @@ class EventModal extends React.Component {
 
 					Pick Up Date and Time: {format(new Date(this.props.pickupDate), "PPPP")} @ {this.sortedTime()}
 				</ModalBody>
-				<ModalFooter style={{ display: 'flex', flexDirection: 'column' }}>
+				<ModalFooter style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 					<div id="buttons" style={{ display: 'flex', flexDirection: 'row', gap: '5px', justifyContent: 'flex-end', width: '100%', marginBottom: '1em' }}>
 						<Button color="primary" onClick={this.displayEditModal}>{this.state.editDateTime ? 'Hide Edit' : 'Edit'}</Button>
 						<CompleteButton orderComplete={splitDesc[13]} title={this.props.title}/>
@@ -99,10 +115,12 @@ class EventModal extends React.Component {
 							<UserCalendar pickupDateTime={this.state.pickupDateTime || this.props.fullDateTime}
 							handleCalendarChange={this.handleCalendarChange}
 							/>
-							<Button color="warning" onClick={this.updatePickupDateTime} disabled={new Date(this.state.pickupDateTime).getTime() === new Date(this.props.fullDateTime).getTime()}>Update Date/Time</Button>
+							<Button color="warning" onClick={this.submitDateTimeUpdate} disabled={new Date(this.state.pickupDateTime).getTime() === new Date(this.props.fullDateTime).getTime() || this.state.loading}>Update Date/Time</Button>
 						</div>
 					)}
-
+					<div style={{ width: '100%' }}>
+						<PaymentLoader loading={this.state.loading} />
+					</div>
 				</ModalFooter>
 				</Modal>
 			</div>

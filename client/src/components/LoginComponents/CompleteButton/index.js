@@ -39,7 +39,7 @@ class CompleteButton extends React.Component {
 
 	updateButton = () => {
 
-		API.updateComplete(this.state.id, this.state.trueOrFalse)
+		API.updateComplete(this.state.id, 'completed', this.state.trueOrFalse)
 		.then(response => {
 			console.log(response);
 			this.setState({
