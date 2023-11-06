@@ -90,7 +90,7 @@ class EventModal extends React.Component {
 					loading: false,
 					showAlert: true,
 					updateSuccessful: true,
-					alertMessage: 'Pickup Date/Time successfully updated. Closing this message will refresh the page.'
+					alertMessage: `Pickup Date/Time successfully updated. Please note that you will need to contact ${this.props.title.split('#')[0]} to let them know of their new pickup date/time. Closing this message will refresh the page.`
 				})
 			} else {
 			   this.setState({
@@ -149,11 +149,7 @@ class EventModal extends React.Component {
 					</div>
 					<Alert color={this.state.updateSuccessful ? "success" : "danger"} isOpen={this.state.showAlert} toggle={this.hideAndRefresh} style={{ padding: '1em', marginBottom: '2em' }}>
 						<h4 className="alert-heading">{this.state.updateSuccessful ? 'Update Successful' : 'Error'}</h4>
-						<p className="mb-0">
-							<img src={biscuit} alt="a single biscuit" className="leftBiscuit"/>
-								{this.state.alertMessage}
-							<img src={biscuit} alt="a single biscuit" className="rightBiscuit"/>
-						</p>
+						<p style={{ fontWeight: 'bold' }}>{this.state.alertMessage}</p>
 					</Alert>
 				</ModalFooter>
 				</Modal>
