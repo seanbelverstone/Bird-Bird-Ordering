@@ -99,7 +99,7 @@ class EventModal extends React.Component {
 							<UserCalendar pickupDateTime={this.state.pickupDateTime || this.props.fullDateTime}
 							handleCalendarChange={this.handleCalendarChange}
 							/>
-							<Button color="warning" onClick={this.updatePickupDateTime} disabled={this.state.pickupDateTime === this.props.fullDateTime}>Update Date/Time</Button>
+							<Button color="warning" onClick={this.updatePickupDateTime} disabled={new Date(this.state.pickupDateTime).getTime() === new Date(this.props.fullDateTime).getTime()}>Update Date/Time</Button>
 						</div>
 					)}
 
