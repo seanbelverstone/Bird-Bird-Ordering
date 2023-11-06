@@ -24,6 +24,7 @@ const UserCalendar = (props) => {
 		timeCaption="Time"
 		minTime={setHours(setMinutes(new Date(), 0), 9)}
 		maxTime={setHours(setMinutes(new Date(), 0), props.pickupDateTime < new Date(2023, 10, 23) ? 12 : 11)}
+		disabled={props.disabled}
 		/>
 	);
 }
