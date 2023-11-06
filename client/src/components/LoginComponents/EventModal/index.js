@@ -3,6 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import format from "date-fns/format";
 import CompleteButton from "../CompleteButton";
 import "./style.css";
+import UserCalendar from '../../HomeComponents/UserCalendar';
 
 let splitDesc;
 const regex = /:\d\d([ ap]|$)/
@@ -11,7 +12,18 @@ class EventModal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			completed: ""
+			completed: "",
+			editDateTime: false,
+			pickupDateTime: ''
+		}
+	}
+
+	componentDidUpdate (prevProps) {
+		const { fullDateTime } = this.props;
+		if (prevProps.fullDateTime !== fullDateTime) {
+			this.setState({
+				pickupDateTime: fullDateTime
+			})
 		}
 	}
 
@@ -44,6 +56,21 @@ class EventModal extends React.Component {
 
 	}
 
+	displayEditModal = () => {
+		const { editDateTime } = this.state;
+		const { pickupDate } = this.props;
+		console.log(pickupDate);
+		this.setState({
+			editDateTime: !editDateTime
+		})
+	}
+
+	handleCalendarChange = date => {
+		this.setState({
+			pickupDateTime: date
+		});
+	  };
+
 	render() {
 		if(!this.props.show) {
 			return null;
@@ -61,9 +88,21 @@ class EventModal extends React.Component {
 
 					Pick Up Date and Time: {format(new Date(this.props.pickupDate), "PPPP")} @ {this.sortedTime()}
 				</ModalBody>
-				<ModalFooter>
-					<CompleteButton orderComplete={splitDesc[13]} title={this.props.title}/>
-					<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
+				<ModalFooter style={{ display: 'flex', flexDirection: 'column' }}>
+					<div id="buttons" style={{ display: 'flex', flexDirection: 'row', gap: '5px', justifyContent: 'flex-end', width: '100%', marginBottom: '1em' }}>
+						<Button color="primary" onClick={this.displayEditModal}>{this.state.editDateTime ? 'Hide Edit' : 'Edit'}</Button>
+						<CompleteButton orderComplete={splitDesc[13]} title={this.props.title}/>
+						<Button color="danger" onClick={this.props.onClose}>Cancel</Button>
+					</div>
+					{this.state.editDateTime && (
+						<div style={{ display: 'flex', flexDirection: 'row', gap: '5px', justifyContent: 'flex-end', width: '100%' }}>
+							<UserCalendar pickupDateTime={this.state.pickupDateTime || this.props.fullDateTime}
+							handleCalendarChange={this.handleCalendarChange}
+							/>
+							<Button color="warning" onClick={this.updatePickupDateTime} disabled={this.state.pickupDateTime === this.props.fullDateTime}>Update Date/Time</Button>
+						</div>
+					)}
+
 				</ModalFooter>
 				</Modal>
 			</div>
