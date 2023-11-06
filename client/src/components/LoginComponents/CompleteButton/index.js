@@ -26,12 +26,12 @@ class CompleteButton extends React.Component {
 		if(parseInt(completedVariable) === 1) {
 			this.setState({
 				trueOrFalse: 0,
-				renderedButton: <Button color="warning" onClick={() => this.updateButton()}>Mark as Incomplete</Button>
+				renderedButton: <Button color="warning" onClick={() => this.updateButton()} disabled={this.props.disabled}>Mark as Incomplete</Button>
 			});
 		} else {
 			this.setState({
 				trueOrFalse: 1,
-				renderedButton: <Button color="success" onClick={() => this.updateButton()}>Complete Order</Button>		
+				renderedButton: <Button color="success" onClick={() => this.updateButton()} disabled={this.props.disabled}>Complete Order</Button>		
 			});
 		}
 		return;
@@ -39,7 +39,7 @@ class CompleteButton extends React.Component {
 
 	updateButton = () => {
 
-		API.updateComplete(this.state.id, this.state.trueOrFalse)
+		API.updateComplete(this.state.id, 'completed', this.state.trueOrFalse)
 		.then(response => {
 			console.log(response);
 			this.setState({

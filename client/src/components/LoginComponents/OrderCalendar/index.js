@@ -18,6 +18,7 @@ class OrderCalendar extends React.Component {
 			clickedDesc: "",
 			clickedTime: "",
 			clickedDate: "",
+			fullDateTime: '',
 			totalBiscuits: "",
 			totalPacks: "",
 			totalOrders: "",
@@ -103,7 +104,8 @@ class OrderCalendar extends React.Component {
 			clickedTitle: event.title,
 			clickedDesc: event.desc,
 			clickedTime: event.start.toTimeString(),
-			clickedDate: event.start.toDateString()
+			clickedDate: event.start.toDateString(),
+			fullDateTime: event.start
 		})
 		this.toggleModal();
 	}
@@ -260,6 +262,7 @@ class OrderCalendar extends React.Component {
 					desc={this.state.clickedDesc}
 					pickupTime={this.state.clickedTime}
 					pickupDate={this.state.clickedDate}
+					fullDateTime={this.state.fullDateTime}
 					/>
 
 			</div>

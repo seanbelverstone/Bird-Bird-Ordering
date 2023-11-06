@@ -30,11 +30,11 @@ export default {
 		return axios.get("/api/order/all")
 	},
 
-	updateComplete: (id, completed) => {
-		console.log(`ID: ${id} COMPLETE?: ${completed}`)
+	updateComplete: (id, type, updatedValue) => {
+		console.log(`ID: ${id} ${type}: ${updatedValue}`)
 		return axios.patch(`/api/order/${id}`, {
 			id,
-			completed
+			[type]: updatedValue
 		});
 	},
 

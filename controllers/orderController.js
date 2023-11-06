@@ -22,7 +22,8 @@ module.exports = {
       .findOne({where: {id: request.body.id}})
       .then(
         db.Order.update({
-        completed: request.body.completed
+        ...(request.body.completed ? { completed: request.body.completed } : {}),
+		...(request.body.pickupDateTime ? { pickupDateTime: request.body.pickupDateTime } : {})
       }, { where: {
         id: request.body.id
       }}))

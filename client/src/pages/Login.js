@@ -41,7 +41,7 @@ class Login extends Component {
 			displayedComponent = (
 				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
 					<DownloadButton rawData={rawData}/>
-					<OrderCalendar rawData={rawData}/>
+					<OrderCalendar rawData={rawData} />
 				</div>
 			)
 
