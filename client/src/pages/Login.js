@@ -15,7 +15,8 @@ class Login extends Component {
 		this.state = {
 			loggedIn: false,
 			rawData: [],
-			selectedMonth: format(new Date(), 'MMM')
+			selectedMonth: format(new Date(), 'MMM'),
+			selectedYear: format(new Date(), 'yyyy')
 		}
 	}
 	
@@ -36,19 +37,20 @@ class Login extends Component {
 
 	handleDate = (date) => {
 		this.setState({
-			selectedMonth: format(date, 'MMM')
+			selectedMonth: format(date, 'MMM'),
+			selectedYear: format(date, 'yyyy')
 		})
 	}
 	
 	
 	render() {
-		const { rawData, loggedIn, selectedMonth } = this.state;
+		const { rawData, loggedIn, selectedMonth, selectedYear } = this.state;
 		let displayedComponent;
 
 		if (loggedIn === true || sessionStorage.getItem("birdBirdWebToken")) {
 			displayedComponent = (
 				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-					<DownloadButton rawData={rawData} selectedMonth={selectedMonth}/>
+					<DownloadButton rawData={rawData} selectedMonth={selectedMonth} selectedYear={selectedYear} />
 					<OrderCalendar rawData={rawData} callback={this.handleDate} />
 				</div>
 			)
