@@ -6,8 +6,10 @@ import './style.css';
 
 class DownloadButton extends Component {
 	downloadData = () => {
-		const { rawData = [] } = this.props;
+		const { rawData = [], selectedDate } = this.props;
 		const list = [];
+		const filteredData = rawData.length > 0 ? rawData.filter((datum) => format(parseISO(datum.pickupDatetime), 'MMM') === selectedDate) : [];
+		console.log(filteredData);
 		for (var i = 0; i < rawData.length; i++) {
 			list.push({
 				'Order Number': rawData[i].id,
