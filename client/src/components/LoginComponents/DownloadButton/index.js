@@ -5,13 +5,41 @@ import * as XLSX from 'xlsx';
 import './style.css';
 
 class DownloadButton extends Component {
-	downloadData = () => {
+	constructor(props) {
+		super(props);
+		this.state = {
+			disabled: false
+		}
+	}
+
+	componentDidMount() {
+		this.setState({
+			disabled: this.filterData().length === 0
+		})
+	}
+
+	componentDidUpdate(prevProps) {
 		const { rawData = [], selectedMonth, selectedYear } = this.props;
-		const list = [];
+		if (prevProps.selectedMonth !== selectedMonth || prevProps.selectedYear !== selectedYear
+			|| prevProps.rawData.toString() !== rawData.toString()) {
+			this.setState({
+				disabled: this.filterData().length === 0
+			});
+		}
+	}
+
+	filterData = () => {
+		const { rawData = [], selectedMonth, selectedYear } = this.props;
 		const filteredData = rawData.length > 0 ? rawData.filter((datum) => {
 			return format(parseISO(datum.pickupDateTime), 'MMM') === selectedMonth &&
 			format(parseISO(datum.pickupDateTime), 'yyyy') === selectedYear
 		}) : [];
+		return filteredData;
+	}
+
+	downloadData = () => {
+		const list = [];
+		const filteredData = this.filterData();
 		for (var i = 0; i < filteredData.length; i++) {
 			list.push({
 				'Order Number': filteredData[i].id,
@@ -32,7 +60,7 @@ class DownloadButton extends Component {
 	
 	render() {
 		return (
-			<Button id="download" color="primary" onClick={this.downloadData} disabled={this.props.rawData.length === 0}>Download</Button>
+			<Button id="download" color="primary" onClick={this.downloadData} disabled={this.state.disabled}>Download</Button>
 		);
 	}
 }
