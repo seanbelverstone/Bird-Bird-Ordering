@@ -5,6 +5,7 @@ import OrderCalendar from "../components/LoginComponents/OrderCalendar";
 import API from "../utils/API";
 import "./css/home.css";
 import "./css/login.css";
+import { format } from "date-fns";
 
 
 class Login extends Component {
@@ -13,7 +14,9 @@ class Login extends Component {
 		super(props);
 		this.state = {
 			loggedIn: false,
-			rawData: []
+			rawData: [],
+			selectedMonth: format(new Date(), 'MMM'),
+			selectedYear: format(new Date(), 'yyyy')
 		}
 	}
 	
@@ -31,17 +34,24 @@ class Login extends Component {
 		event.preventDefault();
 		window.location.pathname = "/"
 	}
+
+	handleDate = (date) => {
+		this.setState({
+			selectedMonth: format(date, 'MMM'),
+			selectedYear: format(date, 'yyyy')
+		})
+	}
 	
 	
 	render() {
-		const { rawData, loggedIn } = this.state;
+		const { rawData, loggedIn, selectedMonth, selectedYear } = this.state;
 		let displayedComponent;
 
 		if (loggedIn === true || sessionStorage.getItem("birdBirdWebToken")) {
 			displayedComponent = (
 				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
-					<DownloadButton rawData={rawData}/>
-					<OrderCalendar rawData={rawData} />
+					<DownloadButton rawData={rawData} selectedMonth={selectedMonth} selectedYear={selectedYear} />
+					<OrderCalendar rawData={rawData} callback={this.handleDate} />
 				</div>
 			)
 

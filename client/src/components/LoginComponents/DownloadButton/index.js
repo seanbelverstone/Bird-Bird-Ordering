@@ -5,19 +5,51 @@ import * as XLSX from 'xlsx';
 import './style.css';
 
 class DownloadButton extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			disabled: false
+		}
+	}
+
+	componentDidMount() {
+		this.setState({
+			disabled: this.filterData().length === 0
+		})
+	}
+
+	componentDidUpdate(prevProps) {
+		const { rawData = [], selectedMonth, selectedYear } = this.props;
+		if (prevProps.selectedMonth !== selectedMonth || prevProps.selectedYear !== selectedYear
+			|| prevProps.rawData.toString() !== rawData.toString()) {
+			this.setState({
+				disabled: this.filterData().length === 0
+			});
+		}
+	}
+
+	filterData = () => {
+		const { rawData = [], selectedMonth, selectedYear } = this.props;
+		const filteredData = rawData.length > 0 ? rawData.filter((datum) => {
+			return format(parseISO(datum.pickupDateTime), 'MMM') === selectedMonth &&
+			format(parseISO(datum.pickupDateTime), 'yyyy') === selectedYear
+		}) : [];
+		return filteredData;
+	}
+
 	downloadData = () => {
-		const { rawData = [] } = this.props;
 		const list = [];
-		for (var i = 0; i < rawData.length; i++) {
+		const filteredData = this.filterData();
+		for (var i = 0; i < filteredData.length; i++) {
 			list.push({
-				'Order Number': rawData[i].id,
-				'Name': rawData[i].name,
-				'Email': rawData[i].email,
-				'Telephone': rawData[i].telephone,
-				'Quantity': parseInt(rawData[i].biscuitQuantity),
-				'Total Cost': `$${rawData[i].totalCost}`,
-				'Pick Up Date': format(parseISO(rawData[i].pickupDateTime), 'MM/dd/yyyy'),
-				'Pick Up Time': format(parseISO(rawData[i].pickupDateTime), 'h:mm a'),
+				'Order Number': filteredData[i].id,
+				'Name': filteredData[i].name,
+				'Email': filteredData[i].email,
+				'Telephone': filteredData[i].telephone,
+				'Quantity': parseInt(filteredData[i].biscuitQuantity),
+				'Total Cost': `$${filteredData[i].totalCost}`,
+				'Pick Up Date': format(parseISO(filteredData[i].pickupDateTime), 'MM/dd/yyyy'),
+				'Pick Up Time': format(parseISO(filteredData[i].pickupDateTime), 'h:mm a'),
 			})
 		}
 		const workbook = XLSX.utils.book_new();
@@ -28,7 +60,7 @@ class DownloadButton extends Component {
 	
 	render() {
 		return (
-			<Button id="download" color="primary" onClick={this.downloadData} disabled={this.props.rawData.length === 0}>Download</Button>
+			<Button id="download" color="primary" onClick={this.downloadData} disabled={this.state.disabled}>Download</Button>
 		);
 	}
 }

@@ -119,9 +119,10 @@ class OrderCalendar extends React.Component {
 	// Section for calculating the total orders and biscuits. Need the date range in order to do this.
 	// Waits for everything else to render, then updates the state for currentDate and currentView
 	setCurrentDate = async (date) => {
+		const { callback } = this.props;
 		await this.setState({
 			currentDate: date
-		});
+		}, () => callback(date));
 		this.setDateRange();
 	}
 
